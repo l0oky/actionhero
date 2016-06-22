@@ -33,8 +33,8 @@
 <h2 id="levels">Levels</h2>
 <pre class="highlight javascript"><code><span class="nx">api</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'hello'</span><span class="p">);</span> <span class="c1">// will use the default, 'info' level</span>
 <span class="nx">api</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'debug message'</span><span class="p">,</span> <span class="s1">'debug'</span><span class="p">)</span> <span class="c1">// will not show up unless you have configured your logger in this NODE_ENV to be debug</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">lot</span><span class="p">(</span><span class="s1">'OH NO'</span><span class="p">,</span> <span class="s1">'emerg'</span><span class="p">)</span> <span class="c1">// will show up in all loger levels</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">lot</span><span class="p">(</span><span class="s1">'the params were'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">params</span><span class="p">)</span> <span class="c1">// you can log objects too</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'OH NO'</span><span class="p">,</span> <span class="s1">'emerg'</span><span class="p">)</span> <span class="c1">// will show up in all logger levels</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'the params were'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">params</span><span class="p">)</span> <span class="c1">// you can log objects too</span>
 </code></pre>
 
 <p>Note that you can set a <code class="prettyprint">level</code> which indicates which level (and those above it) you wish to log per transport.  The log levels are:</p>
