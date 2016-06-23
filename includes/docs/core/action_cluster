@@ -27,7 +27,7 @@
 
 <p>The RPC system is used heavily by Chat.</p>
 
-<p>Two options have been added to the <code class="prettyprint">config/redis.js</code> config file to support this: <code class="prettyprint">api.config.redis.channel</code> ( Which channel to use on redis pub/sub for RPC communication ) and <code class="prettyprint">api.config.redis.rpcTimeout</code> ( How long to wait for an RPC call before considering it a failure )</p>
+<p>Two options have been added to the <code class="prettyprint">config/redis.js</code> config file to support this: <code class="prettyprint">api.config.general.channel</code> ( Which channel to use on redis pub/sub for RPC communication ) and <code class="prettyprint">api.config.general.rpcTimeout</code> ( How long to wait for an RPC call before considering it a failure )</p>
 
 <p><strong>WARNING</strong></p>
 

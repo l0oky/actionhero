@@ -542,6 +542,50 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 <li>If moneyInCents = <code class="prettyprint">&quot;hello&quot;</code> =&gt; Error(&#39;not a number&rsquo;)</li>
 </ul>
 
+<p>Formatters and Validators can also be named method names. For example, you might have an action like:</p>
+<pre class="highlight javascript"><code><span class="nx">exports</span><span class="p">.</span><span class="nx">cacheTest</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">name</span><span class="p">:</span> <span class="s1">'cacheTest'</span><span class="p">,</span>
+  <span class="na">description</span><span class="p">:</span> <span class="s1">'I will test the internal cache functions of the API'</span><span class="p">,</span>
+  <span class="na">outputExample</span><span class="p">:</span> <span class="p">{},</span>
+
+  <span class="na">inputs</span><span class="p">:</span> <span class="p">{</span>
+    <span class="na">key</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">formatter</span><span class="p">:</span> <span class="p">[</span>
+         <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">){</span> <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="p">},</span>
+         <span class="s1">'api.formatter.uniqueKeyName'</span> <span class="c1">// &lt;----------- HERE</span>
+    <span class="p">},</span>
+    <span class="na">value</span><span class="p">:</span> <span class="p">{</span>
+      <span class="na">required</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="na">formatter</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">){</span> <span class="k">return</span> <span class="nb">String</span><span class="p">(</span><span class="nx">s</span><span class="p">);</span> <span class="p">},</span>
+      <span class="na">validator</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">s</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="nx">s</span><span class="p">.</span><span class="nx">length</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">){</span> <span class="k">return</span> <span class="s1">'`value` should be at least 3 letters long'</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">else</span><span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+  <span class="p">},</span>
+
+  <span class="na">run</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">next</span><span class="p">){</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+
+<span class="p">};</span>
+</code></pre>
+
+<p>You can define <code class="prettyprint">api.formatter.uniqueKeyName</code> elsewhere in your project, like this initializer:</p>
+<pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">initialize</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">next</span><span class="p">){</span>
+    <span class="nx">api</span><span class="p">.</span><span class="nx">formatter</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">uniqueKeyName</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">){</span>
+        <span class="k">return</span> <span class="nx">key</span> <span class="o">+</span> <span class="s1">'-'</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">next</span><span class="p">();</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+</code></pre>
+
 <h2 id="the-data-object">The Data Object</h2>
 <pre class="highlight javascript"><code><span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">connection</span><span class="p">:</span> <span class="nx">connection</span><span class="p">,</span>
@@ -1288,7 +1332,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <p>The RPC system is used heavily by Chat.</p>
 
-<p>Two options have been added to the <code class="prettyprint">config/redis.js</code> config file to support this: <code class="prettyprint">api.config.redis.channel</code> ( Which channel to use on redis pub/sub for RPC communication ) and <code class="prettyprint">api.config.redis.rpcTimeout</code> ( How long to wait for an RPC call before considering it a failure )</p>
+<p>Two options have been added to the <code class="prettyprint">config/redis.js</code> config file to support this: <code class="prettyprint">api.config.general.channel</code> ( Which channel to use on redis pub/sub for RPC communication ) and <code class="prettyprint">api.config.general.rpcTimeout</code> ( How long to wait for an RPC call before considering it a failure )</p>
 
 <p><strong>WARNING</strong></p>
 
