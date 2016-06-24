@@ -724,8 +724,6 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
       <span class="na">maxEventLoopDelay</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
       <span class="c1">// When we kill off a taskProcessor, should we disonnect that local redis connection?</span>
       <span class="na">toDisconnectProcessors</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="c1">// What redis server should we connect to for tasks / delayed jobs?</span>
-      <span class="na">redis</span><span class="p">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">redis</span><span class="p">,</span>
       <span class="c1">// Customize Resque primitives, replace null with required replacement.</span>
       <span class="na">resque_overrides</span><span class="p">:</span> <span class="p">{</span>
         <span class="na">queue</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
@@ -1026,7 +1024,7 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 
 <h2 id="extending-resque">Extending Resque</h2>
 
-<p>In cases where you would like to extend or modify the underlying behaviour or capabilities of Resque you can specify 
+<p>In cases where you would like to extend or modify the underlying behaviour or capabilities of Resque you can specify
 replacements for the Queues, Scheduler, or Multi Worker implementations in the Tasks configuration.</p>
 <pre class="highlight javascript"><code><span class="c1">// From /config/tasks.js:</span>
 <span class="kd">var</span> <span class="nx">myQueue</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'../util/myQueue.js'</span><span class="p">);</span>
@@ -1080,7 +1078,7 @@ replacements for the Queues, Scheduler, or Multi Worker implementations in the T
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">myQueue</span><span class="p">;</span>
 </code></pre>
 
-<p>The above example will give you access to <code class="prettyprint">api.resque.queue.enqueueFront()</code>, which you could use directly or wrap by 
+<p>The above example will give you access to <code class="prettyprint">api.resque.queue.enqueueFront()</code>, which you could use directly or wrap by
 extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <h2 id="notes">Notes</h2>
@@ -1390,7 +1388,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <p>actionhero ships with the functions needed for a distributed key-value cache.  You can cache strings, numbers, arrays and objects (anything that responds to <code class="prettyprint">JSON.stringify</code>).  </p>
 
-<p>The cache&rsquo;s redis server is defined by <code class="prettyprint">api.config.redis</code>.  Note that if <code class="prettyprint">api.config.redis.fake = true</code>, you will be using an in-memory redis server rather than a real redis process.</p>
+<p>The cache&rsquo;s redis server is defined by <code class="prettyprint">api.config.redis</code>.  It is possible to use fakeredis.</p>
 
 <h2 id="cache-methods">Cache Methods</h2>
 
@@ -1566,7 +1564,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <p>The special verb for persistent connections <code class="prettyprint">say</code> makes use of <code class="prettyprint">api.chatRoom.broadcast</code> to tell a message to all other users in the room, IE: <code class="prettyprint">say myRoom Hello World</code> from a socket client or <code class="prettyprint">client.say(&quot;myRoom&quot;, &#39;Hello World&quot;)</code> for a websocket.</p>
 
-<p>Chat on multiple actionHero nodes relies on redis for both chat (pub/sub) and a key store defined by <code class="prettyprint">api.config.redis</code>. Note that if <code class="prettyprint">api.config.redis.fake = true</code>, you will be using an in-memory redis server rather than a real redis process, which does not work to share data across nodes.  The redis store and the key store don&rsquo;t need to be the same instance of redis, but they do need to be the same for all actionhero servers you are running in parallel.  This is how actionhero scales the chat features.</p>
+<p>Chat on multiple actionHero nodes relies on redis for both chat (pub/sub) and a key store defined by <code class="prettyprint">api.config.redis</code>. Note that if you elect to use fakeredis, you will be using an in-memory redis server rather than a real redis process, which does not work to share data across nodes.  The redis store and the key store don&rsquo;t need to be the same instance of redis, but they do need to be the same for all actionhero servers you are running in parallel.  This is how actionhero scales the chat features.</p>
 
 <p>There is no limit to the number of rooms which can be created, but keep in mind that each room stores information in redis, and there load created for each connection.</p>
 
@@ -3580,7 +3578,6 @@ randomNumber
           <span class="na">queues</span><span class="p">:</span> <span class="p">[</span><span class="s1">'*'</span><span class="p">],</span>
           <span class="na">verbose</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
           <span class="c1">// ...</span>
-          <span class="na">redis</span><span class="p">:</span> <span class="nx">api</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">redis</span>
         <span class="p">};</span>
 
         <span class="k">if</span><span class="p">(</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">ACTIONHERO_ROLE</span> <span class="o">===</span> <span class="s1">'worker'</span><span class="p">){</span>

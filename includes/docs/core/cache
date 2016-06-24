@@ -4,7 +4,7 @@
 
 <p>actionhero ships with the functions needed for a distributed key-value cache.  You can cache strings, numbers, arrays and objects (anything that responds to <code class="prettyprint">JSON.stringify</code>).  </p>
 
-<p>The cache&rsquo;s redis server is defined by <code class="prettyprint">api.config.redis</code>.  Note that if <code class="prettyprint">api.config.redis.fake = true</code>, you will be using an in-memory redis server rather than a real redis process.</p>
+<p>The cache&rsquo;s redis server is defined by <code class="prettyprint">api.config.redis</code>.  It is possible to use fakeredis.</p>
 
 <h2 id="cache-methods">Cache Methods</h2>
 
