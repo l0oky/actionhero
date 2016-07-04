@@ -227,6 +227,13 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 <li>timestamps will be an array of the delayed timestamps which the task was removed from</li>
 </ul>
 
+<h3 id="api-tasks-delqueue-queue-next">api.tasks.delQueue(queue, next)</h3>
+
+<ul>
+<li>next(error)</li>
+<li>removes all jobs in a resque queue</li>
+</ul>
+
 <h3 id="api-tasks-enqueuerecurrentjob-taskname-next">api.tasks.enqueueRecurrentJob(taskName, next)</h3>
 
 <ul>
@@ -249,6 +256,13 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 <li>next(error, timestamps)</li>
 <li>will return an array of all timesamps which have at least one job scheduled to be run</li>
 <li>for use with <code class="prettyprint">api.tasks.delayedAt</code></li>
+</ul>
+
+<h3 id="api-tasks-queued-q-start-stop-next">api.tasks.queued(q, start, stop, next)</h3>
+
+<ul>
+<li>next(error, jobs)</li>
+<li>will return an array of all pending jobs in a resque queue (paginated via start/stop)</li>
 </ul>
 
 <h3 id="api-tasks-stats-next">api.tasks.stats(next)</h3>
