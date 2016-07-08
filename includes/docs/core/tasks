@@ -272,6 +272,20 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 <li>will return an array of all stats from your resque cluster</li>
 </ul>
 
+<h3 id="api-tasks-locks-next">api.tasks.locks(next)</h3>
+
+<ul>
+<li>next(error, locks)</li>
+<li>will return an array of all locks from your resque cluster (both queue and worker)</li>
+</ul>
+
+<h3 id="api-tasks-dellock-lockname-next">api.tasks.delLock(lockName, next)</h3>
+
+<ul>
+<li>next(error, count)</li>
+<li>will return the count of locks deleted (if any)</li>
+</ul>
+
 <h3 id="api-tasks-delayedat-timestamp-next">api.tasks.delayedAt(timestamp, next)</h3>
 
 <ul>
