@@ -6,7 +6,7 @@ log/*
 cache/*
 coverage/*
 node_modules/*
-locales/*
+locales/_compiled/*
 public/javascript/actionheroClient.js
 public/javascript/actionheroClient.min.js
 
