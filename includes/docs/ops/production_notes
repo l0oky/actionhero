@@ -54,7 +54,7 @@
 
 </code></pre>
 
-<p>Here is a common actionhero production topology:</p>
+<p>Here is a common ActionHero production topology:</p>
 
 <p><img alt="cluster" src="/images/cluster.png" /></p>
 
@@ -66,24 +66,24 @@
 <ul>
 <li>be sure to modify the config files for each type of server acordingly (ie: turn of all servers for the workers, and turn of all workers on the servers)</li>
 </ul></li>
-<li>To acomplish the above, you only need to make changes to your configuration files on each server.  You will still be running the same same actionhero project codebase.  See the example:</li>
+<li>To acomplish the above, you only need to make changes to your configuration files on each server.  You will still be running the same same ActionHero project codebase.  See the example:</li>
 <li>Always have a replica of redis!</li>
 </ul>
 
 <h2 id="paths-and-environments">Paths and Environments</h2>
 
-<p>You can set a few environment variables to affect how actionhero runs:</p>
+<p>You can set a few environment variables to affect how ActionHero runs:</p>
 
 <ul>
-<li><code class="prettyprint">PROJECT_ROOT</code>: This is useful when deploying actionhero applications on a server where symlinks will change under a running process.  The cluster will look at your symlink <code class="prettyprint">PROJECT_ROOT=/path/to/current_symlink</code> rather than the absolute path it was started from</li>
-<li><code class="prettyprint">ACTIONHERO_ROOT</code>: This can used to set the absolute path to the actionhero binaries</li>
-<li><code class="prettyprint">ACTIONHERO_CONFIG</code>: This can be user to set the absolute path to the actionhero config directory you wish to use.  This is useful when you might have a variable configs per server</li>
+<li><code class="prettyprint">PROJECT_ROOT</code>: This is useful when deploying ActionHero applications on a server where symlinks will change under a running process.  The cluster will look at your symlink <code class="prettyprint">PROJECT_ROOT=/path/to/current_symlink</code> rather than the absolute path it was started from</li>
+<li><code class="prettyprint">ACTIONHERO_ROOT</code>: This can used to set the absolute path to the ActionHero binaries</li>
+<li><code class="prettyprint">ACTIONHERO_CONFIG</code>: This can be user to set the absolute path to the ActionHero config directory you wish to use.  This is useful when you might have a variable configs per server</li>
 <li><code class="prettyprint">ACTIONHERO_TITLE</code>: The value of <code class="prettyprint">api.id</code>, and the name for the pidfile in some boot configurations</li>
 </ul>
 
 <h2 id="daemon">Daemon</h2>
 
-<p>When deploying actionhero, you will probably have more than 1 process.  You can use the cluster manager to keep an eye on the workers and manage them</p>
+<p>When deploying ActionHero, you will probably have more than 1 process.  You can use the cluster manager to keep an eye on the workers and manage them</p>
 
 <ul>
 <li>Start the cluster with 2 workers: <code class="prettyprint">./node_modules/.bin/actionhero startCluster --workers=2</code></li>
@@ -95,7 +95,7 @@
 
 <h2 id="number-of-workers">Number of workers</h2>
 
-<p>When choosing the number of workers (<code class="prettyprint">--workers=n</code>) for your actionhero cluster, choose at least 1 less than the number of CPUs available.  If you have a &ldquo;burstable&rdquo; architecture (like a Joyent smart machine), opt for the highest number of &lsquo;consistent&rsquo; CPUs you can have, meaning a number of CPUs that you will always have available to you.  </p>
+<p>When choosing the number of workers (<code class="prettyprint">--workers=n</code>) for your ActionHero cluster, choose at least 1 less than the number of CPUs available.  If you have a &ldquo;burstable&rdquo; architecture (like a Joyent smart machine), opt for the highest number of &lsquo;consistent&rsquo; CPUs you can have, meaning a number of CPUs that you will always have available to you.  </p>
 
 <p>You never want more workers than you can run at a time, or else you will actually be slowing down the execution of all processes.</p>
 
@@ -103,15 +103,15 @@
 
 <h2 id="pidfiles">Pidfiles</h2>
 
-<p>actionhero will write its pid to a pidfile in the normal unix way.  The path for the pidfile is set in <code class="prettyprint">config/api.js</code> with <code class="prettyprint">config.general.paths.pid</code>.  </p>
+<p>ActionHero will write its pid to a pidfile in the normal unix way.  The path for the pidfile is set in <code class="prettyprint">config/api.js</code> with <code class="prettyprint">config.general.paths.pid</code>.  </p>
 
-<p>Individual actionhero servers will name their pidfiles by <code class="prettyprint">api.id</code>, which is determined by the logic <a href="https://github.com/evantahler/actionhero/blob/master/initializers/pids.js">here</a> and <a href="https://github.com/evantahler/actionhero/blob/master/initializers/id.js">here</a>.  For example, on my laptop with the IP address of <code class="prettyprint">192.168.0.1</code>, running <code class="prettyprint">npm start</code> would run one actionhero server and generate a pidfile of <code class="prettyprint">./pids/actionhero-192.168.0.1</code> in which would be a single line containg the process&rsquo; pid.</p>
+<p>Individual ActionHero servers will name their pidfiles by <code class="prettyprint">api.id</code>, which is determined by the logic <a href="https://github.com/evantahler/actionhero/blob/master/initializers/pids.js">here</a> and <a href="https://github.com/evantahler/actionhero/blob/master/initializers/id.js">here</a>.  For example, on my laptop with the IP address of <code class="prettyprint">192.168.0.1</code>, running <code class="prettyprint">npm start</code> would run one ActionHero server and generate a pidfile of <code class="prettyprint">./pids/actionhero-192.168.0.1</code> in which would be a single line containg the process&rsquo; pid.</p>
 
 <p>When running the cluster, the cluster process first writes his own pidfile to <code class="prettyprint">process.cwd() + &#39;./pids/cluster_pidfile&#39;</code>.  Then, every worker the cluster master creates will have a pid like <code class="prettyprint">actionhero-worker-1</code> in the location defined by <code class="prettyprint">config/api.js</code>.</p>
 
 <h2 id="git-based-deployment">Git-based Deployment</h2>
 <pre class="highlight shell"><code><span class="c">#!/usr/bin/env bash</span>
-<span class="c"># assuming the actionhero cluster master process is already running</span>
+<span class="c"># assuming the ActionHero cluster master process is already running</span>
 
 <span class="nv">DEPLOY_PATH</span><span class="o">=</span>/path/to/your/application
 
@@ -225,9 +225,9 @@ http <span class="o">{</span>
 <span class="o">}</span>
 </code></pre>
 
-<p>While actionhero can be the font-line server your users hit, it&rsquo;s probably best to proxy actionhero behind a load balancer, nginx, haproxy, etc.  This will help you pool connections before hitting node, SSL terminate, serve static assets, etc.  </p>
+<p>While ActionHero can be the font-line server your users hit, it&rsquo;s probably best to proxy ActionHero behind a load balancer, nginx, haproxy, etc.  This will help you pool connections before hitting node, SSL terminate, serve static assets, etc.  </p>
 
-<p>Here is an example nginx config for interfacing with actionhero, including using sockets (not http) and handing the websocket upgrade path.</p>
+<p>Here is an example nginx config for interfacing with ActionHero, including using sockets (not http) and handing the websocket upgrade path.</p>
 
 <ul>
 <li>Note the proxy-pass format to the socket: proxy_pass http://unix:/path/to/socket</li>
@@ -306,11 +306,11 @@ http <span class="o">{</span>
 <li>Run a cluster via <code class="prettyprint">startCluster</code>.  This will guarantee that you can reboot your application with 0 downtime and deploy new versions without interruption.
 
 <ul>
-<li>You can run 1 actionhero instance per core (assuming the server is dedicated to actionhero), and that is the default behavior of <code class="prettyprint">startCluster</code>.</li>
-<li>You don&rsquo;t need a tool like PM2 to manage actionhero cluster process, but you can.</li>
+<li>You can run 1 ActionHero instance per core (assuming the server is dedicated to ActionHero), and that is the default behavior of <code class="prettyprint">startCluster</code>.</li>
+<li>You don&rsquo;t need a tool like PM2 to manage ActionHero cluster process, but you can.</li>
 <li>You can use an init script to <code class="prettyprint">startCluster</code> at boot, or use a tool like <a href="https://mmonit.com/monit/">monit</a> to do it for you.</li>
 </ul></li>
-<li>Never run tasks on the same actionhero instances you run your servers on; never run your servers on the same actionhero instances you run your tasks on
+<li>Never run tasks on the same ActionHero instances you run your servers on; never run your servers on the same ActionHero instances you run your tasks on
 
 <ul>
 <li>Yes, under most situations running servers + tasks on the same instance will work OK, but the load profiles (and often the types of packages required) vary in each deployment.  Actions are designed to respond quickly and offload hard computations to tasks.  Tasks are designed to work slower computations.</li>
@@ -319,16 +319,16 @@ http <span class="o">{</span>
 <li>Use a centralized logging tool like Splunk, ELK, SumoLogic, etc.  ActionHero is <em>built for the cloud</em>, which means that it expects pids, application names, etc to change, and as such, will create many log files.  Use a centralized tool to inspect the state of your application.
 
 <ul>
-<li>Log everything.  You never know what you might want to check up on.  Actionhero&rsquo;s logger has various levels you can use for this.</li>
+<li>Log everything.  You never know what you might want to check up on.  ActionHero&rsquo;s logger has various levels you can use for this.</li>
 </ul></li>
 <li>Split out the redis instance you use for cache from the one you use for tasks.  If your cache fills up, do you want task processing to fail?</li>
 <li>Your web request stack should look like: [Load Balancer] -&gt; [App Server] -&gt; [Nginx] -&gt; [ActionHero]
 
 <ul>
 <li>This layout allows you to have control, back-pressure and throttling at many layers.</li>
-<li>Configure Nginx to serve static files whenever possible to remove load from actionhero, and leave it just to process actions</li>
+<li>Configure Nginx to serve static files whenever possible to remove load from ActionHero, and leave it just to process actions</li>
 </ul></li>
-<li>Use a CDN. Actionhero will serve static files with the proper last-modified headers, so your CDN should respect this, and you should not need to worry about asset SHAs/Checksums.</li>
+<li>Use a CDN. ActionHero will serve static files with the proper last-modified headers, so your CDN should respect this, and you should not need to worry about asset SHAs/Checksums.</li>
 <li>Use redis-cluster or redis-sentinel.  The <a href="https://github.com/luin/ioredis"><code class="prettyprint">ioredis</code></a> redis library has support for them by default.  This allows you to have a High Availability redis configuration.</li>
 </ul>
 
@@ -362,7 +362,7 @@ http <span class="o">{</span>
 </code></pre>
 
 <ul>
-<li>Let the app crash rather than being defensive prematurely.  Actionhero has a good logger, and if you are running within <code class="prettyprint">startCluster</code> mode, your server will be restarted.  It is very easy to hide uncaught errors, exceptions, or un-resolved promises, and doing so might leave your application in strange state.<br></li>
+<li>Let the app crash rather than being defensive prematurely.  ActionHero has a good logger, and if you are running within <code class="prettyprint">startCluster</code> mode, your server will be restarted.  It is very easy to hide uncaught errors, exceptions, or un-resolved promises, and doing so might leave your application in strange state.<br></li>
 <li>We removed domains from the project in v13 to follow this philosophy, and rely on a parent process (<code class="prettyprint">startCluster</code>) to handle error logging.  Domains are deprecated in node.js now for the same reasons we discuss here.
 
 <ul>
@@ -383,9 +383,9 @@ http <span class="o">{</span>
 <h3 id="tasks">Tasks</h3>
 
 <ul>
-<li>Tasks can be created from any part of actionhero: Actions, Servers, Middleware, even other Tasks.</li>
+<li>Tasks can be created from any part of ActionHero: Actions, Servers, Middleware, even other Tasks.</li>
 <li>You can chain tasks together to create workflows.<br></li>
-<li>Actionhero uses the <a href="https://github.com/taskrabbit/node-resque#multi-worker"><code class="prettyprint">multiWorker</code></a> from node-resque.  When configured properly, it will consume 100% of a CPU core, to work as many tasks at once as it can.  This will also fluctuate depending on the CPU difficulty of the job.  Plan accordingly.</li>
+<li>ActionHero uses the <a href="https://github.com/taskrabbit/node-resque#multi-worker"><code class="prettyprint">multiWorker</code></a> from node-resque.  When configured properly, it will consume 100% of a CPU core, to work as many tasks at once as it can.  This will also fluctuate depending on the CPU difficulty of the job.  Plan accordingly.</li>
 <li>Create a way to view the state of your redis cluster.  Are you running out of RAM?  Are your Queues growing faster than they can be worked?  Checking this information is the key to having a healthy ecosystem.  <a href="/docs/#queue-inspection">The methods for doing so</a> are available.</li>
 <li>Be extra-save within your actions, and do not allow an uncaught exception.  This will cause the worker to crash and the job to be remain &#39;claimed&rsquo; in redis, and never make it to the failed queue.</li>
 </ul>

@@ -29,13 +29,13 @@
 &lt;h1&gt;ActionHero&lt;/h1&gt;<span class="se">\n</span>I am a flat file being served to you via the API from ./public/simple.html&lt;br /&gt;
 </code></pre>
 
-<p>actionhero comes with a file server which clients can make use of to request files on the actionhero server.  actionhero is not meant to be a &lsquo;rendering&rsquo; server (like express or rails), but can serve static files.</p>
+<p>ActionHero comes with a file server which clients can make use of to request files on the ActionHero server.  ActionHero is not meant to be a &lsquo;rendering&rsquo; server (like express or rails), but can serve static files.</p>
 
-<p>If a directory is requested rather than a file, actionhero will look for the file in that directory defined by <code class="prettyprint">api.config.commonWeb.directoryFileType</code> (which defaults to <code class="prettyprint">index.html</code>).  Failing to find this file, an error will be returned defined in <code class="prettyprint">api.config.general.flatFileIndexPageNotFoundMessage</code></p>
+<p>If a directory is requested rather than a file, ActionHero will look for the file in that directory defined by <code class="prettyprint">api.config.commonWeb.directoryFileType</code> (which defaults to <code class="prettyprint">index.html</code>).  Failing to find this file, an error will be returned defined in <code class="prettyprint">api.config.general.flatFileIndexPageNotFoundMessage</code></p>
 
-<p>You can use the <code class="prettyprint">api.staticFile.get(connection, next)</code> in your actions (where <code class="prettyprint">next(connection, error, fileStream, mime, length)</code>).  Note that fileStream is a stream which can be pipe&rsquo;d to a client.  You can use this in actions if you wish, </p>
+<p>You can use the <code class="prettyprint">api.staticFile.get(connection, next)</code> in your actions (where <code class="prettyprint">next(connection, error, fileStream, mime, length)</code>).  Note that fileStream is a stream which can be pipe&rsquo;d to a client.  You can use this in actions if you wish,</p>
 
-<p>On .nix operating system&rsquo;s symlinks for both files and folders will be followed. </p>
+<p>On .nix operating system&rsquo;s symlinks for both files and folders will be followed.</p>
 
 <h2 id="web-clients">Web Clients</h2>
 
@@ -50,7 +50,7 @@
 
 <ul>
 <li>the param <code class="prettyprint">file</code> should be used to request a path</li>
-<li>file data is sent <code class="prettyprint">raw</code>, and is likely to contain binary content and line breaks.  Parse your responses accordingly! </li>
+<li>file data is sent <code class="prettyprint">raw</code>, and is likely to contain binary content and line breaks.  Parse your responses accordingly!</li>
 </ul>
 
 <h2 id="sending-files-from-actions">Sending files from Actions</h2>
@@ -60,7 +60,7 @@
 <span class="nx">next</span><span class="p">();</span>
 
 <span class="c1">// failure case</span>
-<span class="nx">data</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">rawConnection</span><span class="p">.</span><span class="nx">responseHttpCode</span> <span class="o">=</span> <span class="mi">404</span><span class="p">;</span> 
+<span class="nx">data</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">rawConnection</span><span class="p">.</span><span class="nx">responseHttpCode</span> <span class="o">=</span> <span class="mi">404</span><span class="p">;</span>
 <span class="nx">data</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="s1">'404.html'</span><span class="p">);</span>
 <span class="nx">data</span><span class="p">.</span><span class="nx">toRender</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="nx">next</span><span class="p">();</span>
@@ -82,6 +82,6 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>By default, we want actionhero&rsquo;s file server to be very locked-down, and only serve files from directories defined in <code class="prettyprint">api.config.general.paths.public</code>.  This is the safest default for beginners. However, you can customize things by changing the behavior of <code class="prettyprint">api.staticFile.path()</code>.</p>
+<p>By default, we want ActionHero&rsquo;s file server to be very locked-down, and only serve files from directories defined in <code class="prettyprint">api.config.general.paths.public</code>.  This is the safest default for beginners. However, you can customize things by changing the behavior of <code class="prettyprint">api.staticFile.path()</code>.</p>
 
 <p>This would serve files from <code class="prettyprint">/public</code> for all requests except the <code class="prettyprint">sendFile</code> action, which will serve files from <code class="prettyprint">/tmp</code></p>

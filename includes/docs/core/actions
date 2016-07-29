@@ -20,7 +20,7 @@
 <span class="p">};</span>
 </code></pre>
 
-<p>The core of actionhero is the Action framework, and <strong>actions</strong> are the basic units of work.  All connection types from all servers can use actions.  This means that you only need to write an action once, and both HTTP clients and websocket clients can consume it.</p>
+<p>The core of ActionHero is the Action framework, and <strong>actions</strong> are the basic units of work.  All connection types from all servers can use actions.  This means that you only need to write an action once, and both HTTP clients and websocket clients can consume it.</p>
 
 <p>The goal of an action is to read <code class="prettyprint">data.params</code> (which are the arguments a connection provides), do work, and set the <code class="prettyprint">data.response</code> (and <code class="prettyprint">error</code> when needed) values to build the response to the client.</p>
 
@@ -108,7 +108,7 @@
 <span class="p">};</span>
 </code></pre>
 
-<p><em>As a note, if a client accessing actionhero via routes does not provide an apiVersion and it is explicitly defined in the route, the highest number will not be assigned automatically, and will be seen as a routing error.</em></p>
+<p><em>As a note, if a client accessing ActionHero via routes does not provide an apiVersion and it is explicitly defined in the route, the highest number will not be assigned automatically, and will be seen as a routing error.</em></p>
 
 <h2 id="options">Options</h2>
 <pre class="highlight javascript"><code><span class="nx">exports</span><span class="p">.</span><span class="nx">action</span> <span class="o">=</span> <span class="p">{</span>
@@ -326,7 +326,7 @@
 <li>You can limit how many actions a persistent client (websocket, tcp, etc) can have pending at once with <code class="prettyprint">api.config.general.simultaniousActions</code></li>
 <li><code class="prettyprint">actions.inputs</code> are used for both documentation and for building the whitelist of allowed parameters the API will accept.  Client params not included in these whitelists will be ignored for security. If you wish to disable the whitelisting you can use the flag at <code class="prettyprint">api.config.general.disableParamScrubbing</code>. Note that <a href="/docs#middleware">Middleware</a> preProcessors will always have access to all params pre-scrubbing.</li>
 <li><code class="prettyprint">matchExtensionMimeType</code> is curently only used by the <code class="prettyprint">web</code> server, and it indicates that if this action is successfully called by a client with <code class="prettyprint">connection.extension</code> set, the headers of the response should be changed to match that file type.  This is useful when creating actions that download files.</li>
-<li>actionhero strives to keep the <code class="prettyprint">data.connection</code> object uniform among various client types, and more importantly, present <code class="prettyprint">data.params</code> in a homogenous way.  You can inspect <code class="prettyprint">data.connection.type</code> to learn more about the connection.  The gory details of the connection (which vary on its type) are stored in <code class="prettyprint">data.connection.rawConnection</code> which will contain the websocket, tcp connection, etc.  For web clients, <code class="prettyprint">data.connection.rawConnection = {req: req, res: res}</code> for example.<br>
+<li>ActionHero strives to keep the <code class="prettyprint">data.connection</code> object uniform among various client types, and more importantly, present <code class="prettyprint">data.params</code> in a homogenous way.  You can inspect <code class="prettyprint">data.connection.type</code> to learn more about the connection.  The gory details of the connection (which vary on its type) are stored in <code class="prettyprint">data.connection.rawConnection</code> which will contain the websocket, tcp connection, etc.  For web clients, <code class="prettyprint">data.connection.rawConnection = {req: req, res: res}</code> for example.<br>
 
 <ul>
 <li>You can learn more about some of the <code class="prettyprint">rawConnection</code> options by learning how to <a href="/docs#sending-files-from-actions">send files from actions</a>.</li>

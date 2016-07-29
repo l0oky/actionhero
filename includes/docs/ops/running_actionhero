@@ -87,28 +87,28 @@ Descriptions:
 <span class="c">#############################################################</span>
 </code></pre>
 
-<p>The suggested method to run your actionhero server is to use the included <code class="prettyprint">./node_modules/.bin/actionhero</code> binary.  Note that there is no <code class="prettyprint">main.js</code> or specific start script your project needs.  actionhero handles this for you.  Your actionhero project simply needs to follow the proper directory conventions and it will be bootable.</p>
+<p>The suggested method to run your ActionHero server is to use the included <code class="prettyprint">./node_modules/.bin/actionhero</code> binary.  Note that there is no <code class="prettyprint">main.js</code> or specific start script your project needs.  ActionHero handles this for you.  Your ActionHero project simply needs to follow the proper directory conventions and it will be bootable.</p>
 
-<p>At the time of this writing the actionhero binary&rsquo;s help contains:</p>
+<p>At the time of this writing the ActionHero binary&rsquo;s help contains:</p>
 
-<h2 id="linking-the-actionhero-binary">Linking the actionhero binary</h2>
+<h2 id="linking-the-actionhero-binary">Linking the ActionHero binary</h2>
 
 <ul>
-<li>If you installed actionhero globally (<code class="prettyprint">npm install actionhero -g</code>) you should have the <code class="prettyprint">actionhero</code> binary available to you within your shell at all times.</li>
+<li>If you installed ActionHero globally (<code class="prettyprint">npm install actionhero -g</code>) you should have the <code class="prettyprint">actionhero</code> binary available to you within your shell at all times.</li>
 <li>Otherwise, you can reference the binary from either <code class="prettyprint">./node_modules/.bin/actionhero</code> or <code class="prettyprint">./node_modules/actionhero/bin/actionhero</code>.</li>
-<li>If you installed actionhero locally, you can add a reference to your path (OSX and Linux): <code class="prettyprint">export PATH=$PATH:node_modules/.bin</code> to be able to use simpler commands, IE <code class="prettyprint">actionhero start</code>. On windows this can be done by running <code class="prettyprint">set PATH=%PATH%;%cd%\node_modules\.bin</code> at command prompt (not powershell).</li>
+<li>If you installed ActionHero locally, you can add a reference to your path (OSX and Linux): <code class="prettyprint">export PATH=$PATH:node_modules/.bin</code> to be able to use simpler commands, IE <code class="prettyprint">actionhero start</code>. On windows this can be done by running <code class="prettyprint">set PATH=%PATH%;%cd%\node_modules\.bin</code> at command prompt (not powershell).</li>
 </ul>
 
 <h2 id="environments-and-config">Environments and Config</h2>
 
-<p>By default, actionhero will use the settings found in the <code class="prettyprint">exports.default</code> blocks in <code class="prettyprint">/config/</code>.  However, you can set environment-specfic overrides or changes.  actionhero inspects <code class="prettyprint">process.env.NODE_ENV</code> to load up runtime configuration overrides from <code class="prettyprint">exports.#{env}</code> blocks in your configuration files.  This is the recommended way to have separate settings for staging and production.</p>
+<p>By default, ActionHero will use the settings found in the <code class="prettyprint">exports.default</code> blocks in <code class="prettyprint">/config/</code>.  However, you can set environment-specfic overrides or changes.  ActionHero inspects <code class="prettyprint">process.env.NODE_ENV</code> to load up runtime configuration overrides from <code class="prettyprint">exports.#{env}</code> blocks in your configuration files.  This is the recommended way to have separate settings for staging and production.</p>
 
 <p>The load order of configs is:
 - default values in <code class="prettyprint">/config</code>
 - environment-specific values in <code class="prettyprint">/config</code>
 - options passed in to boot with <code class="prettyprint">actionhero.start({configChanges: configChanges}, callback)</code></p>
 
-<h2 id="programatic-use-of-actionhero">Programatic Use of actionhero</h2>
+<h2 id="programatic-use-of-actionhero">Programatic Use of ActionHero</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">actionheroPrototype</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"actionhero"</span><span class="p">).</span><span class="nx">actionheroPrototype</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">actionhero</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">actionheroPrototype</span><span class="p">();</span>
 
@@ -137,13 +137,13 @@ Descriptions:
 <span class="p">});</span>
 </code></pre>
 
-<p>While <strong>NOT</strong> encouraged, you can always instantiate an actionhero server yourself.  Perhaps you wish to combine actionhero with an existing project.  Here&rsquo;s how!  Take note that using these methods will not work for actionCluster, and only a single instance will be started within your project.  </p>
+<p>While <strong>NOT</strong> encouraged, you can always instantiate an ActionHero server yourself.  Perhaps you wish to combine ActionHero with an existing project.  Here&rsquo;s how!  Take note that using these methods will not work for actionCluster, and only a single instance will be started within your project.  </p>
 
-<p>Feel free to look at the source of <code class="prettyprint">./node_modules/actionhero/bin/include/start</code> to see how the main actionhero server is implemented for more information.</p>
+<p>Feel free to look at the source of <code class="prettyprint">./node_modules/actionhero/bin/include/start</code> to see how the main ActionHero server is implemented for more information.</p>
 
-<p>You can programmatically control an actionhero server with <code class="prettyprint">actionhero.start(params, callback)</code>, <code class="prettyprint">actionhero.stop(callback)</code> and <code class="prettyprint">actionhero.restart(callback)</code></p>
+<p>You can programmatically control an ActionHero server with <code class="prettyprint">actionhero.start(params, callback)</code>, <code class="prettyprint">actionhero.stop(callback)</code> and <code class="prettyprint">actionhero.restart(callback)</code></p>
 
-<p>From within actionhero itself (actions, initilizers, etc), you can use <code class="prettyprint">api.commands.start</code>, <code class="prettyprint">api.commands.stop</code>, and <code class="prettyprint">api.commands.restart</code> to control the server.</p>
+<p>From within ActionHero itself (actions, initilizers, etc), you can use <code class="prettyprint">api.commands.start</code>, <code class="prettyprint">api.commands.stop</code>, and <code class="prettyprint">api.commands.restart</code> to control the server.</p>
 
 <h2 id="signals">Signals</h2>
 <pre class="highlight shell"><code><span class="gp">&gt; </span>./node_modules/.bin/actionhero startCluster --workers<span class="o">=</span>2
@@ -184,7 +184,7 @@ info: all workers gone
 notice: cluster <span class="nb">complete</span>, Bye!
 </code></pre>
 
-<p>actionhero is intended to be run on <code class="prettyprint">*nix</code> operating systems.  The <code class="prettyprint">start</code> and <code class="prettyprint">startCluster</code> commands provide support for signaling. (There is limited support for some of these commands in windows).</p>
+<p>ActionHero is intended to be run on <code class="prettyprint">*nix</code> operating systems.  The <code class="prettyprint">start</code> and <code class="prettyprint">startCluster</code> commands provide support for signaling. (There is limited support for some of these commands in windows).</p>
 
 <p><strong>actionhero start</strong></p>
 
@@ -207,13 +207,13 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <h2 id="shutting-down">Shutting Down</h2>
 
-<p>When using <code class="prettyprint">actionhero start</code> or <code class="prettyprint">actionhero startCluster</code>, when you signal actionhero to stop via the signals above (or from within your running application via <code class="prettyprint">api.commands.stop()</code>), actionhero will attempt to gracefully shutdown.  This will include running any initializer&rsquo;s <code class="prettyprint">stop()</code> method.  This will close any open servers, and attempt to allow any running tasks to complete.</p>
+<p>When using <code class="prettyprint">actionhero start</code> or <code class="prettyprint">actionhero startCluster</code>, when you signal ActionHero to stop via the signals above (or from within your running application via <code class="prettyprint">api.commands.stop()</code>), actionhero will attempt to gracefully shutdown.  This will include running any initializer&rsquo;s <code class="prettyprint">stop()</code> method.  This will close any open servers, and attempt to allow any running tasks to complete.</p>
 
 <p>Because things sometimes go wrong, <code class="prettyprint">actionhero start</code> and <code class="prettyprint">actionhero startCluster</code> also have a &ldquo;emergency stop&rdquo; timeout.  This defaults to 30 seconds, and is configurable via the <code class="prettyprint">ACTIONHERO_SHUTDOWN_TIMEOUT</code> environment variable.  Be sure that your tasks and actions can complete within that window, or else raise that shutdown limit.</p>
 
 <h2 id="windows-specific-notes">Windows-Specific Notes</h2>
 
 <ul>
-<li>Sometimes actionhero may require a git-based module (rather than a NPM module).  You will need to have git installed.  Depending on how you installed git, it may not be available to the node shell.  Be sure to have also installed references to git.  You can also run node/npm install from the git shell.</li>
-<li>Sometimes, npm will not install the actionhero binary @ <code class="prettyprint">/node_modules/.bin/actionhero</code>, but rather it will attempt to create a windows executable and wrapper.  You can launch actionhero directly with <code class="prettyprint">./node_modules/actionhero/bin/actionhero</code></li>
+<li>Sometimes ActionHero may require a git-based module (rather than a NPM module).  You will need to have git installed.  Depending on how you installed git, it may not be available to the node shell.  Be sure to have also installed references to git.  You can also run node/npm install from the git shell.</li>
+<li>Sometimes, npm will not install the actionhero binary @ <code class="prettyprint">/node_modules/.bin/actionhero</code>, but rather it will attempt to create a windows executable and wrapper.  You can launch ActionHero directly with <code class="prettyprint">./node_modules/actionhero/bin/actionhero</code></li>
 </ul>

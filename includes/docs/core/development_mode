@@ -8,11 +8,11 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>actionhero&rsquo;s development mode is a little different than tools like <a href="https://github.com/remy/nodemon">nodemon</a> in that it tries hard not to restart the server process. Changes to routes, tasks, and actions can simply replace those in memory when they are updated on disk. Other changes, like changes to <code class="prettyprint">api.config</code> or initializers are more severe, and will restart the whole application (much like nodemon).</p>
+<p>ActionHero&rsquo;s development mode is a little different than tools like <a href="https://github.com/remy/nodemon">nodemon</a> in that it tries hard not to restart the server process. Changes to routes, tasks, and actions can simply replace those in memory when they are updated on disk. Other changes, like changes to <code class="prettyprint">api.config</code> or initializers are more severe, and will restart the whole application (much like nodemon).</p>
 
 <p>To enable development mode simply set <code class="prettyprint">developmentMode: true</code> in your <code class="prettyprint">config/api.js</code>.</p>
 
-<p>Note that <code class="prettyprint">api.config.general.developmentMode</code> is different from <code class="prettyprint">NODE_ENV</code>, which by default is &ldquo;development&rdquo; (and is logged out when actionhero boots).  <code class="prettyprint">NODE_ENV</code> is used to determine which config settings to use, and has no effect on developmentMode.</p>
+<p>Note that <code class="prettyprint">api.config.general.developmentMode</code> is different from <code class="prettyprint">NODE_ENV</code>, which by default is &ldquo;development&rdquo; (and is logged out when ActionHero boots).  <code class="prettyprint">NODE_ENV</code> is used to determine which config settings to use, and has no effect on developmentMode.</p>
 
 <h2 id="effects-of-development-mode">Effects of Development Mode</h2>
 
@@ -33,13 +33,13 @@
 <span class="p">});</span>
 </code></pre>
 
-<p>You can use actionhero&rsquo;s <code class="prettyprint">watchFileAndAct()</code> method to watch additional files your application may have:</p>
+<p>You can use ActionHero&rsquo;s <code class="prettyprint">watchFileAndAct()</code> method to watch additional files your application may have:</p>
 
 <h2 id="debugging">Debugging</h2>
 
-<p>You can use the awesome <a href="https://github.com/dannycoates/node-inspector">node-inspector</a> project to help you debug your actionhero application within the familar Chrome Browser&rsquo;s developer tools.</p>
+<p>You can use the awesome <a href="https://github.com/dannycoates/node-inspector">node-inspector</a> project to help you debug your ActionHero application within the familar Chrome Browser&rsquo;s developer tools.</p>
 
-<p>Be sure to run actionhero with node&rsquo;s <code class="prettyprint">--debug</code> flag, ie: <code class="prettyprint">node ./node_modules/.bin/actionhero start --debug</code></p>
+<p>Be sure to run ActionHero with node&rsquo;s <code class="prettyprint">--debug</code> flag, ie: <code class="prettyprint">node ./node_modules/.bin/actionhero start --debug</code></p>
 <pre class="highlight javascript"><code><span class="c1">// in package.json</span>
 <span class="s2">"dependencies"</span><span class="err">:</span> <span class="p">{</span>
   <span class="s2">"actionhero"</span><span class="err">:</span> <span class="s2">"x"</span><span class="p">,</span>
@@ -47,7 +47,7 @@
 <span class="p">},</span>
 </code></pre>
 
-<p>Start up node-inspector (both node-inspector and actionhero have the same default port, so you will need to change one of them) <code class="prettyprint">./node_modules/.bin/node-inspector --web-port=1234</code></p>
+<p>Start up node-inspector (both node-inspector and ActionHero have the same default port, so you will need to change one of them) <code class="prettyprint">./node_modules/.bin/node-inspector --web-port=1234</code></p>
 
 <p>That&rsquo;s it! Now you can visit <code class="prettyprint">http://0.0.0.0:1234/debug?port=5858</code> and start debugging.  Remember that the way node-debugger works has you first set a breakpoint in the file view, and then you can use the console to inspect various objects.  IE: I put a breakpoint in the default <code class="prettyprint">status</code> action in the <code class="prettyprint">run</code> method:</p>
 
@@ -73,7 +73,7 @@ Running <span class="s2">"console"</span> task
   <span class="s1">'status'</span> <span class="o">]</span>
 </code></pre>
 
-<p>actionhero now has a REPL (<code class="prettyprint">v9.0.0</code>)! This means you can &lsquo;connect&rsquo; to a running instance of actionhero and manually call all the methods on the <code class="prettyprint">api</code> namespace.  This combined with the new RPC tools make this a powerful debugging and development tool.  Running <code class="prettyprint">actionhero console</code> will load up a version of action hero in your terminal where you have access to the <code class="prettyprint">api</code> object.  This version of the server will <code class="prettyprint">boot</code>, <code class="prettyprint">initialize</code>, and <code class="prettyprint">start</code>, but will skip booting any <code class="prettyprint">servers</code>.  </p>
+<p>ActionHero now has a REPL (<code class="prettyprint">v9.0.0</code>)! This means you can &lsquo;connect&rsquo; to a running instance of ActionHero and manually call all the methods on the <code class="prettyprint">api</code> namespace.  This combined with the new RPC tools make this a powerful debugging and development tool.  Running <code class="prettyprint">ActionHero console</code> will load up a version of action hero in your terminal where you have access to the <code class="prettyprint">api</code> object.  This version of the server will <code class="prettyprint">boot</code>, <code class="prettyprint">initialize</code>, and <code class="prettyprint">start</code>, but will skip booting any <code class="prettyprint">servers</code>.  </p>
 
 <p>The REPL will:</p>
 

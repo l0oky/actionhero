@@ -1,11 +1,11 @@
 <h1 id="localization">Localization</h1>
 
-<p>Starting in Actionhero <code class="prettyprint">v13.0.0</code>, you can now use the <a href="https://github.com/mashpie/i18n-node">i18n</a> module to customize all aspects of actionhero.</p>
+<p>Starting in ActionHero <code class="prettyprint">v13.0.0</code>, you can now use the <a href="https://github.com/mashpie/i18n-node">i18n</a> module to customize all aspects of ActionHero.</p>
 
 <h2 id="locale-files">Locale files</h2>
 
 <ul>
-<li>When running actionhero with <code class="prettyprint">api.config.i18n.updateFiles = true</code>, you will see actionhero generate a &lsquo;locales&rsquo; folder at the top level of your project which will contain translations of all strings in your project with are passed though the new localization system.  This includes all uses of <code class="prettyprint">api.i18n.localize</code>, <code class="prettyprint">connection.localize</code> and <code class="prettyprint">api.log</code>.<br>
+<li>When running ActionHero with <code class="prettyprint">api.config.i18n.updateFiles = true</code>, you will see ActionHero generate a &lsquo;locales&rsquo; folder at the top level of your project which will contain translations of all strings in your project with are passed though the new localization system.  This includes all uses of <code class="prettyprint">api.i18n.localize</code>, <code class="prettyprint">connection.localize</code> and <code class="prettyprint">api.log</code>.<br>
 
 <ul>
 <li>be sure to use sprintf-style string interpolation for variables!</li>
@@ -16,7 +16,7 @@
 
 <h2 id="determining-connection-locales">Determining connection locales</h2>
 
-<p>Since every actionhero implementation is unique, we cannot ship with a &ldquo;guess&rdquo; about how to determine a given connection&rsquo;s locale. Perhaps you have an HTTP server and you can trust your client&rsquo;s <code class="prettyprint">accept-language</code> headers.  Or perhaps you run your API under a number of different host names and you can presume locale based on them.   Whatever the case, you need to create a synchronous method in an initializer which will be called when each connection connects to return its locale.  </p>
+<p>Since every ActionHero implementation is unique, we cannot ship with a &ldquo;guess&rdquo; about how to determine a given connection&rsquo;s locale. Perhaps you have an HTTP server and you can trust your client&rsquo;s <code class="prettyprint">accept-language</code> headers.  Or perhaps you run your API under a number of different host names and you can presume locale based on them.   Whatever the case, you need to create a synchronous method in an initializer which will be called when each connection connects to return its locale.  </p>
 
 <p>For example, I may have an initializer in my project like this:</p>
 <pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
@@ -56,7 +56,7 @@
 <h2 id="localizing-the-logger">Localizing the Logger</h2>
 
 <ul>
-<li>Just like connections, the actionhero logger itself now has localization interpolation built in.  Note how in the new settings you set which locale you want the server&rsquo;s logs to be expressed in.  Using that, you can now use sprintf-style string interpolation as the first argument of <code class="prettyprint">api.log()</code>
+<li>Just like connections, the ActionHero logger itself now has localization interpolation built in.  Note how in the new settings you set which locale you want the server&rsquo;s logs to be expressed in.  Using that, you can now use sprintf-style string interpolation as the first argument of <code class="prettyprint">api.log()</code>
 
 <ul>
 <li>You might want to log the message <code class="prettyprint">api.log([&#39;The time is %s&#39;, new Date()], &#39;alert&#39;)</code>.<br></li>

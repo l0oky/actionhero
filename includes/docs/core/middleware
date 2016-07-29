@@ -1,6 +1,6 @@
 <h1 id="middleware">Middleware</h1>
 
-<p>There are 3 types of middleware in actionhero:</p>
+<p>There are 3 types of middleware in ActionHero:</p>
 
 <ul>
 <li>Action</li>
@@ -51,9 +51,9 @@
 <span class="nx">api</span><span class="p">.</span><span class="nx">actions</span><span class="p">.</span><span class="nx">addMiddleware</span><span class="p">(</span><span class="nx">middleware</span><span class="p">);</span>
 </code></pre>
 
-<p>actionhero provides hooks for you to execute custom code both before and after the execution of all or some actions.  This is a great place to write authentication logic or custom loggers.  </p>
+<p>ActionHero provides hooks for you to execute custom code both before and after the execution of all or some actions.  This is a great place to write authentication logic or custom loggers.  </p>
 
-<p>Action middleware requires a <code class="prettyprint">name</code> and at least one of <code class="prettyprint">preProcessor</code> or <code class="prettyprint">postProcessor</code>.  Middleware can be <code class="prettyprint">global</code>, or you can choose to apply each middleware to an action specifically via <code class="prettyprint">action.middleware = []</code> in the action&rsquo;s definiton.  You supply a list of middleware names, like <code class="prettyprint">action.middleware = [&#39;userId checker&#39;]</code> in the example above.</p>
+<p>Action middleware requires a <code class="prettyprint">name</code> and at least one of <code class="prettyprint">preProcessor</code> or <code class="prettyprint">postProcessor</code>.  Middleware can be <code class="prettyprint">global</code>, or you can choose to apply each middleware to an action specifically via <code class="prettyprint">action.middleware = []</code> in the action&rsquo;s definition.  You supply a list of middleware names, like <code class="prettyprint">action.middleware = [&#39;userId checker&#39;]</code> in the example above.</p>
 
 <p>Each processor is passed <code class="prettyprint">data</code> and the callback <code class="prettyprint">next</code>.  Just like within actions, you can modify the <code class="prettyprint">data</code> object to add to <code class="prettyprint">data.response</code> to create a response to the client.  If you pass <code class="prettyprint">error</code> to the callback <code class="prettyprint">next</code>, that error will be returned to the client.  If a <code class="prettyprint">preProcessor</code> has an error, the action will never be called.</p>
 

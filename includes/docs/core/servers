@@ -53,26 +53,26 @@
 
 </code></pre>
 
-<p>In actionhero v6.0.0 and later, we have introduced a modular server system which allows you to create your own servers.  Servers should be thought of as any type of listener to clients, streams or your file system.  In actionhero, the goal of each server is to ingest a specific type of connection and transform each client into a generic <code class="prettyprint">connection</code> object which can be operated on by the rest of actionhero.  To help with this, all servers extend <code class="prettyprint">api.genericServer</code> and fill in the required methods.</p>
+<p>In ActionHero v6.0.0 and later, we have introduced a modular server system which allows you to create your own servers.  Servers should be thought of as any type of listener to clients, streams or your file system.  In ActionHero, the goal of each server is to ingest a specific type of connection and transform each client into a generic <code class="prettyprint">connection</code> object which can be operated on by the rest of ActionHero.  To help with this, all servers extend <code class="prettyprint">api.genericServer</code> and fill in the required methods.</p>
 
-<p>To get started, you can use the <code class="prettyprint">generateServer action</code> (name is required).  This will generate a template server which looks like this =&gt; </p>
+<p>To get started, you can use the <code class="prettyprint">generateServer action</code> (name is required).  This will generate a template server which looks like this =&gt;</p>
 
-<p>Like initializers, the <code class="prettyprint">start()</code> and <code class="prettyprint">stop()</code> methods will be called when the server is to boot up in actionhero&rsquo;s lifecycle, but before any clients are permitted into the system.  Here is where you should actually initialize your server (IE: <code class="prettyprint">https.createServer.listen</code>, etc).</p>
+<p>Like initializers, the <code class="prettyprint">start()</code> and <code class="prettyprint">stop()</code> methods will be called when the server is to boot up in ActionHero&rsquo;s lifecycle, but before any clients are permitted into the system.  Here is where you should actually initialize your server (IE: <code class="prettyprint">https.createServer.listen</code>, etc).</p>
 
 <h2 id="designing-servers">Designing Servers</h2>
 <pre class="highlight javascript"><code>
 <span class="nx">server</span><span class="p">.</span><span class="nx">buildConnection</span><span class="p">({</span>
   <span class="na">rawConnection</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">req</span><span class="p">:</span> <span class="nx">req</span><span class="p">,</span> 
-    <span class="na">res</span><span class="p">:</span> <span class="nx">res</span><span class="p">,</span> 
-    <span class="na">method</span><span class="p">:</span> <span class="nx">method</span><span class="p">,</span> 
-    <span class="na">cookies</span><span class="p">:</span> <span class="nx">cookies</span><span class="p">,</span> 
-    <span class="na">responseHeaders</span><span class="p">:</span> <span class="nx">responseHeaders</span><span class="p">,</span> 
+    <span class="na">req</span><span class="p">:</span> <span class="nx">req</span><span class="p">,</span>
+    <span class="na">res</span><span class="p">:</span> <span class="nx">res</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="nx">method</span><span class="p">,</span>
+    <span class="na">cookies</span><span class="p">:</span> <span class="nx">cookies</span><span class="p">,</span>
+    <span class="na">responseHeaders</span><span class="p">:</span> <span class="nx">responseHeaders</span><span class="p">,</span>
     <span class="na">responseHttpCode</span><span class="p">:</span> <span class="nx">responseHttpCode</span><span class="p">,</span>
     <span class="na">parsedURL</span><span class="p">:</span> <span class="nx">parsedURL</span>
-  <span class="p">},</span> 
-  <span class="na">id</span><span class="p">:</span> <span class="nx">randomNumber</span><span class="p">(),</span> 
-  <span class="na">remoteAddress</span><span class="p">:</span> <span class="nx">remoteIP</span><span class="p">,</span> 
+  <span class="p">},</span>
+  <span class="na">id</span><span class="p">:</span> <span class="nx">randomNumber</span><span class="p">(),</span>
+  <span class="na">remoteAddress</span><span class="p">:</span> <span class="nx">remoteIP</span><span class="p">,</span>
   <span class="na">remotePort</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">remotePort</span><span class="p">}</span>
 <span class="p">);</span> <span class="c1">// will emit "connection"</span>
 
@@ -100,7 +100,7 @@
 
 <h2 id="verbs">Verbs</h2>
 <pre class="highlight javascript"><code><span class="nx">allowedVerbs</span><span class="err">:</span> <span class="p">[</span>
-      <span class="s2">"quit"</span><span class="p">,</span> 
+      <span class="s2">"quit"</span><span class="p">,</span>
       <span class="s2">"exit"</span><span class="p">,</span>
       <span class="s2">"paramAdd"</span><span class="p">,</span>
       <span class="s2">"paramDelete"</span><span class="p">,</span>
@@ -116,9 +116,9 @@
     <span class="p">]</span>
 </code></pre>
 
-<p>When an incoming message is detected, it is the server&rsquo;s job to build <code class="prettyprint">connection.params</code>.  In the <code class="prettyprint">web</code> server, this is accomplished by reading GET, POST, and form data.  For <code class="prettyprint">websocket</code> clients, that information is expected to be emitted as part of the action&rsquo;s request.  For other clients, like <code class="prettyprint">socket</code>, actionhero provides helpers for long-lasting clients to operate on themselves.  These are called connection <code class="prettyprint">verbs</code>.</p>
+<p>When an incoming message is detected, it is the server&rsquo;s job to build <code class="prettyprint">connection.params</code>.  In the <code class="prettyprint">web</code> server, this is accomplished by reading GET, POST, and form data.  For <code class="prettyprint">websocket</code> clients, that information is expected to be emitted as part of the action&rsquo;s request.  For other clients, like <code class="prettyprint">socket</code>, ActionHero provides helpers for long-lasting clients to operate on themselves.  These are called connection <code class="prettyprint">verbs</code>.</p>
 
-<p>Clients use verbs to add params to themselves, update the chat room they are in, and more.   The list of verbs currently supported is =&gt; </p>
+<p>Clients use verbs to add params to themselves, update the chat room they are in, and more.   The list of verbs currently supported is =&gt;</p>
 
 <p>Your server should be smart enough to tell when a client is trying to run an action, request a file, or use a verb.  One of the attributes of each server is <code class="prettyprint">allowedVerbs</code>, which defines what verbs a client is allowed to preform.  A simplified example of how the <code class="prettyprint">socket</code> server does this:</p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">parseRequest</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">connection</span><span class="p">,</span> <span class="nx">line</span><span class="p">){</span>
@@ -153,7 +153,7 @@
 
 <h2 id="sending-responses">Sending Responses</h2>
 
-<p>All servers need to implement the <code class="prettyprint">server.sendMessage = function(connection, message, messageCount)</code> method so actionhero knows how to talk to each client.  This is likely to make use of <code class="prettyprint">connection.rawConnection</code>.  If you are writing a server for a persistent connection, it is likely you will need to respond with <code class="prettyprint">messageCount</code> so that the client knows which request your response is about (as they are not always going to get the responses in order).  </p>
+<p>All servers need to implement the <code class="prettyprint">server.sendMessage = function(connection, message, messageCount)</code> method so ActionHero knows how to talk to each client.  This is likely to make use of <code class="prettyprint">connection.rawConnection</code>.  If you are writing a server for a persistent connection, it is likely you will need to respond with <code class="prettyprint">messageCount</code> so that the client knows which request your response is about (as they are not always going to get the responses in order).  </p>
 
 <h2 id="sending-files">Sending Files</h2>
 

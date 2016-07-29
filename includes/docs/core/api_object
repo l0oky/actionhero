@@ -346,6 +346,6 @@
 <span class="p">};</span>
 </code></pre>
 
-<p>By now you will have noticed that most sections of actionhero are initilized with access to the <code class="prettyprint">api</code> object.  The <code class="prettyprint">api</code> object is the top-level container/namespace for all of actionhero&rsquo;s data and methods.  We use the <code class="prettyprint">api</code> object to avoide polluting any global namespaces.  The api object is availalbe to all parts of actionhero to share data and state.  Feel free to modify or add too the api object as you see fit, but be mindful of the data it already contains.  </p>
+<p>By now you will have noticed that most sections of ActionHero are initialized with access to the <code class="prettyprint">api</code> object.  The <code class="prettyprint">api</code> object is the top-level container/namespace for all of ActionHero&rsquo;s data and methods.  We use the <code class="prettyprint">api</code> object to avoid polluting any global namespaces.  The api object is available to all parts of ActionHero to share data and state.  Feel free to modify or add too the api object as you see fit, but be mindful of the data it already contains.  </p>
 
-<p>Collections that you are reccomended not leave unmodifeid are un-expanded <code class="prettyprint">[Object]</code>s and/or commented out.</p>
+<p>Collections that you are recommended not leave unmodified are un-expanded <code class="prettyprint">[Object]</code>s and/or commented out.</p>

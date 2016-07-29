@@ -1,12 +1,12 @@
 <h1 id="plugins">Plugins</h1>
 
-<p>As of actionhero version <code class="prettyprint">v8.0.0</code>, you can create and include plugins for you actionhero project.  Plugins are collections of <code class="prettyprint">tasks</code>, <code class="prettyprint">actions</code>, <code class="prettyprint">servers</code>, and <code class="prettyprint">initializers</code> that are collected as a module.  You can install plugins via NPM or keep them in a local path.</p>
+<p>As of ActionHero version <code class="prettyprint">v8.0.0</code>, you can create and include plugins for you ActionHero project.  Plugins are collections of <code class="prettyprint">tasks</code>, <code class="prettyprint">actions</code>, <code class="prettyprint">servers</code>, and <code class="prettyprint">initializers</code> that are collected as a module.  You can install plugins via NPM or keep them in a local path.</p>
 
-<p>Plugins are loaded after all local actionhero project files, but initializers follow the same priority scheme as all other initializers.</p>
+<p>Plugins are loaded after all local ActionHero project files, but initializers follow the same priority scheme as all other initializers.</p>
 
 <h2 id="including-plugins">Including Plugins</h2>
 
-<p><code class="prettyprint">api.config.general.paths.plugin</code> (loaded from <code class="prettyprint">/config/api.js</code>) is an array which contains the search path for your plugins.  This will default to <code class="prettyprint">./node_modules</code>, but you can add a local path to your project.  Once you have the plugin search paths set up, you use <code class="prettyprint">npm run actionhero link -- --name nameOfPlugin</code> (or <code class="prettyprint">./node_modules/.bin/actionhero link --name nameOfPlugin</code>, which is equivalent) to create links in your top-level project to the plugin.  This will also copy over any config files from the plugin into your project so you can modify them.  The act of &ldquo;linking&rdquo; simply creates a <code class="prettyprint">myPlugin.link</code> file in each component of your top-level project (actions, tasks, etc) which tells actionhero to load up files at boot from that plugin.  </p>
+<p><code class="prettyprint">api.config.general.paths.plugin</code> (loaded from <code class="prettyprint">/config/api.js</code>) is an array which contains the search path for your plugins.  This will default to <code class="prettyprint">./node_modules</code>, but you can add a local path to your project.  Once you have the plugin search paths set up, you use <code class="prettyprint">npm run actionhero link -- --name nameOfPlugin</code> (or <code class="prettyprint">./node_modules/.bin/actionhero link --name nameOfPlugin</code>, which is equivalent) to create links in your top-level project to the plugin.  This will also copy over any config files from the plugin into your project so you can modify them.  The act of &ldquo;linking&rdquo; simply creates a <code class="prettyprint">myPlugin.link</code> file in each component of your top-level project (actions, tasks, etc) which tells ActionHero to load up files at boot from that plugin.  </p>
 
 <p>When you want to overwrite the config files when the plugin is linked, add the parameter <code class="prettyprint">overwriteConfig</code> to the <code class="prettyprint">link</code> call (e.g. <code class="prettyprint">npm run actionhero link --name nameOfPlugin --overwriteConfig</code>)</p>
 
@@ -28,17 +28,17 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 <p>To create a plugin, create a project with the following structure:</p>
 
-<p>This structure will allow elements to be loaded into actionhero (we search <code class="prettyprint">/actions</code> for actions, <code class="prettyprint">/tasks</code> for tasks, etc)</p>
+<p>This structure will allow elements to be loaded into ActionHero (we search <code class="prettyprint">/actions</code> for actions, <code class="prettyprint">/tasks</code> for tasks, etc)</p>
 
-<p>When developing your plugin locally, you can load it into an existing actionhero project to test it out.</p>
+<p>When developing your plugin locally, you can load it into an existing ActionHero project to test it out.</p>
 
-<p>First, add the path your plugin is in to <code class="prettyprint">api.config.general.paths.plugin</code>.  If your actionhero app is in <code class="prettyprint">/var/ah/actionhero</code> and your plugin is in <code class="prettyprint">/var/ah/my_plugin</code>, add <code class="prettyprint">/var/ah</code> to <code class="prettyprint">api.config.general.paths.plugin</code></p>
+<p>First, add the path your plugin is in to <code class="prettyprint">api.config.general.paths.plugin</code>.  If your ActionHero app is in <code class="prettyprint">/var/ah/actionhero</code> and your plugin is in <code class="prettyprint">/var/ah/my_plugin</code>, add <code class="prettyprint">/var/ah</code> to <code class="prettyprint">api.config.general.paths.plugin</code></p>
 
 <p><strong>Please use the npm naming convention <code class="prettyprint">ah-(name)-plugin</code> when uploading your plugin to npm</strong></p>
 
 <h2 id="changes-in-v13-0-0">Changes in V13.0.0</h2>
 
-<p>The plugin system was significantly changes in Actionhero version <code class="prettyprint">13.0.0</code>.  Older plugins will not work.<br>
+<p>The plugin system was significantly changes in ActionHero version <code class="prettyprint">13.0.0</code>.  Older plugins will not work.<br>
 - <code class="prettyprint">config/plugins.js</code> has been removed in favor of the linking system
 - Config files from within plugins are no longer sourced
 - There should be no more postinstall scripts needed, and as such, none are executed
@@ -46,7 +46,7 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 <h2 id="plugin-methods">Plugin methods</h2>
 
-<p>When creating plugins, you may find yourself wanting to do things which could normally be accomplished easily with a &ldquo;top level&rdquo; actionhero project, but might be difficult from within the <code class="prettyprint">node_modules</code> folder.  Here are some helpers:</p>
+<p>When creating plugins, you may find yourself wanting to do things which could normally be accomplished easily with a &ldquo;top level&rdquo; ActionHero project, but might be difficult from within the <code class="prettyprint">node_modules</code> folder.  Here are some helpers:</p>
 
 <h3 id="routes">Routes:</h3>
 

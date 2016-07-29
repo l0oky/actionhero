@@ -2,7 +2,7 @@
 
 <h2 id="general-cache-notes">General Cache Notes</h2>
 
-<p>actionhero ships with the functions needed for a distributed key-value cache.  You can cache strings, numbers, arrays and objects (anything that responds to <code class="prettyprint">JSON.stringify</code>).  </p>
+<p>ActionHero ships with the functions needed for a distributed key-value cache.  You can cache strings, numbers, arrays and objects (anything that responds to <code class="prettyprint">JSON.stringify</code>).  </p>
 
 <p>The cache&rsquo;s redis server is defined by <code class="prettyprint">api.config.redis</code>.  It is possible to use fakeredis.</p>
 
@@ -96,7 +96,7 @@
 
 <h2 id="lock-methods">Lock Methods</h2>
 
-<p>You may optionally implement locking methods along with your cache objects.  This will allow one actionhero server to obtain a lock on an object and prevent modification of it by another member of the cluster.  For example you may want to first <code class="prettyprint">api.cache.lock</code> a key, and then save it to prevent other nodes from modifying the object.</p>
+<p>You may optionally implement locking methods along with your cache objects.  This will allow one ActionHero server to obtain a lock on an object and prevent modification of it by another member of the cluster.  For example you may want to first <code class="prettyprint">api.cache.lock</code> a key, and then save it to prevent other nodes from modifying the object.</p>
 
 <h3 id="api-cache-lock">api.cache.lock</h3>
 

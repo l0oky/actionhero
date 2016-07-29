@@ -130,7 +130,7 @@
         
           <h1 id="introduction">Introduction</h1>
 
-<h2 id="who-is-the-actionhero">Who is the actionhero?</h2>
+<h2 id="who-is-the-actionhero">Who is the ActionHero?</h2>
 <pre class="highlight shell"><code><span class="gp">&gt; </span>npm start
 
 <span class="gp">&gt; </span>actionhero@12.2.2 start /Users/evantahler/Projects/actionhero
@@ -149,21 +149,21 @@ info: actionhero &gt;&gt; start
 2015-11-14 16:01:28 - notice: <span class="k">***</span> Server Started @ 2015-11-14 16:01:28 <span class="k">***</span>
 </code></pre>
 
-<p>actionhero is a <a href="http://nodejs.org">node.js</a> <strong>API framework</strong> for both <strong>tcp sockets</strong>, <strong>web sockets</strong>, and <strong>http clients</strong>.  The goal of actionhero is to create an easy-to-use toolkit for making <strong>reusable</strong> &amp; <strong>scalable</strong> APIs.  Clients connected to an actionhero server can <strong>consume the api</strong>, <strong>consume static content</strong>, and <strong>communicate with each other</strong>.</p>
+<p>ActionHero is a <a href="http://nodejs.org">node.js</a> <strong>API framework</strong> for both <strong>tcp sockets</strong>, <strong>web sockets</strong>, and <strong>http clients</strong>.  The goal of ActionHero is to create an easy-to-use toolkit for making <strong>reusable</strong> &amp; <strong>scalable</strong> APIs.  Clients connected to an ActionHero server can <strong>consume the api</strong>, <strong>consume static content</strong>, and <strong>communicate with each other</strong>.</p>
 
-<p>actionhero servers can process both requests and tasks (delayed actions like <code class="prettyprint">send e-mail</code> or other background jobs).  actionhero servers can also run in a cluster (on the same or multiple machines) to work in concert to handle your load.</p>
+<p>ActionHero servers can process both requests and tasks (delayed actions like <code class="prettyprint">send e-mail</code> or other background jobs).  ActionHero servers can also run in a cluster (on the same or multiple machines) to work in concert to handle your load.</p>
 
-<p>The actionhero API defines a single access point and accepts GET, POST, PUT and DELETE input along with persistent connection via TCP or web sockets. You define <strong>Actions</strong> which handle input and response, such as <code class="prettyprint">userAdd</code> or <code class="prettyprint">geoLocate</code>. HTTP, HTTPS, and TCP clients can all use these actions.  The actionhero API is not inherently &ldquo;RESTful&rdquo; (which is meaningless for persistent socket connections) but can be extended to be so if you wish.</p>
+<p>The ActionHero API defines a single access point and accepts GET, POST, PUT and DELETE input along with persistent connection via TCP or web sockets. You define <strong>Actions</strong> which handle input and response, such as <code class="prettyprint">userAdd</code> or <code class="prettyprint">geoLocate</code>. HTTP, HTTPS, and TCP clients can all use these actions.  The ActionHero API is not inherently &ldquo;RESTful&rdquo; (which is meaningless for persistent socket connections) but can be extended to be so if you wish.</p>
 
-<p>actionhero will also serve static files for you, but actionhero is not a &lsquo;rendering&rsquo; server (like express or rails).</p>
+<p>ActionHero will also serve static files for you, but ActionHero is not a &lsquo;rendering&rsquo; server (like express or rails).</p>
 
 <h2 id="contributing">Contributing</h2>
 
-<p>The actionherojs.com website and documentation is hosted on <a href="http://pages.github.com/">GitHub Pages</a>.  You can submit pull requests to the <a href="https://github.com/evantahler/actionhero/tree/master/docs">master branch&rsquo;s <code class="prettyprint">docs</code> folder</a> within the actionhero project.</p>
+<p>The actionherojs.com website and documentation is hosted on <a href="http://pages.github.com/">GitHub Pages</a>.  You can submit pull requests to the <a href="https://github.com/evantahler/actionhero/tree/master/docs">master branch&rsquo;s <code class="prettyprint">docs</code> folder</a> within the ActionHero project.</p>
 
 <h2 id="documentation-notes">Documentation Notes</h2>
 
-<p>This documentation will always reflect the master branch of actionhero, and therefore may be slightly ahead of the latest release on NPM.</p>
+<p>This documentation will always reflect the master branch of ActionHero, and therefore may be slightly ahead of the latest release on NPM.</p>
 
           <h1 id="getting-started">Getting Started</h1>
 
@@ -210,10 +210,10 @@ npm start
 
 <p>Visit <code class="prettyprint">http://127.0.0.1:8080</code> in your browser to see the actionhero in action!</p>
 
-<p>You can also opt to install actionhero globally <code class="prettyprint">npm install actionhero -g</code> and then you can just call <code class="prettyprint">actionhero start</code>.</p>
+<p>You can also opt to install ActionHero globally <code class="prettyprint">npm install actionhero -g</code> and then you can just call <code class="prettyprint">actionhero start</code>.</p>
 
 <h2 id="application-structure">Application Structure</h2>
-<pre class="highlight shell"><code><span class="c"># Actionhero Project Layout</span>
+<pre class="highlight shell"><code><span class="c"># ActionHero Project Layout</span>
 
 |- config
 | -- api.js
@@ -239,7 +239,7 @@ npm start
 |-- <span class="o">(</span>default location <span class="k">for </span>logs<span class="o">)</span>
 |
 |- node_modules
-|-- <span class="o">(</span>your modules, actionhero should be npm installed <span class="k">in </span>here<span class="o">)</span>
+|-- <span class="o">(</span>your modules, ActionHero should be npm installed <span class="k">in </span>here<span class="o">)</span>
 |
 |- pids
 |-- <span class="o">(</span>pidfiles <span class="k">for </span>your running servers<span class="o">)</span>
@@ -263,7 +263,7 @@ readme.md
 package.json <span class="o">(</span>be sure to include <span class="s1">'actionhero'</span>:<span class="s1">'x'</span><span class="o">)</span>
 </code></pre>
 
-<p>The map to the right describes actionhero&rsquo;s default project layout.</p>
+<p>The map to the right describes ActionHero&rsquo;s default project layout.</p>
 
 <p>Actions in <code class="prettyprint">/actions</code> will be loaded in automatically, along <code class="prettyprint">/initializers</code> and <code class="prettyprint">/tasks</code>.</p>
 
@@ -273,7 +273,7 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 
 <h2 id="tutorial">Tutorial</h2>
 
-<p>Want to see an example application using actionhero?  You can check out the code and follow the detailed guide <a href="https://github.com/evantahler/actionhero-tutorial">here (https://github.com/evantahler/actionhero-tutorial)</a>.  This project demonstrates many of the core features of actionhero in a simple project.</p>
+<p>Want to see an example application using ActionHero?  You can check out the code and follow the detailed guide <a href="https://github.com/evantahler/actionhero-tutorial">here (https://github.com/evantahler/actionhero-tutorial)</a>.  This project demonstrates many of the core features of ActionHero in a simple project.</p>
 
           <h1 id="all-diagrams">All Diagrams</h1>
 
@@ -315,7 +315,7 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 <span class="p">};</span>
 </code></pre>
 
-<p>The core of actionhero is the Action framework, and <strong>actions</strong> are the basic units of work.  All connection types from all servers can use actions.  This means that you only need to write an action once, and both HTTP clients and websocket clients can consume it.</p>
+<p>The core of ActionHero is the Action framework, and <strong>actions</strong> are the basic units of work.  All connection types from all servers can use actions.  This means that you only need to write an action once, and both HTTP clients and websocket clients can consume it.</p>
 
 <p>The goal of an action is to read <code class="prettyprint">data.params</code> (which are the arguments a connection provides), do work, and set the <code class="prettyprint">data.response</code> (and <code class="prettyprint">error</code> when needed) values to build the response to the client.</p>
 
@@ -403,7 +403,7 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 <span class="p">};</span>
 </code></pre>
 
-<p><em>As a note, if a client accessing actionhero via routes does not provide an apiVersion and it is explicitly defined in the route, the highest number will not be assigned automatically, and will be seen as a routing error.</em></p>
+<p><em>As a note, if a client accessing ActionHero via routes does not provide an apiVersion and it is explicitly defined in the route, the highest number will not be assigned automatically, and will be seen as a routing error.</em></p>
 
 <h2 id="options">Options</h2>
 <pre class="highlight javascript"><code><span class="nx">exports</span><span class="p">.</span><span class="nx">action</span> <span class="o">=</span> <span class="p">{</span>
@@ -621,7 +621,7 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 <li>You can limit how many actions a persistent client (websocket, tcp, etc) can have pending at once with <code class="prettyprint">api.config.general.simultaniousActions</code></li>
 <li><code class="prettyprint">actions.inputs</code> are used for both documentation and for building the whitelist of allowed parameters the API will accept.  Client params not included in these whitelists will be ignored for security. If you wish to disable the whitelisting you can use the flag at <code class="prettyprint">api.config.general.disableParamScrubbing</code>. Note that <a href="/docs#middleware">Middleware</a> preProcessors will always have access to all params pre-scrubbing.</li>
 <li><code class="prettyprint">matchExtensionMimeType</code> is curently only used by the <code class="prettyprint">web</code> server, and it indicates that if this action is successfully called by a client with <code class="prettyprint">connection.extension</code> set, the headers of the response should be changed to match that file type.  This is useful when creating actions that download files.</li>
-<li>actionhero strives to keep the <code class="prettyprint">data.connection</code> object uniform among various client types, and more importantly, present <code class="prettyprint">data.params</code> in a homogenous way.  You can inspect <code class="prettyprint">data.connection.type</code> to learn more about the connection.  The gory details of the connection (which vary on its type) are stored in <code class="prettyprint">data.connection.rawConnection</code> which will contain the websocket, tcp connection, etc.  For web clients, <code class="prettyprint">data.connection.rawConnection = {req: req, res: res}</code> for example.<br>
+<li>ActionHero strives to keep the <code class="prettyprint">data.connection</code> object uniform among various client types, and more importantly, present <code class="prettyprint">data.params</code> in a homogenous way.  You can inspect <code class="prettyprint">data.connection.type</code> to learn more about the connection.  The gory details of the connection (which vary on its type) are stored in <code class="prettyprint">data.connection.rawConnection</code> which will contain the websocket, tcp connection, etc.  For web clients, <code class="prettyprint">data.connection.rawConnection = {req: req, res: res}</code> for example.<br>
 
 <ul>
 <li>You can learn more about some of the <code class="prettyprint">rawConnection</code> options by learning how to <a href="/docs#sending-files-from-actions">send files from actions</a>.</li>
@@ -634,9 +634,9 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 
 <h2 id="general">General</h2>
 
-<p>Tasks are background jobs meant to be run separately from a client&rsquo;s request.  They can be started by an action or by the server itself.  With actionhero, there is no need to run a separate daemon to process these jobs.  actionhero uses the <a href="https://github.com/taskrabbit/node-resque">node-resque</a> package to store and process tasks in a way compatible with the <a href="https://github.com/resque/resque">resque</a> ecosystem.</p>
+<p>Tasks are background jobs meant to be run separately from a client&rsquo;s request.  They can be started by an action or by the server itself.  With ActionHero, there is no need to run a separate daemon to process these jobs.  ActionHero uses the <a href="https://github.com/taskrabbit/node-resque">node-resque</a> package to store and process tasks in a way compatible with the <a href="https://github.com/resque/resque">resque</a> ecosystem.</p>
 
-<p>There are 3 types of tasks actionhero can process: <code class="prettyprint">normal</code>, <code class="prettyprint">delayed</code>, and <code class="prettyprint">periodic</code>.</p>
+<p>There are 3 types of tasks ActionHero can process: <code class="prettyprint">normal</code>, <code class="prettyprint">delayed</code>, and <code class="prettyprint">periodic</code>.</p>
 
 <ul>
 <li><code class="prettyprint">normal</code> tasks are enqueued and processed one-by-one by the task TaskProcessors</li>
@@ -668,7 +668,7 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 <span class="p">});</span>
 </code></pre>
 
-<p>Here are examples of the 3 ways to programatically enqueue a task.</p>
+<p>Here are examples of the 3 ways to programmatically enqueue a task.</p>
 
 <p>&ldquo;sendWelcomeEmail&rdquo; should be a task defined in the project, and <code class="prettyprint">{to: &#39;evan@evantahler.com&#39;}</code> are arguments to that task.  This task will be processed by TaskProcessors assigned to the &#39;default queue&rsquo;.</p>
 
@@ -676,7 +676,7 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 
 <p><code class="prettyprint">enqueueAt</code> asks for a timestamp (in ms) to run at, and <code class="prettyprint">enqueueIn</code> asks for the number of ms from now to run.</p>
 
-<p>The final type of task, periodic tasks, are defined with a <code class="prettyprint">task.frequency</code> of greater than 0, and are loaded in by actionhero when it boots.  You cannot modify these tasks once the server is running.</p>
+<p>The final type of task, periodic tasks, are defined with a <code class="prettyprint">task.frequency</code> of greater than 0, and are loaded in by ActionHero when it boots.  You cannot modify these tasks once the server is running.</p>
 
 <h2 id="processing-tasks">Processing Tasks</h2>
 <pre class="highlight javascript"><code><span class="c1">// From /config/tasks.js:</span>
@@ -735,13 +735,13 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 <span class="p">}</span>
 </code></pre>
 
-<p>To work these tasks, you need to run actionhero with at least one <code class="prettyprint">taskProcessor</code>.  <code class="prettyprint">TaskProcessor</code>s run in-line with the rest of your server and process jobs.  This is controlled by settings in <a href="https://github.com/evantahler/actionhero/blob/master/config/tasks.js">/config/tasks.js</a>.</p>
+<p>To work these tasks, you need to run ActionHero with at least one <code class="prettyprint">taskProcessor</code>.  <code class="prettyprint">TaskProcessor</code>s run in-line with the rest of your server and process jobs.  This is controlled by settings in <a href="https://github.com/evantahler/actionhero/blob/master/config/tasks.js">/config/tasks.js</a>.</p>
 
-<p>If you are enqueuing delayed or periodic tasks, you also need to enable the scheduler.  This is a part of actionhero that will periodically check the delayed queues for jobs that are ready to work now, and move them to the normal queues when the time comes.</p>
+<p>If you are enqueuing delayed or periodic tasks, you also need to enable the scheduler.  This is a part of ActionHero that will periodically check the delayed queues for jobs that are ready to work now, and move them to the normal queues when the time comes.</p>
 
-<p>Because node and actionhero are asynchronous, we can process more than one job at a time.  However, if the jobs we are processing are CPU-intensive, we want to limit how many we are working on at one time.  To do this, we tell actionhero to run somewhere between <code class="prettyprint">minTaskProcessors</code> and <code class="prettyprint">maxTaskProcessors</code> and check every so often if the server could be working more or less jobs at a time.  Depending on the response characteristics you want for your server, you can modify these values.  </p>
+<p>Because node and ActionHero are asynchronous, we can process more than one job at a time.  However, if the jobs we are processing are CPU-intensive, we want to limit how many we are working on at one time.  To do this, we tell ActionHero to run somewhere between <code class="prettyprint">minTaskProcessors</code> and <code class="prettyprint">maxTaskProcessors</code> and check every so often if the server could be working more or less jobs at a time.  Depending on the response characteristics you want for your server, you can modify these values.  </p>
 
-<p>In production, it is best to set up some actionhero servers that only handle requests from clients (that is, servers with no TaskProcessors) and others that handle no requests, and only process jobs (that is, no servers, many <code class="prettyprint">TaskProcessor</code>s).</p>
+<p>In production, it is best to set up some ActionHero servers that only handle requests from clients (that is, servers with no TaskProcessors) and others that handle no requests, and only process jobs (that is, no servers, many <code class="prettyprint">TaskProcessor</code>s).</p>
 
 <p>As you noticed above, when you enqueue a task, you tell it which queue to be enqueued within.  This is so you can separate load or priority.  For example, you might have a <code class="prettyprint">high</code> priority queue which does jobs like &ldquo;sendPushMessage&rdquo; and a <code class="prettyprint">low</code> priority queue which does a task like &ldquo;cleanupCache&rdquo;.  You tell the <code class="prettyprint">taskProcessor</code>s which jobs to work, and in which priority. For the example above, you would ensure that all <code class="prettyprint">high</code> jobs happen before all <code class="prettyprint">low</code> jobs by setting: <code class="prettyprint">api.config.tasks.queues = [&#39;high&#39;, &#39;low&#39;]</code>.
 You could also configure more nodes to work on the <code class="prettyprint">high</code> queue than the <code class="prettyprint">low</code> queue, thus further ensuring that <code class="prettyprint">high</code> priority jobs are processed faster and sooner than <code class="prettyprint">low</code> priority jobs.</p>
@@ -813,7 +813,7 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 <li><code class="prettyprint">task.name</code>: The unique name of your task</li>
 <li><code class="prettyprint">task.description</code>: a description</li>
 <li><code class="prettyprint">task.queue</code>: the default queue to run this task within (can be overwritten when enqueued)</li>
-<li><code class="prettyprint">task.frequency</code>: In milliseconds, how often should I run?.  A frequency of &gt;0 denotes this task as periodic and actionhero will automatically enqueued when the server boots.  Only one instance of a periodic task will be enqueued within the cluster at a time, regardless of how many actionhero nodes are connected.</li>
+<li><code class="prettyprint">task.frequency</code>: In milliseconds, how often should I run?.  A frequency of &gt;0 denotes this task as periodic and ActionHero will automatically enqueued when the server boots.  Only one instance of a periodic task will be enqueued within the cluster at a time, regardless of how many ActionHero nodes are connected.</li>
 <li><code class="prettyprint">task.plugins</code>: You can use resque plugins in your task from the node-resque project.  Plugins modify how your tasks are enqueued.  For example, if you use the <code class="prettyprint">queue-lock</code> plugin, only one instance of any job (with similar arguments) can be enqueued at a time.  You can learn more about plugins from the <a href="https://github.com/taskrabbit/node-resque#plugins">node-resque project</a>.</li>
 <li><code class="prettyprint">task.pluginOptions</code>: a hash of options for the plugins</li>
 </ul>
@@ -821,7 +821,7 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 <p><code class="prettyprint">task.run</code> contains the actual work that the task does. It takes the following arguments:</p>
 
 <ul>
-<li><code class="prettyprint">api</code>: The actionhero api object</li>
+<li><code class="prettyprint">api</code>: The ActionHero api object</li>
 <li><code class="prettyprint">params</code>: An array of parameters that the task was enqueued with. This is whatever was passed as the second argument to <code class="prettyprint">api.tasks.enqueue</code></li>
 <li><code class="prettyprint">next</code>: A callback to call when the task is done. This callback is of the type <code class="prettyprint">function(error, result)</code>.
 
@@ -833,7 +833,7 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 
 <h2 id="queue-inspection">Queue Inspection</h2>
 
-<p>actionhero provides some methods to help inspect the state of your queue.  You can use these methods to check if your jobs are processing in a timely manner, if there are errors in task processing, etc.</p>
+<p>ActionHero provides some methods to help inspect the state of your queue.  You can use these methods to check if your jobs are processing in a timely manner, if there are errors in task processing, etc.</p>
 
 <h3 id="api-tasks-scheduledat-queue-taskname-args-next">api.tasks.scheduledAt(queue, taskName, args, next)</h3>
 
@@ -1029,11 +1029,11 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 <span class="p">};</span>
 </code></pre>
 
-<p>You may want to schedule jobs every minute/hour/day, like a distributed CRON job.  There are a number of excellent node packages to help you with this, like <a href="https://github.com/tejasmanohar/node-schedule">node-schedule</a> and <a href="https://github.com/ncb000gt/node-cron">node-cron</a>.  Actionhero exposes <a href="https://github.com/taskrabbit/node-resque">node-resque&rsquo;s</a> scheduler to you so you can use the scheduler package of your choice.  </p>
+<p>You may want to schedule jobs every minute/hour/day, like a distributed CRON job.  There are a number of excellent node packages to help you with this, like <a href="https://github.com/tejasmanohar/node-schedule">node-schedule</a> and <a href="https://github.com/ncb000gt/node-cron">node-cron</a>.  ActionHero exposes <a href="https://github.com/taskrabbit/node-resque">node-resque&rsquo;s</a> scheduler to you so you can use the scheduler package of your choice.  </p>
 
-<p>Assuming you are running actionhero across multiple machines, you will need to ensure that only one of your processes is actually scheduling the jobs.  To help you with this, you can inspect which of the scheduler processes is correctly acting as master, and flag only the master scheduler process to run the schedule.  An <a href="/docs#initializers">initializer for this</a> would look like:</p>
+<p>Assuming you are running ActionHero across multiple machines, you will need to ensure that only one of your processes is actually scheduling the jobs.  To help you with this, you can inspect which of the scheduler processes is correctly acting as master, and flag only the master scheduler process to run the schedule.  An <a href="/docs#initializers">initializer for this</a> would look like:</p>
 
-<p>Be sure to have the scheduler enabled on at least one of your actionhero servers!</p>
+<p>Be sure to have the scheduler enabled on at least one of your ActionHero servers!</p>
 
 <h2 id="failed-job-management">Failed Job Management</h2>
 <pre class="highlight javascript"><code>
@@ -1120,15 +1120,15 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <p>Note that the <code class="prettyprint">frequency</code>, <code class="prettyprint">enqueueIn</code> and <code class="prettyprint">enqueueAt</code> times are when a task is <strong>allowed</strong> to run, not when it <strong>will</strong> run.  TaskProcessors will work tasks in a first-in-first-out manner.  TaskProcessors also <code class="prettyprint">sleep</code> when there is no work to do, and will take some time (default 5 seconds) to wake up and check for more work to do.</p>
 
-<p>Remember that each actionhero server uses one thread and one event loop, so that if you have computationally intensive task (like computing Fibonacci numbers), this <strong>will</strong> block tasks, actions, and clients from working.  However, if your tasks are meant to communicate with external services (reading from a database, sending an email, etc), then these are perfect candidates to be run simultaneously as the single thread can work on other things while waiting for these operations to complete.  </p>
+<p>Remember that each ActionHero server uses one thread and one event loop, so that if you have computationally intensive task (like computing Fibonacci numbers), this <strong>will</strong> block tasks, actions, and clients from working.  However, if your tasks are meant to communicate with external services (reading from a database, sending an email, etc), then these are perfect candidates to be run simultaneously as the single thread can work on other things while waiting for these operations to complete.  </p>
 
-<p>Tasks are stored in redis.  Be sure to enable non-fake redis if you want your tasks to persist and be shared across more than one actionhero server.</p>
+<p>Tasks are stored in redis.  Be sure to enable non-fake redis if you want your tasks to persist and be shared across more than one ActionHero server.</p>
 
-<p>If you are running a single actionhero server, all tasks will be run locally.  As you add more servers, the work will be split evenly across all nodes.  It is very likely that your job will be run on different nodes each time.</p>
+<p>If you are running a single ActionHero server, all tasks will be run locally.  As you add more servers, the work will be split evenly across all nodes.  It is very likely that your job will be run on different nodes each time.</p>
 
           <h1 id="middleware">Middleware</h1>
 
-<p>There are 3 types of middleware in actionhero:</p>
+<p>There are 3 types of middleware in ActionHero:</p>
 
 <ul>
 <li>Action</li>
@@ -1179,9 +1179,9 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <span class="nx">api</span><span class="p">.</span><span class="nx">actions</span><span class="p">.</span><span class="nx">addMiddleware</span><span class="p">(</span><span class="nx">middleware</span><span class="p">);</span>
 </code></pre>
 
-<p>actionhero provides hooks for you to execute custom code both before and after the execution of all or some actions.  This is a great place to write authentication logic or custom loggers.  </p>
+<p>ActionHero provides hooks for you to execute custom code both before and after the execution of all or some actions.  This is a great place to write authentication logic or custom loggers.  </p>
 
-<p>Action middleware requires a <code class="prettyprint">name</code> and at least one of <code class="prettyprint">preProcessor</code> or <code class="prettyprint">postProcessor</code>.  Middleware can be <code class="prettyprint">global</code>, or you can choose to apply each middleware to an action specifically via <code class="prettyprint">action.middleware = []</code> in the action&rsquo;s definiton.  You supply a list of middleware names, like <code class="prettyprint">action.middleware = [&#39;userId checker&#39;]</code> in the example above.</p>
+<p>Action middleware requires a <code class="prettyprint">name</code> and at least one of <code class="prettyprint">preProcessor</code> or <code class="prettyprint">postProcessor</code>.  Middleware can be <code class="prettyprint">global</code>, or you can choose to apply each middleware to an action specifically via <code class="prettyprint">action.middleware = []</code> in the action&rsquo;s definition.  You supply a list of middleware names, like <code class="prettyprint">action.middleware = [&#39;userId checker&#39;]</code> in the example above.</p>
 
 <p>Each processor is passed <code class="prettyprint">data</code> and the callback <code class="prettyprint">next</code>.  Just like within actions, you can modify the <code class="prettyprint">data</code> object to add to <code class="prettyprint">data.response</code> to create a response to the client.  If you pass <code class="prettyprint">error</code> to the callback <code class="prettyprint">next</code>, that error will be returned to the client.  If a <code class="prettyprint">preProcessor</code> has an error, the action will never be called.</p>
 
@@ -1297,7 +1297,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
           <h1 id="initializers">Initializers</h1>
 
-<p>Initializers are the main way you expand your actionhero server.  This is where you connect to databases, modify the global <code class="prettyprint">api</code> object with new classes and helper methods, and set up your <a href="docs#middleware">middleware</a>.</p>
+<p>Initializers are the main way you expand your ActionHero server.  This is where you connect to databases, modify the global <code class="prettyprint">api</code> object with new classes and helper methods, and set up your <a href="docs#middleware">middleware</a>.</p>
 
 <p>Initializers run in 3 phases coinciding with the lifecycles of the application: <code class="prettyprint">init</code>, <code class="prettyprint">start</code>, and <code class="prettyprint">stop</code>.  All <code class="prettyprint">init</code> steps happen before all <code class="prettyprint">start</code> steps.  Initializers can define both methods and priorities which will happen at each phase of the server&rsquo;s lifecycle.</p>
 
@@ -1334,19 +1334,19 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <h2 id="errors">Errors</h2>
 
-<p>You can pass an error to the callback of any step in the initializer.  Doing so will cause actionhero to log the error and stop the server.  For example, you might throw an error if you cannot connect to an external service at boot, <a href="https://github.com/evantahler/ah-sequelize-plugin/blob/master/initializers/sequelize.js">like a database</a>. </p>
+<p>You can pass an error to the callback of any step in the initializer.  Doing so will cause ActionHero to log the error and stop the server.  For example, you might throw an error if you cannot connect to an external service at boot, <a href="https://github.com/evantahler/ah-sequelize-plugin/blob/master/initializers/sequelize.js">like a database</a>. </p>
 
           <h1 id="actioncluster">ActionCluster</h1>
 
-<p><em>AKA: Running actionhero in a Cluster</em></p>
+<p><em>AKA: Running ActionHero in a Cluster</em></p>
 
-<p>actionhero can be run either as a solitary server or as part of a cluster.  The goal of these cluster helpers is to allow you to create a group of servers which will share state and each be able to handle requests and run tasks.  You can add or remove nodes from the cluster without fear of data loss or task duplication.  You can also run many instances of actionhero on the same server using node.js&rsquo; cluster methods (<code class="prettyprint">actionhero startCluster</code>), which you <a href="/docs#production-notes">can learn more about here</a>.</p>
+<p>ActionHero can be run either as a solitary server or as part of a cluster.  The goal of these cluster helpers is to allow you to create a group of servers which will share state and each be able to handle requests and run tasks.  You can add or remove nodes from the cluster without fear of data loss or task duplication.  You can also run many instances of ActionHero on the same server using node.js&rsquo; cluster methods (<code class="prettyprint">ActionHero startCluster</code>), which you <a href="/docs#production-notes">can learn more about here</a>.</p>
 
 <p>Cluster instances are named sequentially, starting with actionhero-worker-1, and can be retrived from &lsquo;api.id&rsquo;. Logs and PID&rsquo;s, as well as other instance-specific information follow this pattern as well.</p>
 
 <h2 id="cache">Cache</h2>
 
-<p>Using a <a href="http://redis.io/">redis</a> backend, actionhero nodes share memory objects (using the <code class="prettyprint">api.cache methods</code>) and have a common queue for tasks. This means that all peers will have access to all data stored in the cache.  The task system also becomes a common queue which all peers will work on draining.  There should be no changes required to deploy your applicaiton in a cluster.  </p>
+<p>Using a <a href="http://redis.io/">redis</a> backend, ActionHero nodes share memory objects (using the <code class="prettyprint">api.cache methods</code>) and have a common queue for tasks. This means that all peers will have access to all data stored in the cache.  The task system also becomes a common queue which all peers will work on draining.  There should be no changes required to deploy your applicaiton in a cluster.  </p>
 
 <p>Keep in mind that many clients/server can access a cached value simultaneously, so build your actions carefully not to have conflicting state.  You can <a href="/docs#general-cache-notes">learn more about the cache methods here</a>.  You can also <a href="/docs#redis-configurations">review recommendations about Production Redis configurations</a>.</p>
 
@@ -1357,7 +1357,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <span class="p">});</span>
 </code></pre>
 
-<p>In version 9.0.0, actionhero introduced Remote Procedure Calls, or RPC for short.  You can call an RPC method to be excecuted on all nodes in your cluster or just a node which holds a specific connection.  You can call RPC methods with the <code class="prettyprint">api.redis.doCluster</code> method.  If you provide the optional callback, you will get the first response back (or a timeout error).  RPC calls are invoked with <code class="prettyprint">api.redis.doCluster(method, args, connectionId, callback)</code>.</p>
+<p>In version 9.0.0, ActionHero introduced Remote Procedure Calls, or RPC for short.  You can call an RPC method to be excecuted on all nodes in your cluster or just a node which holds a specific connection.  You can call RPC methods with the <code class="prettyprint">api.redis.doCluster</code> method.  If you provide the optional callback, you will get the first response back (or a timeout error).  RPC calls are invoked with <code class="prettyprint">api.redis.doCluster(method, args, connectionId, callback)</code>.</p>
 
 <p>For example, if you wanted all nodes to log a message, you would do: <code class="prettyprint">api.redis.doCluster(&#39;api.log&#39;, [&quot;hello from &quot; + api.id]);</code></p>
 
@@ -1369,13 +1369,13 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <p><strong>WARNING</strong></p>
 
-<p>RPC calls are authenticated against <code class="prettyprint">api.config.serverToken</code> and communication happens over redis pub/sub. BE CAREFUL, as you can call <em>any</em> method within the API namespace on an actionhero server, including shutdown() and read <em>any</em> data on that node.</p>
+<p>RPC calls are authenticated against <code class="prettyprint">api.config.serverToken</code> and communication happens over redis pub/sub. BE CAREFUL, as you can call <em>any</em> method within the API namespace on an ActionHero server, including shutdown() and read <em>any</em> data on that node.</p>
 
 <h3 id="connections">Connections</h3>
 
 <p>Some special RPC tools have been added so that you can interact with connections across multiple nodes.  Speficially the chat sub-system needs to be able to boot and move connections into rooms, regardless of which node they are connected to.</p>
 
-<p>actionhero has exposed <code class="prettyprint">api.connections.apply</code> which can be used to retrive data about and modify a connection on any node.</p>
+<p>ActionHero has exposed <code class="prettyprint">api.connections.apply</code> which can be used to retrive data about and modify a connection on any node.</p>
 
 <h3 id="api-connections-apply-connectionid-method-args-callback">api.connections.apply(connectionId, method, args, callback)</h3>
 
@@ -1401,7 +1401,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <span class="nx">api</span><span class="p">.</span><span class="nx">redis</span><span class="p">.</span><span class="nx">publish</span><span class="p">(</span><span class="nx">payload</span><span class="p">)</span>
 </code></pre>
 
-<p>actionhero also uses redis to allow for pub/sub communication between nodes.  </p>
+<p>ActionHero also uses redis to allow for pub/sub communication between nodes.  </p>
 
 <p>You can broadcast and receive messages from other peers in the cluster:</p>
 
@@ -1421,7 +1421,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <h2 id="general-cache-notes">General Cache Notes</h2>
 
-<p>actionhero ships with the functions needed for a distributed key-value cache.  You can cache strings, numbers, arrays and objects (anything that responds to <code class="prettyprint">JSON.stringify</code>).  </p>
+<p>ActionHero ships with the functions needed for a distributed key-value cache.  You can cache strings, numbers, arrays and objects (anything that responds to <code class="prettyprint">JSON.stringify</code>).  </p>
 
 <p>The cache&rsquo;s redis server is defined by <code class="prettyprint">api.config.redis</code>.  It is possible to use fakeredis.</p>
 
@@ -1515,7 +1515,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <h2 id="lock-methods">Lock Methods</h2>
 
-<p>You may optionally implement locking methods along with your cache objects.  This will allow one actionhero server to obtain a lock on an object and prevent modification of it by another member of the cluster.  For example you may want to first <code class="prettyprint">api.cache.lock</code> a key, and then save it to prevent other nodes from modifying the object.</p>
+<p>You may optionally implement locking methods along with your cache objects.  This will allow one ActionHero server to obtain a lock on an object and prevent modification of it by another member of the cluster.  For example you may want to first <code class="prettyprint">api.cache.lock</code> a key, and then save it to prevent other nodes from modifying the object.</p>
 
 <h3 id="api-cache-lock">api.cache.lock</h3>
 
@@ -1584,7 +1584,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <h2 id="general">General</h2>
 
-<p>actionhero ships with a chat framework which may be used by all persistent connections (<code class="prettyprint">socket</code> and <code class="prettyprint">websocket</code>).  There are methods to create and manage chat rooms and control the users in those rooms.  Chat does not have to be for peer-to-peer communication, and is a metaphor used for many things, including game state in MMOs.</p>
+<p>ActionHero ships with a chat framework which may be used by all persistent connections (<code class="prettyprint">socket</code> and <code class="prettyprint">websocket</code>).  There are methods to create and manage chat rooms and control the users in those rooms.  Chat does not have to be for peer-to-peer communication, and is a metaphor used for many things, including game state in MMOs.</p>
 
 <p>Clients themselves interact with rooms via <code class="prettyprint">verbs</code>.  Verbs are short-form commands that will attempt to modify the connection&rsquo;s state, either joining or leaving a room.  Clients can be in many rooms at once.</p>
 
@@ -1599,7 +1599,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
 <p>The special verb for persistent connections <code class="prettyprint">say</code> makes use of <code class="prettyprint">api.chatRoom.broadcast</code> to tell a message to all other users in the room, IE: <code class="prettyprint">say myRoom Hello World</code> from a socket client or <code class="prettyprint">client.say(&quot;myRoom&quot;, &#39;Hello World&quot;)</code> for a websocket.</p>
 
-<p>Chat on multiple actionHero nodes relies on redis for both chat (pub/sub) and a key store defined by <code class="prettyprint">api.config.redis</code>. Note that if you elect to use fakeredis, you will be using an in-memory redis server rather than a real redis process, which does not work to share data across nodes.  The redis store and the key store don&rsquo;t need to be the same instance of redis, but they do need to be the same for all actionhero servers you are running in parallel.  This is how actionhero scales the chat features.</p>
+<p>Chat on multiple actionHero nodes relies on redis for both chat (pub/sub) and a key store defined by <code class="prettyprint">api.config.redis</code>. Note that if you elect to use fakeredis, you will be using an in-memory redis server rather than a real redis process, which does not work to share data across nodes.  The redis store and the key store don&rsquo;t need to be the same instance of redis, but they do need to be the same for all ActionHero servers you are running in parallel.  This is how ActionHero scales the chat features.</p>
 
 <p>There is no limit to the number of rooms which can be created, but keep in mind that each room stores information in redis, and there load created for each connection.</p>
 
@@ -1612,7 +1612,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <ul>
 <li>tell a message to all members in a room.</li>
 <li>connection can either be a real connection (A message coming from a client), or a mockConnection.  A mockConnection at the very least has the form <code class="prettyprint">{room: &quot;someOtherRoom}</code>.  mockConnections without an id will be assigned the id of 0</li>
-<li>The <code class="prettyprint">context</code> of messages sent with <code class="prettyprint">api.chatRoom.broadcast</code> always be <code class="prettyprint">user</code> to differentiate these responses from a <code class="prettyprint">responsee</code> to a request</li>
+<li>The <code class="prettyprint">context</code> of messages sent with <code class="prettyprint">api.chatRoom.broadcast</code> always be <code class="prettyprint">user</code> to differentiate these responses from a <code class="prettyprint">response</code> to a request</li>
 </ul>
 
 <h3 id="api-chatroom-list-callback">api.chatRoom.list(callback)</h3>
@@ -1733,11 +1733,11 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <span class="p">}</span>
 </code></pre>
 
-<p>actionhero&rsquo;s development mode is a little different than tools like <a href="https://github.com/remy/nodemon">nodemon</a> in that it tries hard not to restart the server process. Changes to routes, tasks, and actions can simply replace those in memory when they are updated on disk. Other changes, like changes to <code class="prettyprint">api.config</code> or initializers are more severe, and will restart the whole application (much like nodemon).</p>
+<p>ActionHero&rsquo;s development mode is a little different than tools like <a href="https://github.com/remy/nodemon">nodemon</a> in that it tries hard not to restart the server process. Changes to routes, tasks, and actions can simply replace those in memory when they are updated on disk. Other changes, like changes to <code class="prettyprint">api.config</code> or initializers are more severe, and will restart the whole application (much like nodemon).</p>
 
 <p>To enable development mode simply set <code class="prettyprint">developmentMode: true</code> in your <code class="prettyprint">config/api.js</code>.</p>
 
-<p>Note that <code class="prettyprint">api.config.general.developmentMode</code> is different from <code class="prettyprint">NODE_ENV</code>, which by default is &ldquo;development&rdquo; (and is logged out when actionhero boots).  <code class="prettyprint">NODE_ENV</code> is used to determine which config settings to use, and has no effect on developmentMode.</p>
+<p>Note that <code class="prettyprint">api.config.general.developmentMode</code> is different from <code class="prettyprint">NODE_ENV</code>, which by default is &ldquo;development&rdquo; (and is logged out when ActionHero boots).  <code class="prettyprint">NODE_ENV</code> is used to determine which config settings to use, and has no effect on developmentMode.</p>
 
 <h2 id="effects-of-development-mode">Effects of Development Mode</h2>
 
@@ -1758,13 +1758,13 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <span class="p">});</span>
 </code></pre>
 
-<p>You can use actionhero&rsquo;s <code class="prettyprint">watchFileAndAct()</code> method to watch additional files your application may have:</p>
+<p>You can use ActionHero&rsquo;s <code class="prettyprint">watchFileAndAct()</code> method to watch additional files your application may have:</p>
 
 <h2 id="debugging">Debugging</h2>
 
-<p>You can use the awesome <a href="https://github.com/dannycoates/node-inspector">node-inspector</a> project to help you debug your actionhero application within the familar Chrome Browser&rsquo;s developer tools.</p>
+<p>You can use the awesome <a href="https://github.com/dannycoates/node-inspector">node-inspector</a> project to help you debug your ActionHero application within the familar Chrome Browser&rsquo;s developer tools.</p>
 
-<p>Be sure to run actionhero with node&rsquo;s <code class="prettyprint">--debug</code> flag, ie: <code class="prettyprint">node ./node_modules/.bin/actionhero start --debug</code></p>
+<p>Be sure to run ActionHero with node&rsquo;s <code class="prettyprint">--debug</code> flag, ie: <code class="prettyprint">node ./node_modules/.bin/actionhero start --debug</code></p>
 <pre class="highlight javascript"><code><span class="c1">// in package.json</span>
 <span class="s2">"dependencies"</span><span class="err">:</span> <span class="p">{</span>
   <span class="s2">"actionhero"</span><span class="err">:</span> <span class="s2">"x"</span><span class="p">,</span>
@@ -1772,7 +1772,7 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <span class="p">},</span>
 </code></pre>
 
-<p>Start up node-inspector (both node-inspector and actionhero have the same default port, so you will need to change one of them) <code class="prettyprint">./node_modules/.bin/node-inspector --web-port=1234</code></p>
+<p>Start up node-inspector (both node-inspector and ActionHero have the same default port, so you will need to change one of them) <code class="prettyprint">./node_modules/.bin/node-inspector --web-port=1234</code></p>
 
 <p>That&rsquo;s it! Now you can visit <code class="prettyprint">http://0.0.0.0:1234/debug?port=5858</code> and start debugging.  Remember that the way node-debugger works has you first set a breakpoint in the file view, and then you can use the console to inspect various objects.  IE: I put a breakpoint in the default <code class="prettyprint">status</code> action in the <code class="prettyprint">run</code> method:</p>
 
@@ -1798,7 +1798,7 @@ Running <span class="s2">"console"</span> task
   <span class="s1">'status'</span> <span class="o">]</span>
 </code></pre>
 
-<p>actionhero now has a REPL (<code class="prettyprint">v9.0.0</code>)! This means you can &lsquo;connect&rsquo; to a running instance of actionhero and manually call all the methods on the <code class="prettyprint">api</code> namespace.  This combined with the new RPC tools make this a powerful debugging and development tool.  Running <code class="prettyprint">actionhero console</code> will load up a version of action hero in your terminal where you have access to the <code class="prettyprint">api</code> object.  This version of the server will <code class="prettyprint">boot</code>, <code class="prettyprint">initialize</code>, and <code class="prettyprint">start</code>, but will skip booting any <code class="prettyprint">servers</code>.  </p>
+<p>ActionHero now has a REPL (<code class="prettyprint">v9.0.0</code>)! This means you can &lsquo;connect&rsquo; to a running instance of ActionHero and manually call all the methods on the <code class="prettyprint">api</code> namespace.  This combined with the new RPC tools make this a powerful debugging and development tool.  Running <code class="prettyprint">ActionHero console</code> will load up a version of action hero in your terminal where you have access to the <code class="prettyprint">api</code> object.  This version of the server will <code class="prettyprint">boot</code>, <code class="prettyprint">initialize</code>, and <code class="prettyprint">start</code>, but will skip booting any <code class="prettyprint">servers</code>.  </p>
 
 <p>The REPL will:</p>
 
@@ -1844,13 +1844,13 @@ Running <span class="s2">"console"</span> task
 &lt;h1&gt;ActionHero&lt;/h1&gt;<span class="se">\n</span>I am a flat file being served to you via the API from ./public/simple.html&lt;br /&gt;
 </code></pre>
 
-<p>actionhero comes with a file server which clients can make use of to request files on the actionhero server.  actionhero is not meant to be a &lsquo;rendering&rsquo; server (like express or rails), but can serve static files.</p>
+<p>ActionHero comes with a file server which clients can make use of to request files on the ActionHero server.  ActionHero is not meant to be a &lsquo;rendering&rsquo; server (like express or rails), but can serve static files.</p>
 
-<p>If a directory is requested rather than a file, actionhero will look for the file in that directory defined by <code class="prettyprint">api.config.commonWeb.directoryFileType</code> (which defaults to <code class="prettyprint">index.html</code>).  Failing to find this file, an error will be returned defined in <code class="prettyprint">api.config.general.flatFileIndexPageNotFoundMessage</code></p>
+<p>If a directory is requested rather than a file, ActionHero will look for the file in that directory defined by <code class="prettyprint">api.config.commonWeb.directoryFileType</code> (which defaults to <code class="prettyprint">index.html</code>).  Failing to find this file, an error will be returned defined in <code class="prettyprint">api.config.general.flatFileIndexPageNotFoundMessage</code></p>
 
-<p>You can use the <code class="prettyprint">api.staticFile.get(connection, next)</code> in your actions (where <code class="prettyprint">next(connection, error, fileStream, mime, length)</code>).  Note that fileStream is a stream which can be pipe&rsquo;d to a client.  You can use this in actions if you wish, </p>
+<p>You can use the <code class="prettyprint">api.staticFile.get(connection, next)</code> in your actions (where <code class="prettyprint">next(connection, error, fileStream, mime, length)</code>).  Note that fileStream is a stream which can be pipe&rsquo;d to a client.  You can use this in actions if you wish,</p>
 
-<p>On .nix operating system&rsquo;s symlinks for both files and folders will be followed. </p>
+<p>On .nix operating system&rsquo;s symlinks for both files and folders will be followed.</p>
 
 <h2 id="web-clients">Web Clients</h2>
 
@@ -1865,7 +1865,7 @@ Running <span class="s2">"console"</span> task
 
 <ul>
 <li>the param <code class="prettyprint">file</code> should be used to request a path</li>
-<li>file data is sent <code class="prettyprint">raw</code>, and is likely to contain binary content and line breaks.  Parse your responses accordingly! </li>
+<li>file data is sent <code class="prettyprint">raw</code>, and is likely to contain binary content and line breaks.  Parse your responses accordingly!</li>
 </ul>
 
 <h2 id="sending-files-from-actions">Sending files from Actions</h2>
@@ -1875,7 +1875,7 @@ Running <span class="s2">"console"</span> task
 <span class="nx">next</span><span class="p">();</span>
 
 <span class="c1">// failure case</span>
-<span class="nx">data</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">rawConnection</span><span class="p">.</span><span class="nx">responseHttpCode</span> <span class="o">=</span> <span class="mi">404</span><span class="p">;</span> 
+<span class="nx">data</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">rawConnection</span><span class="p">.</span><span class="nx">responseHttpCode</span> <span class="o">=</span> <span class="mi">404</span><span class="p">;</span>
 <span class="nx">data</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">sendFile</span><span class="p">(</span><span class="s1">'404.html'</span><span class="p">);</span>
 <span class="nx">data</span><span class="p">.</span><span class="nx">toRender</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
 <span class="nx">next</span><span class="p">();</span>
@@ -1897,7 +1897,7 @@ Running <span class="s2">"console"</span> task
 <span class="p">}</span>
 </code></pre>
 
-<p>By default, we want actionhero&rsquo;s file server to be very locked-down, and only serve files from directories defined in <code class="prettyprint">api.config.general.paths.public</code>.  This is the safest default for beginners. However, you can customize things by changing the behavior of <code class="prettyprint">api.staticFile.path()</code>.</p>
+<p>By default, we want ActionHero&rsquo;s file server to be very locked-down, and only serve files from directories defined in <code class="prettyprint">api.config.general.paths.public</code>.  This is the safest default for beginners. However, you can customize things by changing the behavior of <code class="prettyprint">api.staticFile.path()</code>.</p>
 
 <p>This would serve files from <code class="prettyprint">/public</code> for all requests except the <code class="prettyprint">sendFile</code> action, which will serve files from <code class="prettyprint">/tmp</code></p>
 
@@ -1994,13 +1994,13 @@ Running <span class="s2">"console"</span> task
 
           <h1 id="plugins">Plugins</h1>
 
-<p>As of actionhero version <code class="prettyprint">v8.0.0</code>, you can create and include plugins for you actionhero project.  Plugins are collections of <code class="prettyprint">tasks</code>, <code class="prettyprint">actions</code>, <code class="prettyprint">servers</code>, and <code class="prettyprint">initializers</code> that are collected as a module.  You can install plugins via NPM or keep them in a local path.</p>
+<p>As of ActionHero version <code class="prettyprint">v8.0.0</code>, you can create and include plugins for you ActionHero project.  Plugins are collections of <code class="prettyprint">tasks</code>, <code class="prettyprint">actions</code>, <code class="prettyprint">servers</code>, and <code class="prettyprint">initializers</code> that are collected as a module.  You can install plugins via NPM or keep them in a local path.</p>
 
-<p>Plugins are loaded after all local actionhero project files, but initializers follow the same priority scheme as all other initializers.</p>
+<p>Plugins are loaded after all local ActionHero project files, but initializers follow the same priority scheme as all other initializers.</p>
 
 <h2 id="including-plugins">Including Plugins</h2>
 
-<p><code class="prettyprint">api.config.general.paths.plugin</code> (loaded from <code class="prettyprint">/config/api.js</code>) is an array which contains the search path for your plugins.  This will default to <code class="prettyprint">./node_modules</code>, but you can add a local path to your project.  Once you have the plugin search paths set up, you use <code class="prettyprint">npm run actionhero link -- --name nameOfPlugin</code> (or <code class="prettyprint">./node_modules/.bin/actionhero link --name nameOfPlugin</code>, which is equivalent) to create links in your top-level project to the plugin.  This will also copy over any config files from the plugin into your project so you can modify them.  The act of &ldquo;linking&rdquo; simply creates a <code class="prettyprint">myPlugin.link</code> file in each component of your top-level project (actions, tasks, etc) which tells actionhero to load up files at boot from that plugin.  </p>
+<p><code class="prettyprint">api.config.general.paths.plugin</code> (loaded from <code class="prettyprint">/config/api.js</code>) is an array which contains the search path for your plugins.  This will default to <code class="prettyprint">./node_modules</code>, but you can add a local path to your project.  Once you have the plugin search paths set up, you use <code class="prettyprint">npm run actionhero link -- --name nameOfPlugin</code> (or <code class="prettyprint">./node_modules/.bin/actionhero link --name nameOfPlugin</code>, which is equivalent) to create links in your top-level project to the plugin.  This will also copy over any config files from the plugin into your project so you can modify them.  The act of &ldquo;linking&rdquo; simply creates a <code class="prettyprint">myPlugin.link</code> file in each component of your top-level project (actions, tasks, etc) which tells ActionHero to load up files at boot from that plugin.  </p>
 
 <p>When you want to overwrite the config files when the plugin is linked, add the parameter <code class="prettyprint">overwriteConfig</code> to the <code class="prettyprint">link</code> call (e.g. <code class="prettyprint">npm run actionhero link --name nameOfPlugin --overwriteConfig</code>)</p>
 
@@ -2022,17 +2022,17 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 <p>To create a plugin, create a project with the following structure:</p>
 
-<p>This structure will allow elements to be loaded into actionhero (we search <code class="prettyprint">/actions</code> for actions, <code class="prettyprint">/tasks</code> for tasks, etc)</p>
+<p>This structure will allow elements to be loaded into ActionHero (we search <code class="prettyprint">/actions</code> for actions, <code class="prettyprint">/tasks</code> for tasks, etc)</p>
 
-<p>When developing your plugin locally, you can load it into an existing actionhero project to test it out.</p>
+<p>When developing your plugin locally, you can load it into an existing ActionHero project to test it out.</p>
 
-<p>First, add the path your plugin is in to <code class="prettyprint">api.config.general.paths.plugin</code>.  If your actionhero app is in <code class="prettyprint">/var/ah/actionhero</code> and your plugin is in <code class="prettyprint">/var/ah/my_plugin</code>, add <code class="prettyprint">/var/ah</code> to <code class="prettyprint">api.config.general.paths.plugin</code></p>
+<p>First, add the path your plugin is in to <code class="prettyprint">api.config.general.paths.plugin</code>.  If your ActionHero app is in <code class="prettyprint">/var/ah/actionhero</code> and your plugin is in <code class="prettyprint">/var/ah/my_plugin</code>, add <code class="prettyprint">/var/ah</code> to <code class="prettyprint">api.config.general.paths.plugin</code></p>
 
 <p><strong>Please use the npm naming convention <code class="prettyprint">ah-(name)-plugin</code> when uploading your plugin to npm</strong></p>
 
 <h2 id="changes-in-v13-0-0">Changes in V13.0.0</h2>
 
-<p>The plugin system was significantly changes in Actionhero version <code class="prettyprint">13.0.0</code>.  Older plugins will not work.<br>
+<p>The plugin system was significantly changes in ActionHero version <code class="prettyprint">13.0.0</code>.  Older plugins will not work.<br>
 - <code class="prettyprint">config/plugins.js</code> has been removed in favor of the linking system
 - Config files from within plugins are no longer sourced
 - There should be no more postinstall scripts needed, and as such, none are executed
@@ -2040,7 +2040,7 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 <h2 id="plugin-methods">Plugin methods</h2>
 
-<p>When creating plugins, you may find yourself wanting to do things which could normally be accomplished easily with a &ldquo;top level&rdquo; actionhero project, but might be difficult from within the <code class="prettyprint">node_modules</code> folder.  Here are some helpers:</p>
+<p>When creating plugins, you may find yourself wanting to do things which could normally be accomplished easily with a &ldquo;top level&rdquo; ActionHero project, but might be difficult from within the <code class="prettyprint">node_modules</code> folder.  Here are some helpers:</p>
 
 <h3 id="routes">Routes:</h3>
 
@@ -2130,26 +2130,26 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 </code></pre>
 
-<p>In actionhero v6.0.0 and later, we have introduced a modular server system which allows you to create your own servers.  Servers should be thought of as any type of listener to clients, streams or your file system.  In actionhero, the goal of each server is to ingest a specific type of connection and transform each client into a generic <code class="prettyprint">connection</code> object which can be operated on by the rest of actionhero.  To help with this, all servers extend <code class="prettyprint">api.genericServer</code> and fill in the required methods.</p>
+<p>In ActionHero v6.0.0 and later, we have introduced a modular server system which allows you to create your own servers.  Servers should be thought of as any type of listener to clients, streams or your file system.  In ActionHero, the goal of each server is to ingest a specific type of connection and transform each client into a generic <code class="prettyprint">connection</code> object which can be operated on by the rest of ActionHero.  To help with this, all servers extend <code class="prettyprint">api.genericServer</code> and fill in the required methods.</p>
 
-<p>To get started, you can use the <code class="prettyprint">generateServer action</code> (name is required).  This will generate a template server which looks like this =&gt; </p>
+<p>To get started, you can use the <code class="prettyprint">generateServer action</code> (name is required).  This will generate a template server which looks like this =&gt;</p>
 
-<p>Like initializers, the <code class="prettyprint">start()</code> and <code class="prettyprint">stop()</code> methods will be called when the server is to boot up in actionhero&rsquo;s lifecycle, but before any clients are permitted into the system.  Here is where you should actually initialize your server (IE: <code class="prettyprint">https.createServer.listen</code>, etc).</p>
+<p>Like initializers, the <code class="prettyprint">start()</code> and <code class="prettyprint">stop()</code> methods will be called when the server is to boot up in ActionHero&rsquo;s lifecycle, but before any clients are permitted into the system.  Here is where you should actually initialize your server (IE: <code class="prettyprint">https.createServer.listen</code>, etc).</p>
 
 <h2 id="designing-servers">Designing Servers</h2>
 <pre class="highlight javascript"><code>
 <span class="nx">server</span><span class="p">.</span><span class="nx">buildConnection</span><span class="p">({</span>
   <span class="na">rawConnection</span><span class="p">:</span> <span class="p">{</span>
-    <span class="na">req</span><span class="p">:</span> <span class="nx">req</span><span class="p">,</span> 
-    <span class="na">res</span><span class="p">:</span> <span class="nx">res</span><span class="p">,</span> 
-    <span class="na">method</span><span class="p">:</span> <span class="nx">method</span><span class="p">,</span> 
-    <span class="na">cookies</span><span class="p">:</span> <span class="nx">cookies</span><span class="p">,</span> 
-    <span class="na">responseHeaders</span><span class="p">:</span> <span class="nx">responseHeaders</span><span class="p">,</span> 
+    <span class="na">req</span><span class="p">:</span> <span class="nx">req</span><span class="p">,</span>
+    <span class="na">res</span><span class="p">:</span> <span class="nx">res</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="nx">method</span><span class="p">,</span>
+    <span class="na">cookies</span><span class="p">:</span> <span class="nx">cookies</span><span class="p">,</span>
+    <span class="na">responseHeaders</span><span class="p">:</span> <span class="nx">responseHeaders</span><span class="p">,</span>
     <span class="na">responseHttpCode</span><span class="p">:</span> <span class="nx">responseHttpCode</span><span class="p">,</span>
     <span class="na">parsedURL</span><span class="p">:</span> <span class="nx">parsedURL</span>
-  <span class="p">},</span> 
-  <span class="na">id</span><span class="p">:</span> <span class="nx">randomNumber</span><span class="p">(),</span> 
-  <span class="na">remoteAddress</span><span class="p">:</span> <span class="nx">remoteIP</span><span class="p">,</span> 
+  <span class="p">},</span>
+  <span class="na">id</span><span class="p">:</span> <span class="nx">randomNumber</span><span class="p">(),</span>
+  <span class="na">remoteAddress</span><span class="p">:</span> <span class="nx">remoteIP</span><span class="p">,</span>
   <span class="na">remotePort</span><span class="p">:</span> <span class="nx">req</span><span class="p">.</span><span class="nx">connection</span><span class="p">.</span><span class="nx">remotePort</span><span class="p">}</span>
 <span class="p">);</span> <span class="c1">// will emit "connection"</span>
 
@@ -2177,7 +2177,7 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 <h2 id="verbs">Verbs</h2>
 <pre class="highlight javascript"><code><span class="nx">allowedVerbs</span><span class="err">:</span> <span class="p">[</span>
-      <span class="s2">"quit"</span><span class="p">,</span> 
+      <span class="s2">"quit"</span><span class="p">,</span>
       <span class="s2">"exit"</span><span class="p">,</span>
       <span class="s2">"paramAdd"</span><span class="p">,</span>
       <span class="s2">"paramDelete"</span><span class="p">,</span>
@@ -2193,9 +2193,9 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
     <span class="p">]</span>
 </code></pre>
 
-<p>When an incoming message is detected, it is the server&rsquo;s job to build <code class="prettyprint">connection.params</code>.  In the <code class="prettyprint">web</code> server, this is accomplished by reading GET, POST, and form data.  For <code class="prettyprint">websocket</code> clients, that information is expected to be emitted as part of the action&rsquo;s request.  For other clients, like <code class="prettyprint">socket</code>, actionhero provides helpers for long-lasting clients to operate on themselves.  These are called connection <code class="prettyprint">verbs</code>.</p>
+<p>When an incoming message is detected, it is the server&rsquo;s job to build <code class="prettyprint">connection.params</code>.  In the <code class="prettyprint">web</code> server, this is accomplished by reading GET, POST, and form data.  For <code class="prettyprint">websocket</code> clients, that information is expected to be emitted as part of the action&rsquo;s request.  For other clients, like <code class="prettyprint">socket</code>, ActionHero provides helpers for long-lasting clients to operate on themselves.  These are called connection <code class="prettyprint">verbs</code>.</p>
 
-<p>Clients use verbs to add params to themselves, update the chat room they are in, and more.   The list of verbs currently supported is =&gt; </p>
+<p>Clients use verbs to add params to themselves, update the chat room they are in, and more.   The list of verbs currently supported is =&gt;</p>
 
 <p>Your server should be smart enough to tell when a client is trying to run an action, request a file, or use a verb.  One of the attributes of each server is <code class="prettyprint">allowedVerbs</code>, which defines what verbs a client is allowed to preform.  A simplified example of how the <code class="prettyprint">socket</code> server does this:</p>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">parseRequest</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">connection</span><span class="p">,</span> <span class="nx">line</span><span class="p">){</span>
@@ -2230,7 +2230,7 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 <h2 id="sending-responses">Sending Responses</h2>
 
-<p>All servers need to implement the <code class="prettyprint">server.sendMessage = function(connection, message, messageCount)</code> method so actionhero knows how to talk to each client.  This is likely to make use of <code class="prettyprint">connection.rawConnection</code>.  If you are writing a server for a persistent connection, it is likely you will need to respond with <code class="prettyprint">messageCount</code> so that the client knows which request your response is about (as they are not always going to get the responses in order).  </p>
+<p>All servers need to implement the <code class="prettyprint">server.sendMessage = function(connection, message, messageCount)</code> method so ActionHero knows how to talk to each client.  This is likely to make use of <code class="prettyprint">connection.rawConnection</code>.  If you are writing a server for a persistent connection, it is likely you will need to respond with <code class="prettyprint">messageCount</code> so that the client knows which request your response is about (as they are not always going to get the responses in order).  </p>
 
 <h2 id="sending-files">Sending Files</h2>
 
@@ -2238,12 +2238,12 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
           <h1 id="localization">Localization</h1>
 
-<p>Starting in Actionhero <code class="prettyprint">v13.0.0</code>, you can now use the <a href="https://github.com/mashpie/i18n-node">i18n</a> module to customize all aspects of actionhero.</p>
+<p>Starting in ActionHero <code class="prettyprint">v13.0.0</code>, you can now use the <a href="https://github.com/mashpie/i18n-node">i18n</a> module to customize all aspects of ActionHero.</p>
 
 <h2 id="locale-files">Locale files</h2>
 
 <ul>
-<li>When running actionhero with <code class="prettyprint">api.config.i18n.updateFiles = true</code>, you will see actionhero generate a &lsquo;locales&rsquo; folder at the top level of your project which will contain translations of all strings in your project with are passed though the new localization system.  This includes all uses of <code class="prettyprint">api.i18n.localize</code>, <code class="prettyprint">connection.localize</code> and <code class="prettyprint">api.log</code>.<br>
+<li>When running ActionHero with <code class="prettyprint">api.config.i18n.updateFiles = true</code>, you will see ActionHero generate a &lsquo;locales&rsquo; folder at the top level of your project which will contain translations of all strings in your project with are passed though the new localization system.  This includes all uses of <code class="prettyprint">api.i18n.localize</code>, <code class="prettyprint">connection.localize</code> and <code class="prettyprint">api.log</code>.<br>
 
 <ul>
 <li>be sure to use sprintf-style string interpolation for variables!</li>
@@ -2254,7 +2254,7 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 
 <h2 id="determining-connection-locales">Determining connection locales</h2>
 
-<p>Since every actionhero implementation is unique, we cannot ship with a &ldquo;guess&rdquo; about how to determine a given connection&rsquo;s locale. Perhaps you have an HTTP server and you can trust your client&rsquo;s <code class="prettyprint">accept-language</code> headers.  Or perhaps you run your API under a number of different host names and you can presume locale based on them.   Whatever the case, you need to create a synchronous method in an initializer which will be called when each connection connects to return its locale.  </p>
+<p>Since every ActionHero implementation is unique, we cannot ship with a &ldquo;guess&rdquo; about how to determine a given connection&rsquo;s locale. Perhaps you have an HTTP server and you can trust your client&rsquo;s <code class="prettyprint">accept-language</code> headers.  Or perhaps you run your API under a number of different host names and you can presume locale based on them.   Whatever the case, you need to create a synchronous method in an initializer which will be called when each connection connects to return its locale.  </p>
 
 <p>For example, I may have an initializer in my project like this:</p>
 <pre class="highlight javascript"><code><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
@@ -2294,7 +2294,7 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 <h2 id="localizing-the-logger">Localizing the Logger</h2>
 
 <ul>
-<li>Just like connections, the actionhero logger itself now has localization interpolation built in.  Note how in the new settings you set which locale you want the server&rsquo;s logs to be expressed in.  Using that, you can now use sprintf-style string interpolation as the first argument of <code class="prettyprint">api.log()</code>
+<li>Just like connections, the ActionHero logger itself now has localization interpolation built in.  Note how in the new settings you set which locale you want the server&rsquo;s logs to be expressed in.  Using that, you can now use sprintf-style string interpolation as the first argument of <code class="prettyprint">api.log()</code>
 
 <ul>
 <li>You might want to log the message <code class="prettyprint">api.log([&#39;The time is %s&#39;, new Date()], &#39;alert&#39;)</code>.<br></li>
@@ -2663,9 +2663,9 @@ If your plugin was installed via NPM, also be sure to remove it from your packag
 <span class="p">};</span>
 </code></pre>
 
-<p>By now you will have noticed that most sections of actionhero are initilized with access to the <code class="prettyprint">api</code> object.  The <code class="prettyprint">api</code> object is the top-level container/namespace for all of actionhero&rsquo;s data and methods.  We use the <code class="prettyprint">api</code> object to avoide polluting any global namespaces.  The api object is availalbe to all parts of actionhero to share data and state.  Feel free to modify or add too the api object as you see fit, but be mindful of the data it already contains.  </p>
+<p>By now you will have noticed that most sections of ActionHero are initialized with access to the <code class="prettyprint">api</code> object.  The <code class="prettyprint">api</code> object is the top-level container/namespace for all of ActionHero&rsquo;s data and methods.  We use the <code class="prettyprint">api</code> object to avoid polluting any global namespaces.  The api object is available to all parts of ActionHero to share data and state.  Feel free to modify or add too the api object as you see fit, but be mindful of the data it already contains.  </p>
 
-<p>Collections that you are reccomended not leave unmodifeid are un-expanded <code class="prettyprint">[Object]</code>s and/or commented out.</p>
+<p>Collections that you are recommended not leave unmodified are un-expanded <code class="prettyprint">[Object]</code>s and/or commented out.</p>
 
           <h1 id="web-server">Web Server</h1>
 
@@ -3172,7 +3172,7 @@ In this case, we set the array to the param key <code class="prettyprint">payloa
 
 <p>actionhero uses <a href="https://github.com/primus/primus">Primus</a> for web sockets.  The Primus project allows you to choose from many websocket backends, including <code class="prettyprint">ws</code>, <code class="prettyprint">engine.io</code>, <code class="prettyprint">socket.io</code>, and more. Within actionhero, web sockets are bound to the web server (either http or https).</p>
 
-<p>Actionhero will generate the client-side javascript needed for you (based on the actionheroClient library, primus, and the underlying ws transport). This file is regenerated each time you boot the application.</p>
+<p>ActionHero will generate the client-side javascript needed for you (based on the actionheroClient library, primus, and the underlying ws transport). This file is regenerated each time you boot the application.</p>
 
 <p><strong>Warning</strong></p>
 
@@ -3651,7 +3651,7 @@ randomNumber
 
 </code></pre>
 
-<p>Here is a common actionhero production topology:</p>
+<p>Here is a common ActionHero production topology:</p>
 
 <p><img alt="cluster" src="../images/cluster.png" /></p>
 
@@ -3663,24 +3663,24 @@ randomNumber
 <ul>
 <li>be sure to modify the config files for each type of server acordingly (ie: turn of all servers for the workers, and turn of all workers on the servers)</li>
 </ul></li>
-<li>To acomplish the above, you only need to make changes to your configuration files on each server.  You will still be running the same same actionhero project codebase.  See the example:</li>
+<li>To acomplish the above, you only need to make changes to your configuration files on each server.  You will still be running the same same ActionHero project codebase.  See the example:</li>
 <li>Always have a replica of redis!</li>
 </ul>
 
 <h2 id="paths-and-environments">Paths and Environments</h2>
 
-<p>You can set a few environment variables to affect how actionhero runs:</p>
+<p>You can set a few environment variables to affect how ActionHero runs:</p>
 
 <ul>
-<li><code class="prettyprint">PROJECT_ROOT</code>: This is useful when deploying actionhero applications on a server where symlinks will change under a running process.  The cluster will look at your symlink <code class="prettyprint">PROJECT_ROOT=/path/to/current_symlink</code> rather than the absolute path it was started from</li>
-<li><code class="prettyprint">ACTIONHERO_ROOT</code>: This can used to set the absolute path to the actionhero binaries</li>
-<li><code class="prettyprint">ACTIONHERO_CONFIG</code>: This can be user to set the absolute path to the actionhero config directory you wish to use.  This is useful when you might have a variable configs per server</li>
+<li><code class="prettyprint">PROJECT_ROOT</code>: This is useful when deploying ActionHero applications on a server where symlinks will change under a running process.  The cluster will look at your symlink <code class="prettyprint">PROJECT_ROOT=/path/to/current_symlink</code> rather than the absolute path it was started from</li>
+<li><code class="prettyprint">ACTIONHERO_ROOT</code>: This can used to set the absolute path to the ActionHero binaries</li>
+<li><code class="prettyprint">ACTIONHERO_CONFIG</code>: This can be user to set the absolute path to the ActionHero config directory you wish to use.  This is useful when you might have a variable configs per server</li>
 <li><code class="prettyprint">ACTIONHERO_TITLE</code>: The value of <code class="prettyprint">api.id</code>, and the name for the pidfile in some boot configurations</li>
 </ul>
 
 <h2 id="daemon">Daemon</h2>
 
-<p>When deploying actionhero, you will probably have more than 1 process.  You can use the cluster manager to keep an eye on the workers and manage them</p>
+<p>When deploying ActionHero, you will probably have more than 1 process.  You can use the cluster manager to keep an eye on the workers and manage them</p>
 
 <ul>
 <li>Start the cluster with 2 workers: <code class="prettyprint">./node_modules/.bin/actionhero startCluster --workers=2</code></li>
@@ -3692,7 +3692,7 @@ randomNumber
 
 <h2 id="number-of-workers">Number of workers</h2>
 
-<p>When choosing the number of workers (<code class="prettyprint">--workers=n</code>) for your actionhero cluster, choose at least 1 less than the number of CPUs available.  If you have a &ldquo;burstable&rdquo; architecture (like a Joyent smart machine), opt for the highest number of &lsquo;consistent&rsquo; CPUs you can have, meaning a number of CPUs that you will always have available to you.  </p>
+<p>When choosing the number of workers (<code class="prettyprint">--workers=n</code>) for your ActionHero cluster, choose at least 1 less than the number of CPUs available.  If you have a &ldquo;burstable&rdquo; architecture (like a Joyent smart machine), opt for the highest number of &lsquo;consistent&rsquo; CPUs you can have, meaning a number of CPUs that you will always have available to you.  </p>
 
 <p>You never want more workers than you can run at a time, or else you will actually be slowing down the execution of all processes.</p>
 
@@ -3700,15 +3700,15 @@ randomNumber
 
 <h2 id="pidfiles">Pidfiles</h2>
 
-<p>actionhero will write its pid to a pidfile in the normal unix way.  The path for the pidfile is set in <code class="prettyprint">config/api.js</code> with <code class="prettyprint">config.general.paths.pid</code>.  </p>
+<p>ActionHero will write its pid to a pidfile in the normal unix way.  The path for the pidfile is set in <code class="prettyprint">config/api.js</code> with <code class="prettyprint">config.general.paths.pid</code>.  </p>
 
-<p>Individual actionhero servers will name their pidfiles by <code class="prettyprint">api.id</code>, which is determined by the logic <a href="https://github.com/evantahler/actionhero/blob/master/initializers/pids.js">here</a> and <a href="https://github.com/evantahler/actionhero/blob/master/initializers/id.js">here</a>.  For example, on my laptop with the IP address of <code class="prettyprint">192.168.0.1</code>, running <code class="prettyprint">npm start</code> would run one actionhero server and generate a pidfile of <code class="prettyprint">./pids/actionhero-192.168.0.1</code> in which would be a single line containg the process&rsquo; pid.</p>
+<p>Individual ActionHero servers will name their pidfiles by <code class="prettyprint">api.id</code>, which is determined by the logic <a href="https://github.com/evantahler/actionhero/blob/master/initializers/pids.js">here</a> and <a href="https://github.com/evantahler/actionhero/blob/master/initializers/id.js">here</a>.  For example, on my laptop with the IP address of <code class="prettyprint">192.168.0.1</code>, running <code class="prettyprint">npm start</code> would run one ActionHero server and generate a pidfile of <code class="prettyprint">./pids/actionhero-192.168.0.1</code> in which would be a single line containg the process&rsquo; pid.</p>
 
 <p>When running the cluster, the cluster process first writes his own pidfile to <code class="prettyprint">process.cwd() + &#39;./pids/cluster_pidfile&#39;</code>.  Then, every worker the cluster master creates will have a pid like <code class="prettyprint">actionhero-worker-1</code> in the location defined by <code class="prettyprint">config/api.js</code>.</p>
 
 <h2 id="git-based-deployment">Git-based Deployment</h2>
 <pre class="highlight shell"><code><span class="c">#!/usr/bin/env bash</span>
-<span class="c"># assuming the actionhero cluster master process is already running</span>
+<span class="c"># assuming the ActionHero cluster master process is already running</span>
 
 <span class="nv">DEPLOY_PATH</span><span class="o">=</span>/path/to/your/application
 
@@ -3822,9 +3822,9 @@ http <span class="o">{</span>
 <span class="o">}</span>
 </code></pre>
 
-<p>While actionhero can be the font-line server your users hit, it&rsquo;s probably best to proxy actionhero behind a load balancer, nginx, haproxy, etc.  This will help you pool connections before hitting node, SSL terminate, serve static assets, etc.  </p>
+<p>While ActionHero can be the font-line server your users hit, it&rsquo;s probably best to proxy ActionHero behind a load balancer, nginx, haproxy, etc.  This will help you pool connections before hitting node, SSL terminate, serve static assets, etc.  </p>
 
-<p>Here is an example nginx config for interfacing with actionhero, including using sockets (not http) and handing the websocket upgrade path.</p>
+<p>Here is an example nginx config for interfacing with ActionHero, including using sockets (not http) and handing the websocket upgrade path.</p>
 
 <ul>
 <li>Note the proxy-pass format to the socket: proxy_pass http://unix:/path/to/socket</li>
@@ -3903,11 +3903,11 @@ http <span class="o">{</span>
 <li>Run a cluster via <code class="prettyprint">startCluster</code>.  This will guarantee that you can reboot your application with 0 downtime and deploy new versions without interruption.
 
 <ul>
-<li>You can run 1 actionhero instance per core (assuming the server is dedicated to actionhero), and that is the default behavior of <code class="prettyprint">startCluster</code>.</li>
-<li>You don&rsquo;t need a tool like PM2 to manage actionhero cluster process, but you can.</li>
+<li>You can run 1 ActionHero instance per core (assuming the server is dedicated to ActionHero), and that is the default behavior of <code class="prettyprint">startCluster</code>.</li>
+<li>You don&rsquo;t need a tool like PM2 to manage ActionHero cluster process, but you can.</li>
 <li>You can use an init script to <code class="prettyprint">startCluster</code> at boot, or use a tool like <a href="https://mmonit.com/monit/">monit</a> to do it for you.</li>
 </ul></li>
-<li>Never run tasks on the same actionhero instances you run your servers on; never run your servers on the same actionhero instances you run your tasks on
+<li>Never run tasks on the same ActionHero instances you run your servers on; never run your servers on the same ActionHero instances you run your tasks on
 
 <ul>
 <li>Yes, under most situations running servers + tasks on the same instance will work OK, but the load profiles (and often the types of packages required) vary in each deployment.  Actions are designed to respond quickly and offload hard computations to tasks.  Tasks are designed to work slower computations.</li>
@@ -3916,16 +3916,16 @@ http <span class="o">{</span>
 <li>Use a centralized logging tool like Splunk, ELK, SumoLogic, etc.  ActionHero is <em>built for the cloud</em>, which means that it expects pids, application names, etc to change, and as such, will create many log files.  Use a centralized tool to inspect the state of your application.
 
 <ul>
-<li>Log everything.  You never know what you might want to check up on.  Actionhero&rsquo;s logger has various levels you can use for this.</li>
+<li>Log everything.  You never know what you might want to check up on.  ActionHero&rsquo;s logger has various levels you can use for this.</li>
 </ul></li>
 <li>Split out the redis instance you use for cache from the one you use for tasks.  If your cache fills up, do you want task processing to fail?</li>
 <li>Your web request stack should look like: [Load Balancer] -&gt; [App Server] -&gt; [Nginx] -&gt; [ActionHero]
 
 <ul>
 <li>This layout allows you to have control, back-pressure and throttling at many layers.</li>
-<li>Configure Nginx to serve static files whenever possible to remove load from actionhero, and leave it just to process actions</li>
+<li>Configure Nginx to serve static files whenever possible to remove load from ActionHero, and leave it just to process actions</li>
 </ul></li>
-<li>Use a CDN. Actionhero will serve static files with the proper last-modified headers, so your CDN should respect this, and you should not need to worry about asset SHAs/Checksums.</li>
+<li>Use a CDN. ActionHero will serve static files with the proper last-modified headers, so your CDN should respect this, and you should not need to worry about asset SHAs/Checksums.</li>
 <li>Use redis-cluster or redis-sentinel.  The <a href="https://github.com/luin/ioredis"><code class="prettyprint">ioredis</code></a> redis library has support for them by default.  This allows you to have a High Availability redis configuration.</li>
 </ul>
 
@@ -3959,7 +3959,7 @@ http <span class="o">{</span>
 </code></pre>
 
 <ul>
-<li>Let the app crash rather than being defensive prematurely.  Actionhero has a good logger, and if you are running within <code class="prettyprint">startCluster</code> mode, your server will be restarted.  It is very easy to hide uncaught errors, exceptions, or un-resolved promises, and doing so might leave your application in strange state.<br></li>
+<li>Let the app crash rather than being defensive prematurely.  ActionHero has a good logger, and if you are running within <code class="prettyprint">startCluster</code> mode, your server will be restarted.  It is very easy to hide uncaught errors, exceptions, or un-resolved promises, and doing so might leave your application in strange state.<br></li>
 <li>We removed domains from the project in v13 to follow this philosophy, and rely on a parent process (<code class="prettyprint">startCluster</code>) to handle error logging.  Domains are deprecated in node.js now for the same reasons we discuss here.
 
 <ul>
@@ -3980,9 +3980,9 @@ http <span class="o">{</span>
 <h3 id="tasks">Tasks</h3>
 
 <ul>
-<li>Tasks can be created from any part of actionhero: Actions, Servers, Middleware, even other Tasks.</li>
+<li>Tasks can be created from any part of ActionHero: Actions, Servers, Middleware, even other Tasks.</li>
 <li>You can chain tasks together to create workflows.<br></li>
-<li>Actionhero uses the <a href="https://github.com/taskrabbit/node-resque#multi-worker"><code class="prettyprint">multiWorker</code></a> from node-resque.  When configured properly, it will consume 100% of a CPU core, to work as many tasks at once as it can.  This will also fluctuate depending on the CPU difficulty of the job.  Plan accordingly.</li>
+<li>ActionHero uses the <a href="https://github.com/taskrabbit/node-resque#multi-worker"><code class="prettyprint">multiWorker</code></a> from node-resque.  When configured properly, it will consume 100% of a CPU core, to work as many tasks at once as it can.  This will also fluctuate depending on the CPU difficulty of the job.  Plan accordingly.</li>
 <li>Create a way to view the state of your redis cluster.  Are you running out of RAM?  Are your Queues growing faster than they can be worked?  Checking this information is the key to having a healthy ecosystem.  <a href="/docs/#queue-inspection">The methods for doing so</a> are available.</li>
 <li>Be extra-save within your actions, and do not allow an uncaught exception.  This will cause the worker to crash and the job to be remain &#39;claimed&rsquo; in redis, and never make it to the failed queue.</li>
 </ul>
@@ -4076,28 +4076,28 @@ Descriptions:
 <span class="c">#############################################################</span>
 </code></pre>
 
-<p>The suggested method to run your actionhero server is to use the included <code class="prettyprint">./node_modules/.bin/actionhero</code> binary.  Note that there is no <code class="prettyprint">main.js</code> or specific start script your project needs.  actionhero handles this for you.  Your actionhero project simply needs to follow the proper directory conventions and it will be bootable.</p>
+<p>The suggested method to run your ActionHero server is to use the included <code class="prettyprint">./node_modules/.bin/actionhero</code> binary.  Note that there is no <code class="prettyprint">main.js</code> or specific start script your project needs.  ActionHero handles this for you.  Your ActionHero project simply needs to follow the proper directory conventions and it will be bootable.</p>
 
-<p>At the time of this writing the actionhero binary&rsquo;s help contains:</p>
+<p>At the time of this writing the ActionHero binary&rsquo;s help contains:</p>
 
-<h2 id="linking-the-actionhero-binary">Linking the actionhero binary</h2>
+<h2 id="linking-the-actionhero-binary">Linking the ActionHero binary</h2>
 
 <ul>
-<li>If you installed actionhero globally (<code class="prettyprint">npm install actionhero -g</code>) you should have the <code class="prettyprint">actionhero</code> binary available to you within your shell at all times.</li>
+<li>If you installed ActionHero globally (<code class="prettyprint">npm install actionhero -g</code>) you should have the <code class="prettyprint">actionhero</code> binary available to you within your shell at all times.</li>
 <li>Otherwise, you can reference the binary from either <code class="prettyprint">./node_modules/.bin/actionhero</code> or <code class="prettyprint">./node_modules/actionhero/bin/actionhero</code>.</li>
-<li>If you installed actionhero locally, you can add a reference to your path (OSX and Linux): <code class="prettyprint">export PATH=$PATH:node_modules/.bin</code> to be able to use simpler commands, IE <code class="prettyprint">actionhero start</code>. On windows this can be done by running <code class="prettyprint">set PATH=%PATH%;%cd%\node_modules\.bin</code> at command prompt (not powershell).</li>
+<li>If you installed ActionHero locally, you can add a reference to your path (OSX and Linux): <code class="prettyprint">export PATH=$PATH:node_modules/.bin</code> to be able to use simpler commands, IE <code class="prettyprint">actionhero start</code>. On windows this can be done by running <code class="prettyprint">set PATH=%PATH%;%cd%\node_modules\.bin</code> at command prompt (not powershell).</li>
 </ul>
 
 <h2 id="environments-and-config">Environments and Config</h2>
 
-<p>By default, actionhero will use the settings found in the <code class="prettyprint">exports.default</code> blocks in <code class="prettyprint">/config/</code>.  However, you can set environment-specfic overrides or changes.  actionhero inspects <code class="prettyprint">process.env.NODE_ENV</code> to load up runtime configuration overrides from <code class="prettyprint">exports.#{env}</code> blocks in your configuration files.  This is the recommended way to have separate settings for staging and production.</p>
+<p>By default, ActionHero will use the settings found in the <code class="prettyprint">exports.default</code> blocks in <code class="prettyprint">/config/</code>.  However, you can set environment-specfic overrides or changes.  ActionHero inspects <code class="prettyprint">process.env.NODE_ENV</code> to load up runtime configuration overrides from <code class="prettyprint">exports.#{env}</code> blocks in your configuration files.  This is the recommended way to have separate settings for staging and production.</p>
 
 <p>The load order of configs is:
 - default values in <code class="prettyprint">/config</code>
 - environment-specific values in <code class="prettyprint">/config</code>
 - options passed in to boot with <code class="prettyprint">actionhero.start({configChanges: configChanges}, callback)</code></p>
 
-<h2 id="programatic-use-of-actionhero">Programatic Use of actionhero</h2>
+<h2 id="programatic-use-of-actionhero">Programatic Use of ActionHero</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">actionheroPrototype</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"actionhero"</span><span class="p">).</span><span class="nx">actionheroPrototype</span><span class="p">;</span>
 <span class="kd">var</span> <span class="nx">actionhero</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">actionheroPrototype</span><span class="p">();</span>
 
@@ -4126,13 +4126,13 @@ Descriptions:
 <span class="p">});</span>
 </code></pre>
 
-<p>While <strong>NOT</strong> encouraged, you can always instantiate an actionhero server yourself.  Perhaps you wish to combine actionhero with an existing project.  Here&rsquo;s how!  Take note that using these methods will not work for actionCluster, and only a single instance will be started within your project.  </p>
+<p>While <strong>NOT</strong> encouraged, you can always instantiate an ActionHero server yourself.  Perhaps you wish to combine ActionHero with an existing project.  Here&rsquo;s how!  Take note that using these methods will not work for actionCluster, and only a single instance will be started within your project.  </p>
 
-<p>Feel free to look at the source of <code class="prettyprint">./node_modules/actionhero/bin/include/start</code> to see how the main actionhero server is implemented for more information.</p>
+<p>Feel free to look at the source of <code class="prettyprint">./node_modules/actionhero/bin/include/start</code> to see how the main ActionHero server is implemented for more information.</p>
 
-<p>You can programmatically control an actionhero server with <code class="prettyprint">actionhero.start(params, callback)</code>, <code class="prettyprint">actionhero.stop(callback)</code> and <code class="prettyprint">actionhero.restart(callback)</code></p>
+<p>You can programmatically control an ActionHero server with <code class="prettyprint">actionhero.start(params, callback)</code>, <code class="prettyprint">actionhero.stop(callback)</code> and <code class="prettyprint">actionhero.restart(callback)</code></p>
 
-<p>From within actionhero itself (actions, initilizers, etc), you can use <code class="prettyprint">api.commands.start</code>, <code class="prettyprint">api.commands.stop</code>, and <code class="prettyprint">api.commands.restart</code> to control the server.</p>
+<p>From within ActionHero itself (actions, initilizers, etc), you can use <code class="prettyprint">api.commands.start</code>, <code class="prettyprint">api.commands.stop</code>, and <code class="prettyprint">api.commands.restart</code> to control the server.</p>
 
 <h2 id="signals">Signals</h2>
 <pre class="highlight shell"><code><span class="gp">&gt; </span>./node_modules/.bin/actionhero startCluster --workers<span class="o">=</span>2
@@ -4173,7 +4173,7 @@ info: all workers gone
 notice: cluster <span class="nb">complete</span>, Bye!
 </code></pre>
 
-<p>actionhero is intended to be run on <code class="prettyprint">*nix</code> operating systems.  The <code class="prettyprint">start</code> and <code class="prettyprint">startCluster</code> commands provide support for signaling. (There is limited support for some of these commands in windows).</p>
+<p>ActionHero is intended to be run on <code class="prettyprint">*nix</code> operating systems.  The <code class="prettyprint">start</code> and <code class="prettyprint">startCluster</code> commands provide support for signaling. (There is limited support for some of these commands in windows).</p>
 
 <p><strong>actionhero start</strong></p>
 
@@ -4196,15 +4196,15 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <h2 id="shutting-down">Shutting Down</h2>
 
-<p>When using <code class="prettyprint">actionhero start</code> or <code class="prettyprint">actionhero startCluster</code>, when you signal actionhero to stop via the signals above (or from within your running application via <code class="prettyprint">api.commands.stop()</code>), actionhero will attempt to gracefully shutdown.  This will include running any initializer&rsquo;s <code class="prettyprint">stop()</code> method.  This will close any open servers, and attempt to allow any running tasks to complete.</p>
+<p>When using <code class="prettyprint">actionhero start</code> or <code class="prettyprint">actionhero startCluster</code>, when you signal ActionHero to stop via the signals above (or from within your running application via <code class="prettyprint">api.commands.stop()</code>), actionhero will attempt to gracefully shutdown.  This will include running any initializer&rsquo;s <code class="prettyprint">stop()</code> method.  This will close any open servers, and attempt to allow any running tasks to complete.</p>
 
 <p>Because things sometimes go wrong, <code class="prettyprint">actionhero start</code> and <code class="prettyprint">actionhero startCluster</code> also have a &ldquo;emergency stop&rdquo; timeout.  This defaults to 30 seconds, and is configurable via the <code class="prettyprint">ACTIONHERO_SHUTDOWN_TIMEOUT</code> environment variable.  Be sure that your tasks and actions can complete within that window, or else raise that shutdown limit.</p>
 
 <h2 id="windows-specific-notes">Windows-Specific Notes</h2>
 
 <ul>
-<li>Sometimes actionhero may require a git-based module (rather than a NPM module).  You will need to have git installed.  Depending on how you installed git, it may not be available to the node shell.  Be sure to have also installed references to git.  You can also run node/npm install from the git shell.</li>
-<li>Sometimes, npm will not install the actionhero binary @ <code class="prettyprint">/node_modules/.bin/actionhero</code>, but rather it will attempt to create a windows executable and wrapper.  You can launch actionhero directly with <code class="prettyprint">./node_modules/actionhero/bin/actionhero</code></li>
+<li>Sometimes ActionHero may require a git-based module (rather than a NPM module).  You will need to have git installed.  Depending on how you installed git, it may not be available to the node shell.  Be sure to have also installed references to git.  You can also run node/npm install from the git shell.</li>
+<li>Sometimes, npm will not install the actionhero binary @ <code class="prettyprint">/node_modules/.bin/actionhero</code>, but rather it will attempt to create a windows executable and wrapper.  You can launch ActionHero directly with <code class="prettyprint">./node_modules/actionhero/bin/actionhero</code></li>
 </ul>
 
           <h1 id="testing">Testing</h1>
@@ -4247,7 +4247,7 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <p>The majority of the time, you&rsquo;ll be testing actions and other methods you have written, so you&rsquo;ll need to &ldquo;run&rdquo; an actionhero server as part of your test suite.  Many times you&rsquo;ll want to have actionhero behave in a slightly unique way while testing (perhaps connect to a special database, don&rsquo;t log, etc).  To do this, you can change the behavior of the config files for the <code class="prettyprint">test</code> environment.  Here&rsquo;s how we tell actionhero <a href="https://github.com/evantahler/actionhero/blob/master/config/logger.js#L48-L54">not to write any logs when testing</a>. Note thest test-specific configuration overrides the defaults.  To ensure that actionhero boots with the <code class="prettyprint">test</code> environment loaded, the test command you run should explicitly do this, AKA: <code class="prettyprint">NODE_ENV=test ./node_modules/.bin/mocha</code>.  You can log this in as the <a href="https://github.com/evantahler/actionhero/blob/master/package.json#L63"><code class="prettyprint">test</code> script in your <code class="prettyprint">package.json</code></a> so you can simplify the running of tests with just <code class="prettyprint">npm test</code>.</p>
 
-<p>Actionhero comes with a <code class="prettyprint">specHelper</code> to make it easier to test tasks and actions.  This specHelper is a special <a href="/docs/#servers">server</a> which can check things without needing to make an HTTP, websocket, etc request.  If you need to check the true behavior of a server (perhaps how the router works for an HTTP request), you should make a real HTTP request in your test suite, using something like the <a href="https://github.com/request/request">request</a> library (<a href="https://github.com/evantahler/actionhero/blob/master/test/servers/web.js#L178-L184">example</a>).</p>
+<p>ActionHero comes with a <code class="prettyprint">specHelper</code> to make it easier to test tasks and actions.  This specHelper is a special <a href="/docs/#servers">server</a> which can check things without needing to make an HTTP, websocket, etc request.  If you need to check the true behavior of a server (perhaps how the router works for an HTTP request), you should make a real HTTP request in your test suite, using something like the <a href="https://github.com/request/request">request</a> library (<a href="https://github.com/evantahler/actionhero/blob/master/test/servers/web.js#L178-L184">example</a>).</p>
 
 <h2 id="example-test">Example Test</h2>
 <pre class="highlight javascript"><code><span class="c1">// ./test/integartion/actions/randomNumber.js</span>
@@ -4353,9 +4353,27 @@ notice: cluster <span class="nb">complete</span>, Bye!
 <li>be sure to run your tests in the <code class="prettyprint">test</code> environment, setting the shell&rsquo;s env with <code class="prettyprint">NODE_ENV=test</code>.  You can alternatively set this explicitly in your tests with <code class="prettyprint">process.env.NODE_ENV = &#39;test&#39;</code></li>
 </ul>
 
+          <h1 id="upgrading-actionhero">Upgrading ActionHero</h1>
+
+<h2 id="upgrading-from-v13-x-x-to-v14-x-x">Upgrading from v13.x.x to v14.x.x</h2>
+
+<p>TODO</p>
+
+<h2 id="upgrading-from-v12-x-x-to-v13-x-x">Upgrading from v12.x.x to v13.x.x</h2>
+
+<p>TODO</p>
+
+<h2 id="upgrading-from-v11-x-x-to-v12-x-x">Upgrading from v11.x.x to v12.x.x</h2>
+
+<p>TODO</p>
+
+<h2 id="upgrading-from-v10-x-x-to-v11-x-x">Upgrading from v10.x.x to v11.x.x</h2>
+
+<p>TODO</p>
+
           <h1 id="examples">Examples</h1>
 
-<p>There are full actionhero project examples:</p>
+<p>There are full ActionHero project examples:</p>
 
 <ul>
 <li><a href="https://github.com/evantahler/actionhero-tutorial">https://github.com/evantahler/actionhero-tutorial</a></li>
@@ -4368,13 +4386,13 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <p><strong><a href="https://github.com/evantahler/actionhero/blob/master/actions/randomNumber.js">randomNumber</a></strong>: This example shows how to craft a simple action with no input, but to respond differently to clients based on their HTTP method (if it exists)</p>
 
-<p><strong><a href="https://github.com/evantahler/actionhero/blob/master/actions/status.js">status</a></strong>: This action will render some statistics about this actionhero node, and all nodes in the cluster.  Useful for health checks.</p>
+<p><strong><a href="https://github.com/evantahler/actionhero/blob/master/actions/status.js">status</a></strong>: This action will render some statistics about this ActionHero node, and all nodes in the cluster.  Useful for health checks.</p>
 
 <p><strong><a href="https://gist.github.com/evantahler/9541992">SimpleFileResponder</a></strong>: This action demonstrates how you can can manually send files from within actions.</p>
 
-<p><strong><a href="https://gist.github.com/connanp/6169574">JadefileResponder</a></strong>: This snippet is for rendering Jade templates on the server for pushState single page apps in actionhero. Useful when you need to bootstrap model data on initial page load. It also pre-compiles the templates on server start and will recompile if they change.</p>
+<p><strong><a href="https://gist.github.com/connanp/6169574">JadefileResponder</a></strong>: This snippet is for rendering Jade templates on the server for pushState single page apps in ActionHero. Useful when you need to bootstrap model data on initial page load. It also pre-compiles the templates on server start and will recompile if they change.</p>
 
-<p><strong><a href="https://gist.github.com/4326070">oauth</a></strong>: This file is actually 2 actions which are needed to authenticate a user against twitter&rsquo;s API.  Note the use of <code class="prettyprint">api.cache</code> to save and load the temporary secret tokens, and how to send custom (redirect) headers with actionhero</p>
+<p><strong><a href="https://gist.github.com/4326070">oauth</a></strong>: This file is actually 2 actions which are needed to authenticate a user against twitter&rsquo;s API.  Note the use of <code class="prettyprint">api.cache</code> to save and load the temporary secret tokens, and how to send custom (redirect) headers with ActionHero</p>
 
 <p><strong><a href="https://blog.evantahler.com/authentication-with-actionhero-again-b197f406532f">Authentication Example</a></strong>: This example contains a working user system (auth, login, user creation, sessions, etc) using redis.</p>
 
@@ -4382,11 +4400,11 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <h2 id="example-clients">Example Clients</h2>
 
-<p><strong><a href="https://github.com/evantahler/actionhero-client">node via TCP</a></strong>: You can talk to an actionhero server from another node project over TCP directly using this package.</p>
+<p><strong><a href="https://github.com/evantahler/actionhero-client">node via TCP</a></strong>: You can talk to an ActionHero server from another node project over TCP directly using this package.</p>
 
-<p><strong><a href="https://github.com/evantahler/actionhero/blob/master/test/servers/web.js">node via HTTP/connect</a></strong>: actionhero has a robust test suite for the web server which users connect.</p>
+<p><strong><a href="https://github.com/evantahler/actionhero/blob/master/test/servers/web.js">node via HTTP/connect</a></strong>: ActionHero has a robust test suite for the web server which users connect.</p>
 
-<p><strong><a href="https://github.com/evantahler/actionhero-angular-bootstrap-cors-csrf/blob/master/public/js/app/app.js#L43-L89">Angular</a></strong>: You can connect to actionhero via angular and connect via HTTP or WebSocket (actionheroWebSocket).</p>
+<p><strong><a href="https://github.com/evantahler/actionhero-angular-bootstrap-cors-csrf/blob/master/public/js/app/app.js#L43-L89">Angular</a></strong>: You can connect to ActionHero via angular and connect via HTTP or WebSocket (actionheroWebSocket).</p>
 
 <h2 id="example-initializers">Example Initializers</h2>
 
@@ -4394,7 +4412,7 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <p><strong><a href="https://gist.github.com/evantahler/59ba68a5ef5990574b7d">session</a></strong>: use the cache methods and <code class="prettyprint">connection.id</code> to easily make some session management helpers.</p>
 
-<p><strong><a href="https://gist.github.com/juancgarcia/e4caf5dc7474769f5137">passport</a></strong>: Use the <a href="http://passportjs.org/">passport</a> package for authentication in actionhero.</p>
+<p><strong><a href="https://gist.github.com/juancgarcia/e4caf5dc7474769f5137">passport</a></strong>: Use the <a href="http://passportjs.org/">passport</a> package for authentication in ActionHero.</p>
 
 <p><strong><a href="https://gist.github.com/evantahler/0c59aa8680259aee3e01">mongo</a></strong>: a MongoDB initializer</p>
 
@@ -4404,7 +4422,7 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <p><strong><a href="https://gist.github.com/evantahler/5aea80c04f14e8a88c91">sayHi</a></strong> A very simple example which will just log &lsquo;HELLO&rsquo; to the command line every 5 seconds.</p>
 
-<p><strong><a href="https://gist.github.com/evantahler/5f427cde60f2f88ad61b">cleanLogFiles</a></strong>: This periodic task will run on all servers and inspect actionhero&rsquo;s <code class="prettyprint">log</code> directly for large log files, and delete them</p>
+<p><strong><a href="https://gist.github.com/evantahler/5f427cde60f2f88ad61b">cleanLogFiles</a></strong>: This periodic task will run on all servers and inspect ActionHero&rsquo;s <code class="prettyprint">log</code> directly for large log files, and delete them</p>
 
 <p><strong><a href="https://gist.github.com/evantahler/b2f6e90e800916d3d26d">pingSocketClients</a></strong>: This periodic task will run on all servers and send a &#39;ping&rsquo; to any connected TCP clients to help them keep their</p>
 
