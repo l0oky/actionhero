@@ -4355,21 +4355,131 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
           <h1 id="upgrading-actionhero">Upgrading ActionHero</h1>
 
+<p>Upgrading big ActionHero projects to a new major might requite substantial effort. Every ActionHero version has it&rsquo;s own specific project files which you generate using <code class="prettyprint">actionhero generate</code> command. One of the ways to upgrade your project is to generate a new project using the latest ActionHero framework (<code class="prettyprint">npm install actionhero &amp;&amp; ./node_modules/.bin/actionhero generate</code>). Using that as your starting point you can then carefully copy all your <code class="prettyprint">configs</code>, <code class="prettyprint">initializers</code>, <code class="prettyprint">servers</code>, links and other custom code from your old project, making sure that you are at the same working state as before. It&rsquo;s a good practice to make tests for your actions (or any other component) before you plan to upgrade your ActionHero project. With tests you can make sure that you have successfully upgraded your project.</p>
+
+<p>ActionHero follows <a href="http://semver.org/">semantic versioning</a>.  This means that a minor change is a right-most number.  A new feature added is the middle number, and a breaking change is the left number.  You should expect something in your application to need to be changed if you upgrade a major version.</p>
+
 <h2 id="upgrading-from-v13-x-x-to-v14-x-x">Upgrading from v13.x.x to v14.x.x</h2>
 
-<p>TODO</p>
+<p><strong>Full Release Notes: <a href="https://github.com/evantahler/actionhero/releases/tag/v14.0.0">GitHub</a></strong></p>
+
+<p><strong>Breaking Changes and How to Overcome Them:</strong></p>
+
+<ul>
+<li>Redis Client Configurations have changed drastically.  This allows for greater configuration, but at a complexity cost.
+
+<ul>
+<li>The easiest way to upgrade your <code class="prettyprint">config/redis.js</code> is to take if from the <a href="https://github.com/evantahler/actionhero/blob/master/config/redis.js">master branch</a> directly and re-apply your configuration.</li>
+<li>Move <code class="prettyprint">api.config.redis.channel</code> to <code class="prettyprint">api.config.general.channel</code></li>
+<li>Move <code class="prettyprint">api.config.redis. rpcTimeout</code> to <code class="prettyprint">api.config.general.rpcTimeout</code></li>
+<li>Throughout the code, use <code class="prettyprint">api.config.redis.client</code> rather than <code class="prettyprint">api.redis.client</code></li>
+</ul></li>
+</ul>
 
 <h2 id="upgrading-from-v12-x-x-to-v13-x-x">Upgrading from v12.x.x to v13.x.x</h2>
 
-<p>TODO</p>
+<p><strong>Full Release Notes: <a href="https://github.com/evantahler/actionhero/releases/tag/v13.0.0">GitHub</a></strong></p>
+
+<p><strong>Breaking Changes and How to Overcome Them:</strong></p>
+
+<ul>
+<li>Pluggins
+
+<ul>
+<li><code class="prettyprint">config/plugins.js</code> is removed.  Delete yours.<br></li>
+<li>Use the new binary command, <code class="prettyprint">actionhero link --name=NameOfPlugin</code> to link your plugins in the new method.<br></li>
+<li>Linking plugins will likley create new config files you may need to customize.<br></li>
+</ul></li>
+<li>Locales
+
+<ul>
+<li>This release introduced Locales. You will need the new locale config file.  The easiest way to upgrade your <code class="prettyprint">config/i18n.js</code> is to take if from the <a href="https://github.com/evantahler/actionhero/blob/master/config/i18n.js">master branch</a>.</li>
+<li>Ensure that <code class="prettyprint">api.config.i18n.updateFiles</code> is <code class="prettyprint">true</code> so that your locale files can be generated for the first time.</li>
+</ul></li>
+<li>Errors
+
+<ul>
+<li><code class="prettyprint">config/errors.js</code> has been completely redone to take advantage of <code class="prettyprint">connection.localize</code>.  The easiest way to upgrade your <code class="prettyprint">config/errors.js</code> is to take if from the <a href="https://github.com/evantahler/actionhero/blob/master/config/errors.js">master branch</a>.</li>
+</ul></li>
+<li>Grunt Removed
+
+<ul>
+<li>Grunt is removed from the project.  The old ActionHero grunt commands have been moved into the ActionHero binary.</li>
+</ul></li>
+<li>Redis configuration
+
+<ul>
+<li><code class="prettyprint">package</code> is a reserved keyword in JavaScript.  We now use the key <code class="prettyprint">pkg</code> in the redis config.</li>
+</ul></li>
+</ul>
 
 <h2 id="upgrading-from-v11-x-x-to-v12-x-x">Upgrading from v11.x.x to v12.x.x</h2>
 
-<p>TODO</p>
+<p><strong>Full Release Notes: <a href="https://github.com/evantahler/actionhero/releases/tag/v12.0.0">GitHub</a></strong></p>
+
+<p><strong>Breaking Changes and How to Overcome Them:</strong></p>
+
+<ul>
+<li>Redis configuration
+
+<ul>
+<li>Switch from using the <code class="prettyprint">redis</code> npm pacakge to <code class="prettyprint">ioredis</code>.  Change this in your package.json.</li>
+<li><code class="prettyprint">ioredis</code> handles passwords slightly differently.  Read the <a href="https://github.com/luin/ioredis">ioredis</a> documentation to learn more.</li>
+</ul></li>
+<li>Stats Removed
+
+<ul>
+<li>The <code class="prettyprint">api.stats</code> subsection has been removed from actionhero</li>
+<li>If you need the stats subsection, you can get get it <a href="https://github.com/evantahler/ah-stats-plugin">via plugin</a><br></li>
+</ul></li>
+</ul>
 
 <h2 id="upgrading-from-v10-x-x-to-v11-x-x">Upgrading from v10.x.x to v11.x.x</h2>
 
-<p>TODO</p>
+<p><strong>Full Release Notes: <a href="https://github.com/evantahler/actionhero/releases/tag/v11.0.0">GitHub</a></strong></p>
+
+<p><strong>Breaking Changes and How to Overcome Them:</strong></p>
+
+<ul>
+<li>Action Syntax changed
+
+<ul>
+<li>Actions now look like
+<code class="prettyprint">js
+run: function(api, data, next){
+data.response.randomNumber = Math.random();
+next(error);
+}
+</code></li>
+<li>Where data contains:
+<code class="prettyprint">js
+data = {
+connection: connection,
+action: &#39;randomNumber&#39;,
+toProcess: true,
+toRender: true,
+messageCount: 123,
+params: { action: &#39;randomNumber&#39;, apiVersion: 1 },
+actionStartTime: 123,
+response: {},
+}
+</code></li>
+<li>You will need to change all of your actions to use <code class="prettyprint">data.connection</code> rather than <code class="prettyprint">connection</code> directly.</li>
+<li>You will need to change all of your actions to use <code class="prettyprint">data.response</code> rather than <code class="prettyprint">connection.response</code> directly.</li>
+</ul></li>
+<li>Middleware syntax has changed to match action&rsquo;s <code class="prettyprint">data</code> pattern.  You will need to change your middleware accordingly.</li>
+<li>Removed <code class="prettyprint">connection._originalConnection</code>.</li>
+<li>Websockets:
+
+<ul>
+<li>The params of websocket connections should NOT be sticky. All actions will start with <code class="prettyprint">connection.params = {}</code>.  If you rely on the old behavior, you will need to change your client code.</li>
+</ul></li>
+<li>Action Processor:
+
+<ul>
+<li>Removed duplicate callback prevention in actionProcessor. This belongs on the user/implementer to handle.</li>
+</ul></li>
+</ul>
 
           <h1 id="examples">Examples</h1>
 
