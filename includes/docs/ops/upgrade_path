@@ -1,8 +1,35 @@
 <h1 id="upgrading-actionhero">Upgrading ActionHero</h1>
 
-<p>Upgrading big ActionHero projects to a new major might requite substantial effort. Every ActionHero version has it&rsquo;s own specific project files which you generate using <code class="prettyprint">actionhero generate</code> command. One of the ways to upgrade your project is to generate a new project using the latest ActionHero framework (<code class="prettyprint">npm install actionhero &amp;&amp; ./node_modules/.bin/actionhero generate</code>). Using that as your starting point you can then carefully copy all your <code class="prettyprint">configs</code>, <code class="prettyprint">initializers</code>, <code class="prettyprint">servers</code>, links and other custom code from your old project, making sure that you are at the same working state as before. It&rsquo;s a good practice to make tests for your actions (or any other component) before you plan to upgrade your ActionHero project. With tests you can make sure that you have successfully upgraded your project.</p>
+<p>Upgrading big ActionHero projects to a new major might require some effort. Every ActionHero version has it&rsquo;s own specific project files which you generate using <code class="prettyprint">actionhero generate</code> command. One of the ways to upgrade your project is to generate a new project using the latest ActionHero framework (<code class="prettyprint">npm install actionhero &amp;&amp; ./node_modules/.bin/actionhero generate</code>). Using that as your starting point you can then carefully copy all your <code class="prettyprint">configs</code>, <code class="prettyprint">initializers</code>, <code class="prettyprint">servers</code>, links and other custom code from your old project, making sure that you are at the same working state as before. It&rsquo;s a good practice to make tests for your actions (or any other component) before you plan to upgrade your ActionHero project.</p>
+
+<p>With good <a href="http://www.actionherojs.com/docs/#testing">test coverage</a> you can make sure that you have successfully upgraded your project.</p>
 
 <p>ActionHero follows <a href="http://semver.org/">semantic versioning</a>.  This means that a minor change is a right-most number.  A new feature added is the middle number, and a breaking change is the left number.  You should expect something in your application to need to be changed if you upgrade a major version.</p>
+
+<h2 id="upgrading-from-v14-x-x-to-v15-x-x">Upgrading from v14.x.x to v15.x.x</h2>
+
+<p><strong>Full Release Notes: <a href="https://github.com/evantahler/actionhero/releases/tag/v15.0.0">GitHub</a></strong></p>
+
+<p><strong>Breaking Changes and How to Overcome Them:</strong></p>
+
+<ul>
+<li>The ActionHero binary has had it&rsquo;s commands changed.<br>
+
+<ul>
+<li>Any deployment or automation tools you use will need to be updated accordingly.
+<code class="prettyprint">
+`actionhero generateAction --name=[name]`      -&gt; `actionhero generate action --name=[name]`
+`actionhero generateInitializer --name=[name]` -&gt; `actionhero generate initializer --name=[name]`
+`actionhero generateServer --name=[name]`      -&gt; `actionhero generate server --name=[name]`
+`actionhero generateTask --name=[name]`        -&gt; `actionhero generate task --name=[name]`
+</code></li>
+</ul></li>
+<li>Tasks now use middleware instead of plugins.
+
+<ul>
+<li>You will need to convert all uses of task plugins to task middleware.</li>
+</ul></li>
+</ul>
 
 <h2 id="upgrading-from-v13-x-x-to-v14-x-x">Upgrading from v13.x.x to v14.x.x</h2>
 
@@ -90,14 +117,14 @@
 
 <ul>
 <li>Actions now look like
-<code class="prettyprint">js
+<code class="prettyprint">javascript
 run: function(api, data, next){
 data.response.randomNumber = Math.random();
 next(error);
 }
 </code></li>
 <li>Where data contains:
-<code class="prettyprint">js
+<code class="prettyprint">javascript
 data = {
 connection: connection,
 action: &#39;randomNumber&#39;,

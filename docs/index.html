@@ -319,7 +319,7 @@ package.json <span class="o">(</span>be sure to include <span class="s1">'action
 
 <p>The goal of an action is to read <code class="prettyprint">data.params</code> (which are the arguments a connection provides), do work, and set the <code class="prettyprint">data.response</code> (and <code class="prettyprint">error</code> when needed) values to build the response to the client.</p>
 
-<p>You can create you own actions by placing them in a <code class="prettyprint">./actions/</code> folder at the root of your application.  You can use the generator with <code class="prettyprint">actionhero generateAction --name=myAction</code></p>
+<p>You can create you own actions by placing them in a <code class="prettyprint">./actions/</code> folder at the root of your application.  You can use the generator with <code class="prettyprint">actionhero generate action --name=myAction</code></p>
 
 <p>Here&rsquo;s an example of a simple action which will return a random number to the client:</p>
 
@@ -807,7 +807,7 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 2013-11-28 15:21:56 - debug: re-enqueued reccurent job sayGoodbye
 </code></pre>
 
-<p>You can create you own tasks by placing them in a <code class="prettyprint">./tasks/</code> directory at the root of your application.  You can use the generator <code class="prettyprint">actionhero generateTask --name=myTask</code>. Like actions, all tasks have some required metadata:</p>
+<p>You can create you own tasks by placing them in a <code class="prettyprint">./tasks/</code> directory at the root of your application.  You can use the generator <code class="prettyprint">actionhero generate task --name=myTask</code>. Like actions, all tasks have some required metadata:</p>
 
 <ul>
 <li><code class="prettyprint">task.name</code>: The unique name of your task</li>
@@ -1128,12 +1128,13 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 
           <h1 id="middleware">Middleware</h1>
 
-<p>There are 3 types of middleware in ActionHero:</p>
+<p>There are 4 types of middleware in ActionHero:</p>
 
 <ul>
 <li>Action</li>
 <li>Connection</li>
 <li>Chat</li>
+<li>Task</li>
 </ul>
 <pre class="highlight shell"><code><span class="gp">&gt; </span>Client Connects
 <span class="c">#     connection middleware, `create` hook</span>
@@ -1148,6 +1149,9 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 <span class="gp">&gt; </span>Client requests a disconnect <span class="o">(</span>quit<span class="o">)</span>
 <span class="c">#     chat middleware, `leave` hook</span>
 <span class="c">#     connection middleware, `destroy` hook</span>
+<span class="gp">&gt; </span>Client executes a task
+<span class="c">#     task middleware, `preProcessor` hook</span>
+<span class="c">#     task middleware, `postProcessor` hook</span>
 </code></pre>
 
 <p>Each type of middleware is distinct from the others, and operates on distinct parts of a client&rsquo;s lifecycle.  For a logical example, please inspect the following connection lifecycle:</p>
@@ -1294,6 +1298,65 @@ extending the <code class="prettyprint">api.tasks</code> object.</p>
 </code></pre>
 
 <p>If a <code class="prettyprint">say</code> is blocked/errored, the message will simply not be delivered to the client.  If a  <code class="prettyprint">join</code> or  <code class="prettyprint">leave</code> is blocked/errored, the verb or method used to invoke the call will be returned that error.</p>
+
+<h2 id="task-middleware">Task Middleware</h2>
+
+<p>Task middleware is implemented as a thin wrapper around Node Resque plugins and currently exposes the <code class="prettyprint">before_perform</code>, 
+<code class="prettyprint">after_perform</code>, <code class="prettyprint">before_enqueue</code>, and <code class="prettyprint">after_enqueue</code> functions of Resque plugins through <code class="prettyprint">preProcessor</code>, <code class="prettyprint">postProcessor</code>,
+ <code class="prettyprint">preEnqueue</code>, and <code class="prettyprint">postEnqueue</code> methods. Each middleware requires a <code class="prettyprint">name</code> and at least one function. In addition, 
+ a middleware can be global, in which case it also requires a <code class="prettyprint">priority</code>.</p>
+
+<p>In the <code class="prettyprint">preProcessor</code>, you can access the original task <code class="prettyprint">params</code> through <code class="prettyprint">this.args[0]</code>.
+ In the <code class="prettyprint">postProcessor</code>, you can access the task result at <code class="prettyprint">this.worker.result</code>.
+ In the <code class="prettyprint">preEnqueue</code> and <code class="prettyprint">postEnqueue</code> you can access the task <code class="prettyprint">params</code> through <code class="prettyprint">this.args[0]</code>. If you wish to prevent a task from being enqueued
+ using the <code class="prettyprint">preEnqueue</code> middleware you must explicitly set the <code class="prettyprint">toRun</code> value to <code class="prettyprint">false</code> in the callback.
+ Because the task middleware is executed by Resque <code class="prettyprint">this</code> is an instance of a Resque Worker and contains a number of
+ other elements which may be useful in a middleware.</p>
+
+<h3 id="task-middlware-example">Task Middlware Example</h3>
+
+<p>The following example is a simplistic implementation of a task execution timer middleware.</p>
+<pre class="highlight javascript"><code><span class="s1">'use strict'</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">loadPriority</span><span class="p">:</span>  <span class="mi">1000</span><span class="p">,</span>
+  <span class="na">initialize</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">api</span><span class="p">,</span> <span class="nx">next</span><span class="p">){</span>
+    <span class="nx">api</span><span class="p">.</span><span class="nx">taskTimer</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">middleware</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="s1">'timer'</span><span class="p">,</span>
+        <span class="na">global</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="na">priority</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+        <span class="na">preProcessor</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">){</span>
+          <span class="kd">var</span> <span class="nx">worker</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">worker</span><span class="p">;</span>
+          <span class="nx">worker</span><span class="p">.</span><span class="nx">start</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">hrtime</span><span class="p">();</span>
+          <span class="nx">next</span><span class="p">();</span>
+        <span class="p">},</span>
+        <span class="na">postProcessor</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">){</span>
+          <span class="kd">var</span> <span class="nx">worker</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">worker</span><span class="p">;</span>
+          <span class="kd">var</span> <span class="nx">elapsed</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">hrtime</span><span class="p">(</span><span class="nx">worker</span><span class="p">.</span><span class="nx">start</span><span class="p">);</span>
+          <span class="kd">var</span> <span class="nx">seconds</span> <span class="o">=</span> <span class="nx">elapsed</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="kd">var</span> <span class="nx">millis</span> <span class="o">=</span> <span class="nx">elapsed</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mi">1000000</span><span class="p">;</span>
+          <span class="nx">api</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Task '</span> <span class="o">+</span> <span class="nx">worker</span><span class="p">.</span><span class="nx">job</span><span class="p">.</span><span class="kr">class</span> <span class="o">+</span> <span class="s1">' finished in '</span> <span class="o">+</span> <span class="nx">seconds</span> <span class="o">+</span> <span class="s1">' s and '</span> <span class="o">+</span> <span class="nx">millis</span> <span class="o">+</span> <span class="s1">' ms.'</span><span class="p">,</span> <span class="s1">'info'</span><span class="p">);</span>
+          <span class="nx">next</span><span class="p">();</span>
+        <span class="p">},</span>
+        <span class="na">preEnqueue</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">){</span>
+          <span class="kd">var</span> <span class="nx">params</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">args</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+          <span class="c1">//Validate params</span>
+          <span class="nx">next</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span> <span class="c1">//callback is in form cb(error, toRun)</span>
+        <span class="p">},</span>
+        <span class="na">postEnqueue</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">next</span><span class="p">){</span>
+          <span class="nx">api</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Task successfully enqueued!"</span><span class="p">);</span>
+          <span class="nx">next</span><span class="p">();</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="nx">api</span><span class="p">.</span><span class="nx">tasks</span><span class="p">.</span><span class="nx">addMiddleware</span><span class="p">(</span><span class="nx">api</span><span class="p">.</span><span class="nx">taskTimer</span><span class="p">.</span><span class="nx">middleware</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+      <span class="nx">next</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre>
 
           <h1 id="initializers">Initializers</h1>
 
@@ -3683,7 +3746,7 @@ randomNumber
 <p>When deploying ActionHero, you will probably have more than 1 process.  You can use the cluster manager to keep an eye on the workers and manage them</p>
 
 <ul>
-<li>Start the cluster with 2 workers: <code class="prettyprint">./node_modules/.bin/actionhero startCluster --workers=2</code></li>
+<li>Start the cluster with 2 workers: <code class="prettyprint">./node_modules/.bin/actionhero start cluster --workers=2</code></li>
 </ul>
 
 <p>When deploying new code, you can gracefully restart your workers by sending the <code class="prettyprint">USR2</code> signal to the cluster manager to signal a reload to all workers.  You don&rsquo;t need to start and stop the cluster-master.  This allows for 0-downtime deployments.  </p>
@@ -3930,7 +3993,7 @@ http <span class="o">{</span>
 </ul>
 
 <h3 id="crashing-and-safety">Crashing and Safety</h3>
-<pre class="highlight shell"><code><span class="gp">&gt; </span>./node_modules./bin/actionhero startCluster --workers 1
+<pre class="highlight shell"><code><span class="gp">&gt; </span>./node_modules./bin/actionhero start cluster --workers 1
 2016-04-11T18:51:32.891Z - info: actionhero &gt;&gt; startCluster
 2016-04-11T18:51:32.904Z - notice:  - STARTING CLUSTER -
 2016-04-11T18:51:32.905Z - notice: pid: 43315
@@ -3990,91 +4053,103 @@ http <span class="o">{</span>
           <h1 id="running-actionhero">Running actionhero</h1>
 
 <h2 id="the-actionhero-binary">The actionhero Binary</h2>
-<pre class="highlight shell"><code>actionhero - A multi-transport node.js API Server with integrated cluster
+<pre class="highlight shell"><code>ActionHero - A multi-transport node.js API Server with integrated cluster
   capabilities and delayed tasks
 
 Binary options:
 <span class="k">*</span> <span class="nb">help</span> <span class="o">(</span>default<span class="o">)</span>
 <span class="k">*</span> start
-<span class="k">*</span> startCluster
+<span class="k">*</span> start cluster
 <span class="k">*</span> generate
-<span class="k">*</span> generateAction
-<span class="k">*</span> generateTask
-<span class="k">*</span> generateInitializer
-<span class="k">*</span> generateServer
-<span class="k">*</span> actions
-<span class="k">*</span> enqueueTask
+<span class="k">*</span> generate action
+<span class="k">*</span> generate task
+<span class="k">*</span> generate initializer
+<span class="k">*</span> generate server
+<span class="k">*</span> actions list
+<span class="k">*</span> tasks enqueue
 <span class="k">*</span> console
 <span class="k">*</span> link
+<span class="k">*</span> unlink
 
 Descriptions:
 
 <span class="k">*</span> actionhero <span class="nb">help
   </span>will display this document
 
-<span class="k">*</span> actionhero start --config<span class="o">=[</span>/path/to/config.js] --title<span class="o">=[</span>processTitle]  
-    --daemon will start a template actionhero server this is the respondent
-    to <span class="s2">"npm start"</span>
+<span class="k">*</span> actionhero start --config<span class="o">=[</span>/path/to/config] --title<span class="o">=[</span>processTitle]
+    --daemon
   <span class="o">[</span>config] <span class="o">(</span>optional<span class="o">)</span> path to config.js, defaults to <span class="s2">"process.cwd() + '/'
     + config.js"</span>. You can also use ENV[ACTIONHERO_CONFIG].
-  <span class="o">[</span>title] <span class="o">(</span>optional<span class="o">)</span> process title to use <span class="k">for </span>actionhero-s ID, ps, log, and
-    pidFile defaults. Must be unique <span class="k">for </span>each member of the cluster.  
+  <span class="o">[</span>title] <span class="o">(</span>optional<span class="o">)</span> process title to use <span class="k">for </span>ActionHero<span class="s1">'s ID, ps, log, and
+    pidFile defaults. Must be unique for each member of the cluster.
     You can also use ENV[ACTIONHERO_TITLE].
     Process renaming does not work on OSX/Windows
-  <span class="o">[</span>daemon] <span class="o">(</span>optional<span class="o">)</span> to fork and run as a new background process defaults
-    to <span class="nb">false</span>
+  [daemon] (optional) to fork and run as a new background process defaults
+    to false
 
-<span class="k">*</span> actionhero startCluster --workers<span class="o">=[</span>numWorkers]  --daemon
-  will launch a actionhero cluster <span class="o">(</span>using node-s cluster module<span class="o">)</span>
-  <span class="o">[</span>workers] <span class="o">(</span>optional<span class="o">)</span> number of workers <span class="o">(</span>defaults to <span class="c"># CPUs - 2)</span>
-  <span class="o">[</span>daemon] <span class="o">(</span>optional<span class="o">)</span> to fork and run as a new background process defaults
-    to <span class="nb">false</span>
+* actionhero start cluster --workers=[numWorkers]  --daemon
+  will launch a ActionHero cluster (using node-s cluster module)
+  [workers] (optional) number of workers (defaults to # CPUs - 2)
+  [daemon] (optional) to fork and run as a new background process defaults
+    to false
 
-<span class="k">*</span> actionhero generate
-  will prepare an empty directory with a template actionhero project
+* actionhero generate
+  will prepare an empty directory with a template ActionHero project
 
-<span class="k">*</span> actionhero generateAction --name<span class="o">=[</span>name] --description<span class="o">=[</span>description]
-    --inputsRequired<span class="o">=[</span>inputsRequired] --inputsOptional<span class="o">=[</span>inputsOptional]
-  will generate a new action <span class="k">in</span> <span class="s2">"actions"</span>
-  <span class="o">[</span>name] <span class="o">(</span>required<span class="o">)</span>
-  <span class="o">[</span>description] <span class="o">(</span>required<span class="o">)</span> should be wrapped <span class="k">in </span>quotes <span class="k">if </span>it contains spaces
+* actionhero generate action --name=[name] --description=[description]
+  will generate a new action in "actions"
+  [name] (required)
+  [description] (optional)
 
-<span class="k">*</span> actionhero generateTask --name<span class="o">=[</span>name] --description<span class="o">=[</span>description]
-    --scope<span class="o">=[</span>scope] --frequency<span class="o">=[</span>frequency]
-  will generate a new task <span class="k">in</span> <span class="s2">"tasks"</span>
-  <span class="o">[</span>name] <span class="o">(</span>required<span class="o">)</span>
-  <span class="o">[</span>description] <span class="o">(</span>required<span class="o">)</span> should be wrapped <span class="k">in </span>quotes <span class="k">if </span>it contains spaces
-  <span class="o">[</span>scope] <span class="o">(</span>optional<span class="o">)</span> can be <span class="s2">"any"</span> or <span class="s2">"all"</span>
-  <span class="o">[</span>frequency] <span class="o">(</span>optional<span class="o">)</span>
+* actionhero generate task --name=[name] --description=[description]
+    --scope=[scope] --frequency=[frequency]
+  will generate a new task in "tasks"
+  [name] (required)
+  [description] (optional)
+  [queue] (required)
+  [frequency] (optional)
 
-<span class="k">*</span> actionhero generateInitializer --name<span class="o">=[</span>name]
-  will generate a new initializer <span class="k">in</span> <span class="s2">"initializers"</span>
-  <span class="o">[</span>name] <span class="o">(</span>required<span class="o">)</span>
+* actionhero generate initializer --name=[name] --loadPriority=[p]
+    --startPriority=[p] --stopPriority=[p]
+  will generate a new initializer in "initializers"
+  [name] (required)
+  [loadPriority] (optional)
+  [startPriority] (optional)
+  [stopPriority] (optional)
 
-<span class="k">*</span> actionhero generateServer --name<span class="o">=[</span>name]
-  will generate a new server <span class="k">in</span> <span class="s2">"servers"</span>
-  <span class="o">[</span>name] <span class="o">(</span>required<span class="o">)</span>
+* actionhero generate server --name=[name]
+  will generate a new server in "servers"
+  [name] (required)
 
-<span class="k">*</span> actionhero actions
-  will list all actions <span class="k">in </span>this server to stdout
+* actionhero actions list
+  will list all actions in this server to stdout
 
-<span class="k">*</span> actionhero enqueueTask --name<span class="o">=[</span>taskName] --args<span class="o">=[</span>JSON-formatted args]
+* actionhero task enqueue --name=[taskName] --args=[JSON-formatted args]
   will enqueue a task into redis
 
-<span class="k">*</span> actionhero console
-  will open an interactive CLI with the API object <span class="k">in </span>scope.
+* actionhero console
+  will open an interactive CLI with the API object in scope.
   this is sometimes called a REPL
 
-<span class="k">*</span> actionhero link --name<span class="o">=[</span>pluginName]
+* actionhero link --name=[pluginName] --overwriteConfig=[overwriteConfig]
   will link the actions, tasks, initializers, etc from a plugin into your
     top-level project normally, you will have first installed the plugin
-    via <span class="sb">`</span>npm install myPlugin<span class="sb">`</span>
+    via `npm install myPlugin`
+  [name] (required)
+  [overwriteConfig] (optional) default: false
 
-<span class="c">#############################################################</span>
-<span class="c">## More Help &amp; the actionhero documentation can be found @ ##</span>
-<span class="c">##             http://www.actionherojs.com                 ##</span>
-<span class="c">#############################################################</span>
-</code></pre>
+* actionhero unlink --name=[pluginName]
+  will remove the linked actions, tasks, initializers, etc from a plugin in your
+    top-level project. Please remove the config files manually
+  Remember if your plugin was installed via NPM, also be sure to remove it from your
+    package.json or uninstall it with npm uninstall --save
+  [name] (required)
+
+#############################################################
+## More Help &amp; the ActionHero documentation can be found @ ##
+##             http://www.actionherojs.com                 ##
+#############################################################
+</span></code></pre>
 
 <p>The suggested method to run your ActionHero server is to use the included <code class="prettyprint">./node_modules/.bin/actionhero</code> binary.  Note that there is no <code class="prettyprint">main.js</code> or specific start script your project needs.  ActionHero handles this for you.  Your ActionHero project simply needs to follow the proper directory conventions and it will be bootable.</p>
 
@@ -4135,7 +4210,7 @@ Descriptions:
 <p>From within ActionHero itself (actions, initilizers, etc), you can use <code class="prettyprint">api.commands.start</code>, <code class="prettyprint">api.commands.stop</code>, and <code class="prettyprint">api.commands.restart</code> to control the server.</p>
 
 <h2 id="signals">Signals</h2>
-<pre class="highlight shell"><code><span class="gp">&gt; </span>./node_modules/.bin/actionhero startCluster --workers<span class="o">=</span>2
+<pre class="highlight shell"><code><span class="gp">&gt; </span>./node_modules/.bin/actionhero start cluster --workers<span class="o">=</span>2
 info: actionhero &gt;&gt; startCluster
 notice:  - STARTING CLUSTER -
 notice: pid: 41382
@@ -4182,7 +4257,7 @@ notice: cluster <span class="nb">complete</span>, Bye!
 <li><code class="prettyprint">USR2</code>: Process will restart itself.  The process will preform the &ldquo;graceful shutdown&rdquo; above, and they restart.</li>
 </ul>
 
-<p><strong>actionhero startCluster</strong></p>
+<p><strong>actionhero start cluster</strong></p>
 
 <p>All signals should be sent to the cluster master process.  You can still signal the termination of a worker, but the cluster manager will start a new one in its place.</p>
 
@@ -4196,9 +4271,9 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <h2 id="shutting-down">Shutting Down</h2>
 
-<p>When using <code class="prettyprint">actionhero start</code> or <code class="prettyprint">actionhero startCluster</code>, when you signal ActionHero to stop via the signals above (or from within your running application via <code class="prettyprint">api.commands.stop()</code>), actionhero will attempt to gracefully shutdown.  This will include running any initializer&rsquo;s <code class="prettyprint">stop()</code> method.  This will close any open servers, and attempt to allow any running tasks to complete.</p>
+<p>When using <code class="prettyprint">actionhero start</code> or <code class="prettyprint">actionhero start cluster</code>, when you signal ActionHero to stop via the signals above (or from within your running application via <code class="prettyprint">api.commands.stop()</code>), actionhero will attempt to gracefully shutdown.  This will include running any initializer&rsquo;s <code class="prettyprint">stop()</code> method.  This will close any open servers, and attempt to allow any running tasks to complete.</p>
 
-<p>Because things sometimes go wrong, <code class="prettyprint">actionhero start</code> and <code class="prettyprint">actionhero startCluster</code> also have a &ldquo;emergency stop&rdquo; timeout.  This defaults to 30 seconds, and is configurable via the <code class="prettyprint">ACTIONHERO_SHUTDOWN_TIMEOUT</code> environment variable.  Be sure that your tasks and actions can complete within that window, or else raise that shutdown limit.</p>
+<p>Because things sometimes go wrong, <code class="prettyprint">actionhero start</code> and <code class="prettyprint">actionhero start cluster</code> also have a &ldquo;emergency stop&rdquo; timeout.  This defaults to 30 seconds, and is configurable via the <code class="prettyprint">ACTIONHERO_SHUTDOWN_TIMEOUT</code> environment variable.  Be sure that your tasks and actions can complete within that window, or else raise that shutdown limit.</p>
 
 <h2 id="windows-specific-notes">Windows-Specific Notes</h2>
 
@@ -4237,7 +4312,7 @@ notice: cluster <span class="nb">complete</span>, Bye!
     <span class="s2">"help"</span>         <span class="err">:</span> <span class="s2">"actionhero help"</span><span class="p">,</span>
     <span class="s2">"start"</span>        <span class="err">:</span> <span class="s2">"actionhero start"</span><span class="p">,</span>
     <span class="s2">"actionhero"</span>   <span class="err">:</span> <span class="s2">"actionhero"</span><span class="p">,</span>
-    <span class="s2">"startCluster"</span> <span class="err">:</span> <span class="s2">"actionhero startCluster"</span><span class="p">,</span>
+    <span class="s2">"startCluster"</span> <span class="err">:</span> <span class="s2">"actionhero start cluster"</span><span class="p">,</span>
     <span class="s2">"test"</span>         <span class="err">:</span> <span class="s2">"NODE_ENV=test mocha"</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -4355,9 +4430,36 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
           <h1 id="upgrading-actionhero">Upgrading ActionHero</h1>
 
-<p>Upgrading big ActionHero projects to a new major might requite substantial effort. Every ActionHero version has it&rsquo;s own specific project files which you generate using <code class="prettyprint">actionhero generate</code> command. One of the ways to upgrade your project is to generate a new project using the latest ActionHero framework (<code class="prettyprint">npm install actionhero &amp;&amp; ./node_modules/.bin/actionhero generate</code>). Using that as your starting point you can then carefully copy all your <code class="prettyprint">configs</code>, <code class="prettyprint">initializers</code>, <code class="prettyprint">servers</code>, links and other custom code from your old project, making sure that you are at the same working state as before. It&rsquo;s a good practice to make tests for your actions (or any other component) before you plan to upgrade your ActionHero project. With tests you can make sure that you have successfully upgraded your project.</p>
+<p>Upgrading big ActionHero projects to a new major might require some effort. Every ActionHero version has it&rsquo;s own specific project files which you generate using <code class="prettyprint">actionhero generate</code> command. One of the ways to upgrade your project is to generate a new project using the latest ActionHero framework (<code class="prettyprint">npm install actionhero &amp;&amp; ./node_modules/.bin/actionhero generate</code>). Using that as your starting point you can then carefully copy all your <code class="prettyprint">configs</code>, <code class="prettyprint">initializers</code>, <code class="prettyprint">servers</code>, links and other custom code from your old project, making sure that you are at the same working state as before. It&rsquo;s a good practice to make tests for your actions (or any other component) before you plan to upgrade your ActionHero project.</p>
+
+<p>With good <a href="http://www.actionherojs.com/docs/#testing">test coverage</a> you can make sure that you have successfully upgraded your project.</p>
 
 <p>ActionHero follows <a href="http://semver.org/">semantic versioning</a>.  This means that a minor change is a right-most number.  A new feature added is the middle number, and a breaking change is the left number.  You should expect something in your application to need to be changed if you upgrade a major version.</p>
+
+<h2 id="upgrading-from-v14-x-x-to-v15-x-x">Upgrading from v14.x.x to v15.x.x</h2>
+
+<p><strong>Full Release Notes: <a href="https://github.com/evantahler/actionhero/releases/tag/v15.0.0">GitHub</a></strong></p>
+
+<p><strong>Breaking Changes and How to Overcome Them:</strong></p>
+
+<ul>
+<li>The ActionHero binary has had it&rsquo;s commands changed.<br>
+
+<ul>
+<li>Any deployment or automation tools you use will need to be updated accordingly.
+<code class="prettyprint">
+`actionhero generateAction --name=[name]`      -&gt; `actionhero generate action --name=[name]`
+`actionhero generateInitializer --name=[name]` -&gt; `actionhero generate initializer --name=[name]`
+`actionhero generateServer --name=[name]`      -&gt; `actionhero generate server --name=[name]`
+`actionhero generateTask --name=[name]`        -&gt; `actionhero generate task --name=[name]`
+</code></li>
+</ul></li>
+<li>Tasks now use middleware instead of plugins.
+
+<ul>
+<li>You will need to convert all uses of task plugins to task middleware.</li>
+</ul></li>
+</ul>
 
 <h2 id="upgrading-from-v13-x-x-to-v14-x-x">Upgrading from v13.x.x to v14.x.x</h2>
 
@@ -4445,14 +4547,14 @@ notice: cluster <span class="nb">complete</span>, Bye!
 
 <ul>
 <li>Actions now look like
-<code class="prettyprint">js
+<code class="prettyprint">javascript
 run: function(api, data, next){
 data.response.randomNumber = Math.random();
 next(error);
 }
 </code></li>
 <li>Where data contains:
-<code class="prettyprint">js
+<code class="prettyprint">javascript
 data = {
 connection: connection,
 action: &#39;randomNumber&#39;,

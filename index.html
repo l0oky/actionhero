@@ -108,7 +108,7 @@
         <h4>In ActionHero, you make actions which respond to client requests.</h4>
 
 
-<pre class="highlight javascript"><code><span class="c1">// actionhero generateAction --name=randomNumber</span>
+<pre class="highlight javascript"><code><span class="c1">// actionhero generate action --name=randomNumber</span>
 <span class="c1">// File: actions/randomNumber.js</span>
 
 <span class="nx">exports</span><span class="p">.</span><span class="nx">randomNumber</span> <span class="o">=</span> <span class="p">{</span>
@@ -177,7 +177,7 @@ client.connect<span class="o">(</span><span class="k">function</span><span class
     <div class="row">
         <h4>ActionHero also lets you perform tasks in the background...</h4>
 
-<pre class="highlight javascript"><code><span class="c1">// actionhero generateTask --name=sendEmail</span>
+<pre class="highlight javascript"><code><span class="c1">// actionhero generate action --name=sendEmail</span>
 <span class="c1">// File: tasks/sendEmail.js</span>
 <span class="nx">exports</span><span class="p">.</span><span class="nx">task</span> <span class="o">=</span> <span class="p">{</span>
     <span class="na">name</span><span class="p">:</span>        <span class="s1">'sendEmail'</span><span class="p">,</span>
@@ -238,7 +238,7 @@ client.connect<span class="o">(</span><span class="k">function</span><span class
 <pre class="highlight shell"><code><span class="c"># start 1 instance</span>
 ./node_modules/.bin/actionhero start
 <span class="c"># start a cluster</span>
-./node_modules/.bin/actionhero startCluster
+./node_modules/.bin/actionhero start cluster
 </code></pre>
 
 </section>

@@ -175,7 +175,7 @@ You could also configure more nodes to work on the <code class="prettyprint">hig
 2013-11-28 15:21:56 - debug: re-enqueued reccurent job sayGoodbye
 </code></pre>
 
-<p>You can create you own tasks by placing them in a <code class="prettyprint">./tasks/</code> directory at the root of your application.  You can use the generator <code class="prettyprint">actionhero generateTask --name=myTask</code>. Like actions, all tasks have some required metadata:</p>
+<p>You can create you own tasks by placing them in a <code class="prettyprint">./tasks/</code> directory at the root of your application.  You can use the generator <code class="prettyprint">actionhero generate task --name=myTask</code>. Like actions, all tasks have some required metadata:</p>
 
 <ul>
 <li><code class="prettyprint">task.name</code>: The unique name of your task</li>

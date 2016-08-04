@@ -24,7 +24,7 @@
 
 <p>The goal of an action is to read <code class="prettyprint">data.params</code> (which are the arguments a connection provides), do work, and set the <code class="prettyprint">data.response</code> (and <code class="prettyprint">error</code> when needed) values to build the response to the client.</p>
 
-<p>You can create you own actions by placing them in a <code class="prettyprint">./actions/</code> folder at the root of your application.  You can use the generator with <code class="prettyprint">actionhero generateAction --name=myAction</code></p>
+<p>You can create you own actions by placing them in a <code class="prettyprint">./actions/</code> folder at the root of your application.  You can use the generator with <code class="prettyprint">actionhero generate action --name=myAction</code></p>
 
 <p>Here&rsquo;s an example of a simple action which will return a random number to the client:</p>
 

@@ -28,7 +28,7 @@
     <span class="s2">"help"</span>         <span class="err">:</span> <span class="s2">"actionhero help"</span><span class="p">,</span>
     <span class="s2">"start"</span>        <span class="err">:</span> <span class="s2">"actionhero start"</span><span class="p">,</span>
     <span class="s2">"actionhero"</span>   <span class="err">:</span> <span class="s2">"actionhero"</span><span class="p">,</span>
-    <span class="s2">"startCluster"</span> <span class="err">:</span> <span class="s2">"actionhero startCluster"</span><span class="p">,</span>
+    <span class="s2">"startCluster"</span> <span class="err">:</span> <span class="s2">"actionhero start cluster"</span><span class="p">,</span>
     <span class="s2">"test"</span>         <span class="err">:</span> <span class="s2">"NODE_ENV=test mocha"</span>
   <span class="p">}</span>
 <span class="p">}</span>
