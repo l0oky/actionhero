@@ -4,9 +4,13 @@
 
 <p><img src="/images/actionheroGraphic.png" /></p>
 
-<h2 id="request-flow">request flow</h2>
+<h2 id="actionhero-action-request-flow">ActionHero Action Request Flow</h2>
 
-<p><img src="/images/connection_flow.png" /></p>
+<p><img src="/images/connection_flow_actions.png" /></p>
+
+<h2 id="actionhero-task-request-flow">ActionHero Task Request Flow</h2>
+
+<p><img src="/images/connection_flow_tasks.png" /></p>
 
 <h2 id="cluster-topology">cluster topology</h2>
 

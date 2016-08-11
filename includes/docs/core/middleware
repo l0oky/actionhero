@@ -30,7 +30,7 @@
 
 <h2 id="action-request-flow">Action Request Flow</h2>
 
-<p><img src="/images/connection_flow.png" /></p>
+<p><img src="/images/connection_flow_actions.png" /></p>
 
 <h2 id="action-middleware">Action Middleware</h2>
 <pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">middleware</span> <span class="o">=</span> <span class="p">{</span>
@@ -171,11 +171,15 @@
 
 <p>If a <code class="prettyprint">say</code> is blocked/errored, the message will simply not be delivered to the client.  If a  <code class="prettyprint">join</code> or  <code class="prettyprint">leave</code> is blocked/errored, the verb or method used to invoke the call will be returned that error.</p>
 
+<h2 id="task-request-flow">Task Request Flow</h2>
+
+<p><img src="/images/connection_flow_tasks.png" /></p>
+
 <h2 id="task-middleware">Task Middleware</h2>
 
-<p>Task middleware is implemented as a thin wrapper around Node Resque plugins and currently exposes the <code class="prettyprint">before_perform</code>, 
+<p>Task middleware is implemented as a thin wrapper around Node Resque plugins and currently exposes the <code class="prettyprint">before_perform</code>,
 <code class="prettyprint">after_perform</code>, <code class="prettyprint">before_enqueue</code>, and <code class="prettyprint">after_enqueue</code> functions of Resque plugins through <code class="prettyprint">preProcessor</code>, <code class="prettyprint">postProcessor</code>,
- <code class="prettyprint">preEnqueue</code>, and <code class="prettyprint">postEnqueue</code> methods. Each middleware requires a <code class="prettyprint">name</code> and at least one function. In addition, 
+ <code class="prettyprint">preEnqueue</code>, and <code class="prettyprint">postEnqueue</code> methods. Each middleware requires a <code class="prettyprint">name</code> and at least one function. In addition,
  a middleware can be global, in which case it also requires a <code class="prettyprint">priority</code>.</p>
 
 <p>In the <code class="prettyprint">preProcessor</code>, you can access the original task <code class="prettyprint">params</code> through <code class="prettyprint">this.args[0]</code>.
